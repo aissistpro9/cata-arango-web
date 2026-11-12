@@ -61,8 +61,12 @@ app.use(express.static(path.join(__dirname, '.'), {
 }));
 
 // Fallback to index.html for root or unknown GET requests
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.use((req, res) => {
+  if (req.method === 'GET') {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  } else {
+    res.status(404).send('Not Found');
+  }
 });
 
 app.listen(PORT, '0.0.0.0', () => {
