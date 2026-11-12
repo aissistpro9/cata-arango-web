@@ -1,0 +1,13 @@
+# Local Netlify folder
+node_modules/
+.netlify
+
+# Environment variables
+.env
+
+# Scratch and temp files
+scratch/
+*.log
+
+# Root videos (already preserved in assets/videos/)
+/Testimonio*.mp4

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cata Arango · Trascendamos Juntos | BlessiaTech Showcase</title>
+  <link rel="icon" type="image/png" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link rel="apple-touch-icon" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    :root {
+      --sage-dark: #2d382d;
+      --sage-primary: #4e614e;
+      --sage-light: #d3e8d0;
+      --terracotta: #a8583c;
+      --bronze: #7a573b;
+      --cream: #fff9e8;
+      --cream-dark: #f4eedb;
+      --blessia-accent: #e5a93c;
+      --blessia-dark: #121612;
+      --text-dark: #1e1c10;
+      --text-muted: #5e635b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--blessia-dark);
+      color: #f7f1de;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Top Agency Bar */
+    .top-bar {
+      height: 64px;
+      background: rgba(18, 22, 18, 0.95);
+      border-bottom: 1px solid rgba(211, 232, 208, 0.12);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .agency-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.18), rgba(122, 87, 59, 0.25));
+      border: 1px solid rgba(229, 169, 60, 0.4);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffdca3;
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff9e8;
+      letter-spacing: -0.01em;
+    }
+
+    .project-subtitle {
+      font-size: 11px;
+      color: rgba(247, 241, 222, 0.6);
+      letter-spacing: 0.05em;
+    }
+
+    /* Navigation Tabs */
+    .view-tabs {
+      display: flex;
+      align-items: center;
+      background: rgba(45, 56, 45, 0.45);
+      border: 1px solid rgba(211, 232, 208, 0.15);
+      padding: 4px;
+      border-radius: 12px;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: rgba(247, 241, 222, 0.7);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #fff9e8;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: var(--sage-primary);
+      color: #fff9e8;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .tab-btn .material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    /* Right Actions */
+    .actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff9e8;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .action-btn.primary {
+      background: var(--bronze);
+      border-color: var(--bronze);
+      color: #fff9e8;
+      font-weight: 600;
+    }
+
+    .action-btn.primary:hover {
+      background: #8e6645;
+    }
+
+    /* Content Area */
+    .viewport-container {
+      flex: 1;
+      position: relative;
+      background: #0d100d;
+      overflow: hidden;
+    }
+
+    .view-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+
+    .view-frame.active {
+      display: block;
+    }
+
+    /* Subpage Selector Bar for Prototype view */
+    .subnav-bar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 22, 18, 0.92);
+      border: 1px solid rgba(211, 232, 208, 0.2);
+      backdrop-filter: blur(16px);
+      padding: 6px 10px;
+      border-radius: 999px;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+
+    .subnav-bar.visible {
+      display: flex;
+    }
+
+    .subnav-btn {
+      background: transparent;
+      border: none;
+      color: rgba(247, 241, 222, 0.7);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .subnav-btn:hover {
+      color: #fff9e8;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .subnav-btn.active {
+      background: var(--bronze);
+      color: #fff9e8;
+      font-weight: 600;
+    }
+
+    /* Static Views */
+    .static-view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 40px 24px;
+      background: #141714;
+    }
+
+    .static-view.active {
+      display: block;
+    }
+
+    .content-card-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(45, 56, 45, 0.25);
+      border: 1px solid rgba(211, 232, 208, 0.12);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #fff9e8;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: rgba(247, 241, 222, 0.75);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .card-img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    /* Heatmaps View */
+    .heatmaps-view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 40px 24px;
+      background: #111411;
+    }
+
+    .heatmaps-view.active {
+      display: block;
+    }
+
+    .heatmaps-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .heatmap-row {
+      background: rgba(45, 56, 45, 0.2);
+      border: 1px solid rgba(211, 232, 208, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 28px;
+      align-items: center;
+    }
+
+    .heatmap-preview {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <a href="index.html" title="Volver a la Web Principal" style="display: flex; align-items: center; gap: 0.65rem;">
+        <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="height: 28px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(229,195,146,0.4));">
+        <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango Logo" style="height: 32px; width: auto; object-fit: contain; display: block;">
+      </a>
+      <div class="agency-badge">
+        <span class="material-symbols-outlined" style="font-size: 14px;">auto_awesome</span>
+        BlessiaTech
+      </div>
+      <div class="project-info">
+        <span class="project-title">Catalina Arango</span>
+        <span class="project-subtitle">Trascendamos Juntos · Terapia Holística</span>
+      </div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="view-tabs">
+      <button class="tab-btn active" onclick="switchView('prototype')">
+        <span class="material-symbols-outlined">language</span>
+        <span class="tab-text">Web Oficial (5 Páginas)</span>
+      </button>
+      <button class="tab-btn" onclick="switchView('presentation')">
+        <span class="material-symbols-outlined">slideshow</span>
+        <span class="tab-text">Presentación Ejecutiva</span>
+      </button>
+      <button class="tab-btn" onclick="switchView('heatmaps')">
+        <span class="material-symbols-outlined">analytics</span>
+        <span class="tab-text">Heatmaps Predictivos UX</span>
+      </button>
+      <button class="tab-btn" onclick="switchView('marketing')">
+        <span class="material-symbols-outlined">campaign</span>
+        <span class="tab-text">Marketing Kit</span>
+      </button>
+    </nav>
+
+    <!-- Top Actions -->
+    <div class="actions-group">
+      <a href="index.html" target="_blank" class="action-btn primary">
+        <span>Abrir Web en Pestaña</span>
+        <span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Viewport Area -->
+  <main class="viewport-container">
+
+    <!-- View 1: Web Prototype (Active by default now) -->
+    <iframe id="prototypeFrame" class="view-frame active" src="index.html"></iframe>
+
+    <!-- Subpage switcher -->
+    <div id="prototypeSubnav" class="subnav-bar visible">
+      <span style="font-size: 11px; opacity: 0.5; padding-left: 8px; text-transform: uppercase;">Páginas:</span>
+      <button class="subnav-btn active" onclick="loadPrototypePage('index.html', this)">Inicio</button>
+      <button class="subnav-btn" onclick="loadPrototypePage('sobre-mi.html', this)">Sobre Mí</button>
+      <button class="subnav-btn" onclick="loadPrototypePage('mentorias-y-cursos.html', this)">Mentorías</button>
+      <button class="subnav-btn" onclick="loadPrototypePage('comunidad.html', this)">Comunidad</button>
+      <button class="subnav-btn" onclick="loadPrototypePage('contacto-y-faq.html', this)">Contacto</button>
+    </div>
+
+    <!-- View 2: Presentation Slideshow -->
+    <iframe id="presentationFrame" class="view-frame" src="presentacion_profesional_cata_arango.html"></iframe>
+
+    <!-- View 3: Heatmaps UX Analysis -->
+    <div id="heatmapsView" class="heatmaps-view">
+      <div class="heatmaps-container">
+        <div>
+          <span style="color: #e5a93c; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;">Análisis Predictivo de Atención Visual</span>
+          <h1 style="font-family: 'Playfair Display', serif; font-size: 32px; color: #fff9e8; margin-top: 6px;">Heatmaps Predictivos UX · Catalina Arango</h1>
+          <p style="color: rgba(247,241,222,0.7); max-width: 800px; font-size: 14px; margin-top: 8px;">
+            Simulación predictiva con algoritmos de atención visual humana para validar la jerarquía, reducir la fricción cognitiva y maximizar la conversión.
+          </p>
+        </div>
+
+        <div class="heatmap-row">
+          <div>
+            <span style="background: rgba(229,169,60,0.15); color: #ffdca3; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Homepage · Landing Principal</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; color: #fff9e8; margin: 12px 0;">Atención Visual: Hero & Lead Magnet</h2>
+            <p style="color: rgba(247,241,222,0.8); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+              Los mapas confirman que el 78% del primer impacto visual se ancla en el titular <em>"Trascendamos Juntos"</em> y el botón <em>"Inicia tu Sanación"</em>.
+            </p>
+          </div>
+          <div>
+            <img src="heatmap_homepage.jpg" alt="Heatmap Homepage" class="heatmap-preview">
+          </div>
+        </div>
+
+        <div class="heatmap-row">
+          <div>
+            <span style="background: rgba(229,169,60,0.15); color: #ffdca3; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Servicios · Mentorías 1 a 1</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; color: #fff9e8; margin: 12px 0;">Price Anchoring & Hotspots de Decisión</h2>
+            <p style="color: rgba(247,241,222,0.8); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+              La tarjeta central de $212 con el badge <em>"MÁS ELEGIDO"</em> absorbe el 68% de las fijaciones oculares.
+            </p>
+          </div>
+          <div>
+            <img src="heatmap_mentorias.jpg" alt="Heatmap Mentorías" class="heatmap-preview">
+          </div>
+        </div>
+
+        <div class="heatmap-row">
+          <div>
+            <span style="background: rgba(229,169,60,0.15); color: #ffdca3; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Contacto & FAQ</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; color: #fff9e8; margin: 12px 0;">Conversión Final y Despeje de Objeciones</h2>
+            <p style="color: rgba(247,241,222,0.8); font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+              Los campos simplificados del formulario concentran una zona roja de alta intención (85%).
+            </p>
+          </div>
+          <div>
+            <img src="heatmap_contacto.jpg" alt="Heatmap Contacto" class="heatmap-preview">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 4: Marketing Kit -->
+    <div id="marketingView" class="static-view">
+      <div style="max-width: 1200px; margin: 0 auto; margin-bottom: 32px;">
+        <span style="color: #e5a93c; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;">Ecosistema de Contenidos</span>
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 32px; color: #fff9e8; margin-top: 6px;">Marketing Kit · Catalina Arango</h1>
+      </div>
+
+      <div class="content-card-grid">
+        <div class="card">
+          <img src="square_social_media_post_for_instagram_linkedin_promoting_cata_arango/screen.png" class="card-img" alt="Social Post">
+          <h3>Post para Redes Sociales</h3>
+          <p>Pieza cuadrada para Instagram y LinkedIn. Hook: <em>"¿Y si el cansancio no se cura durmiendo?"</em>.</p>
+        </div>
+
+        <div class="card">
+          <img src="wide_banner_ad_16_9_for_holistic_mentoring_and_somatic_therapy_cata_arango/screen.png" class="card-img" alt="Banner Ad">
+          <h3>Banner Publicitario (16:9)</h3>
+          <p>Creativo para Meta Ads y Google Display enfocado en la transición de la sobreexigencia a la calma.</p>
+        </div>
+
+        <div class="card">
+          <img src="email_newsletter_header_image_16_9_banner_for_cata_arango_trascendamos_juntos_/screen.png" class="card-img" alt="Newsletter Banner">
+          <h3>Cabecera de Newsletter</h3>
+          <p>Header editorial para las reflexiones semanales de Catalina por email.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchView(viewName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(viewName));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.getElementById('presentationFrame').classList.remove('active');
+      document.getElementById('prototypeFrame').classList.remove('active');
+      document.getElementById('heatmapsView').classList.remove('active');
+      document.getElementById('marketingView').classList.remove('active');
+      document.getElementById('prototypeSubnav').classList.remove('visible');
+
+      if (viewName === 'presentation') {
+        document.getElementById('presentationFrame').classList.add('active');
+      } else if (viewName === 'prototype') {
+        document.getElementById('prototypeFrame').classList.add('active');
+        document.getElementById('prototypeSubnav').classList.add('visible');
+      } else if (viewName === 'heatmaps') {
+        document.getElementById('heatmapsView').classList.add('active');
+      } else if (viewName === 'marketing') {
+        document.getElementById('marketingView').classList.add('active');
+      }
+    }
+
+    function loadPrototypePage(url, btnElement) {
+      document.getElementById('prototypeFrame').src = url;
+      document.querySelectorAll('.subnav-btn').forEach(b => b.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonios en Video — Historias de Transformación · Catalina Arango</title>
+  <meta name="description" content="Conoce los testimonios en video de consultantes que transformaron su vida, sanaron heridas y despertaron su soberanía con Catalina Arango.">
+  <link rel="preload" as="image" href="assets/images/fractal_footer_bg.webp" type="image/webp">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/png" href="assets/images/LOGO_SOL_Y_LUNA-removebg.png">
+</head>
+<body style="background: var(--surface); color: var(--on-surface);">
+
+  <!-- ==========================================================================
+       SITE HEADER
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wrapper" title="Cata Arango · Trascendamos Juntos">
+        <img src="assets/images/LOGO_COMPLETO-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="brand-logo-img">
+        <div class="brand-title-group sr-only">
+          <span class="brand-name">CATA ARANGO</span>
+          <span class="brand-tagline">Trascendamos Juntos</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-menu">
+        <a href="index.html?bienvenida=true" class="nav-welcome-link" title="Portada de Bienvenida">
+          <span class="material-symbols-outlined" style="font-size: 16px;">wb_twilight</span>
+          <span>Bienvenida</span>
+        </a>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="sobre-mi.html" class="nav-link">Sobre Mí</a>
+        <a href="testimonios.html" class="nav-link active">Testimonios</a>
+        <a href="mentorias-y-cursos.html" class="nav-link">Mentorías y Cursos</a>
+        <a href="comunidad.html" class="nav-link">Comunidad</a>
+        <a href="contacto-y-faq.html" class="nav-link">Contacto & FAQ</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="mentorias-y-cursos.html" class="btn btn-primary header-cta">Inicia tu Sanación</a>
+        
+        <!-- Mobile Hamburger Button -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú" onclick="toggleMobileMenu()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="index.html?bienvenida=true" class="nav-link" style="color: var(--secondary); font-weight: 600;">Portada de Bienvenida</a>
+    <a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Inicio</a>
+    <a href="sobre-mi.html" class="nav-link" onclick="toggleMobileMenu()">Sobre Mí</a>
+    <a href="testimonios.html" class="nav-link active" onclick="toggleMobileMenu()">Testimonios</a>
+    <a href="mentorias-y-cursos.html" class="nav-link" onclick="toggleMobileMenu()">Mentorías y Cursos</a>
+    <a href="comunidad.html" class="nav-link" onclick="toggleMobileMenu()">Comunidad</a>
+    <a href="contacto-y-faq.html" class="nav-link" onclick="toggleMobileMenu()">Contacto & FAQ</a>
+    <div style="margin-top: 0.5rem;">
+      <a href="mentorias-y-cursos.html" class="btn btn-primary" style="width: 100%;">Inicia tu Sanación</a>
+    </div>
+  </div>
+
+  <main style="padding-top: 80px;">
+
+    <!-- ==========================================================================
+         HERO SECTION: VOCES DE TRANSFORMACIÓN
+         ========================================================================== -->
+    <section class="hero-mystic hero-mystic-testimonios" aria-label="Hero Testimonios en Video">
+      <div class="hero-mystic-content">
+
+        <!-- Emblema Sagrado Sol y Luna -->
+        <div class="hero-sol-luna-wrap">
+          <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna · Trascendamos Juntos" class="hero-sol-luna-img" width="56" height="60">
+        </div>
+
+        <div class="badge-pill" style="background: rgba(229, 195, 146, 0.18); color: #fff9e8; border: 1px solid rgba(229, 195, 146, 0.4); margin-bottom: 0.5rem;">
+          <span class="material-symbols-outlined" style="font-size: 16px; color: #f7d598;">smart_display</span>
+          <span>VOCES REALES DE TRANSFORMACIÓN</span>
+        </div>
+
+        <h1 class="hero-mystic-title">
+          Historias Reales de <br>
+          <span style="font-style: italic; font-weight: 400; color: #f7d598;">Despertar & Sanación</span>
+        </h1>
+
+        <p class="hero-mystic-subtitle">
+          «El testimonio más honesto nace del cuerpo que se atrevió a sentir.»
+        </p>
+
+        <p class="hero-mystic-text">
+          Conoce las historias de consultantes que decidieron mirar hacia adentro, abrazar sus sombras y desarmar viejos patrones inconscientes acompañados por <strong>Catalina Arango</strong>.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#testimonios-lista" class="btn btn-primary" style="padding: 0.95rem 1.85rem; background: linear-gradient(135deg, #e5c392 0%, #c99f67 100%); color: #1a140e; font-weight: 700; border: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(201, 159, 103, 0.35);">
+            <span>Ver Testimonios en Video</span>
+            <span class="material-symbols-outlined" style="font-size: 20px;">play_circle</span>
+          </a>
+          <a href="contacto-y-faq.html#formulario" class="btn btn-outline" style="border: 1.5px solid rgba(229, 195, 146, 0.7); color: #ffffff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px); padding: 0.95rem 1.75rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+            <span>Agendar Cita</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">calendar_month</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Cortina de transición -->
+    <div class="hero-curtain-transition"></div>
+
+    <!-- ==========================================================================
+         SECCIÓN: TESTIMONIOS EN VIDEO (ZIGZAG EDITORIAL)
+         ========================================================================== -->
+    <section class="section section-testimonials" id="testimonios-lista" style="padding-top: 3.5rem;">
+      <div class="container">
+        
+        <!-- Encabezado Editorial de Sección -->
+        <div style="text-align: center; max-width: 780px; margin: 0 auto 4rem;">
+          <div class="section-crest">
+            <span class="section-crest-line"></span>
+            <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Emblema Sol y Luna" class="sol-luna-icon sol-luna-sm">
+            <span class="section-crest-line"></span>
+          </div>
+          <span class="eyebrow" style="justify-content: center; margin-bottom: 0.6rem;">CAPÍTULOS DE RECONEXIÓN · TESTIMONIOS EN VIDEO</span>
+          <h2 class="headline-lg" style="color: var(--on-surface);">Cada Proceso es un Portal Hacia tu Luz</h2>
+          <p class="body-md" style="margin-top: 0.85rem; color: var(--on-surface-variant); line-height: 1.65;">
+            Escucha la voz, la mirada y la experiencia de quienes caminaron este sendero de transformación interior y mentoría profunda.
+          </p>
+        </div>
+
+        <!-- Contenedor Zigzag de Testimonios -->
+        <div class="testimonial-zigzag-wrapper">
+
+          <!-- ==================================================================
+               TESTIMONIO 1: VIDEO IZQUIERDA · TEXTO DERECHA — APRIL
+               ================================================================== -->
+          <article class="testimonial-zigzag-row" id="testimonio-april">
+            
+            <!-- Columna Video (Izquierda) -->
+            <div class="testimonial-video-col">
+              <div class="testimonial-video-backdrop"></div>
+              <div class="testimonial-video-frame">
+                <video class="testimonial-video-player" controls preload="metadata" playsinline poster="assets/videos/poster_april.jpg">
+                  <source src="assets/videos/testimonio_april.mp4" type="video/mp4">
+                  Tu navegador no soporta reproducción de video HTML5.
+                </video>
+                <div class="testimonial-floating-tag">
+                  <div class="testimonial-tag-seal">
+                    <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+                  </div>
+                  <div class="testimonial-tag-meta">
+                    <span class="testimonial-tag-author">April</span>
+                    <span class="testimonial-tag-badge">Testimonio 01 · Reconexión</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Texto (Derecha) -->
+            <div class="testimonial-text-col">
+              <div>
+                <span class="eyebrow eyebrow-sol-luna" style="margin-bottom: 0.5rem;">
+                  <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" class="sol-luna-icon sol-luna-xs">
+                  <span>Capítulo I · Transformación Personal</span>
+                </span>
+                <h3 class="headline-md" style="font-size: clamp(1.8rem, 3.2vw, 2.3rem); color: var(--on-surface);">
+                  April · El Desarme de la Autoexigencia y el Retorno a la Calma
+                </h3>
+              </div>
+
+              <div class="body-md" style="display: flex; flex-direction: column; gap: 1.15rem; color: var(--on-surface-variant);">
+                <p>
+                  April llegó al espacio sintiéndose agotada por la exigencia constante de complacer al entorno y la desconexión con su propio sentir. Buscaba un camino de claridad ante un momento de confusión y encrucijada vital.
+                </p>
+                <p>
+                  A través de las sesiones 1 a 1 de decodificación y trabajo de reconexión consciente, logró identificar la raíz del bloqueo emocional, soltar la carga de expectativas ajenas y reencontrarse con una serenidad interna inquebrantable.
+                </p>
+              </div>
+
+              <!-- Cita Editorial Enmarcada -->
+              <div class="testimonial-quote-box">
+                <p>
+                  «Sentí una contención tan genuina que por primera vez pude desarmar la máscara de tener que ser fuerte todo el tiempo. Cata tiene un don especial para ver con amor lo que ni tú misma te atreves a mirar.»
+                </p>
+              </div>
+
+              <!-- Badges del Testimonio -->
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="badge-pill" style="background: var(--surface-container); color: var(--on-surface-variant);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">person_pin</span>
+                  Mentoría 1 a 1
+                </span>
+                <span class="badge-pill" style="background: var(--secondary-container); color: var(--secondary);">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">self_improvement</span>
+                  Paz & Reconexión
+                </span>
+                <span class="badge-pill" style="background: var(--surface-low); color: var(--on-surface);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">wb_twilight</span>
+                  Paz Interior
+                </span>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- ==================================================================
+               TESTIMONIO 2: TEXTO IZQUIERDA · VIDEO DERECHA (INVERSO) — IVÁN
+               ================================================================== -->
+          <article class="testimonial-zigzag-row row-reverse" id="testimonio-ivan">
+            
+            <!-- Columna Texto (Izquierda) -->
+            <div class="testimonial-text-col">
+              <div>
+                <span class="eyebrow eyebrow-sol-luna" style="margin-bottom: 0.5rem;">
+                  <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" class="sol-luna-icon sol-luna-xs">
+                  <span>Capítulo II · Consciencia Masculina</span>
+                </span>
+                <h3 class="headline-md" style="font-size: clamp(1.8rem, 3.2vw, 2.3rem); color: var(--on-surface);">
+                  Iván · Integración de Sombra y Liderazgo Consciente
+                </h3>
+              </div>
+
+              <div class="body-md" style="display: flex; flex-direction: column; gap: 1.15rem; color: var(--on-surface-variant);">
+                <p>
+                  Iván buscaba un acompañamiento honesto y profundo para comprender patrones repetitivos en sus vínculos afectivos y en su dinámica de toma de decisiones profesionales.
+                </p>
+                <p>
+                  Con un abordaje directo, empático y libre de dogmas, el proceso le permitió reconciliarse con sus partes más vulnerables, sanar lealtades familiares inconscientes y habitar una presencia masculina consciente, madura y en equilibrio.
+                </p>
+              </div>
+
+              <!-- Cita Editorial Enmarcada -->
+              <div class="testimonial-quote-box">
+                <p>
+                  «Este proceso transformó radicalmente mi perspectiva. Salí del juicio constante hacia mí mismo y comprendí que el autoconocimiento real no es teoría, es aprender a sostenerte en verdad cada día.»
+                </p>
+              </div>
+
+              <!-- Badges del Testimonio -->
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="badge-pill" style="background: var(--surface-container); color: var(--on-surface-variant);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--secondary);">shield</span>
+                  Integración de Sombra
+                </span>
+                <span class="badge-pill" style="background: var(--secondary-fixed); color: var(--secondary);">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">psychology</span>
+                  Liderazgo Consciente
+                </span>
+                <span class="badge-pill" style="background: var(--surface-low); color: var(--on-surface);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">balance</span>
+                  Proceso Despertar
+                </span>
+              </div>
+            </div>
+
+            <!-- Columna Video (Derecha) -->
+            <div class="testimonial-video-col">
+              <div class="testimonial-video-backdrop"></div>
+              <div class="testimonial-video-frame">
+                <video class="testimonial-video-player" controls preload="metadata" playsinline poster="assets/videos/poster_ivan.jpg">
+                  <source src="assets/videos/testimonio_ivan.mp4" type="video/mp4">
+                  Tu navegador no soporta reproducción de video HTML5.
+                </video>
+                <div class="testimonial-floating-tag">
+                  <div class="testimonial-tag-seal">
+                    <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+                  </div>
+                  <div class="testimonial-tag-meta">
+                    <span class="testimonial-tag-author">Iván</span>
+                    <span class="testimonial-tag-badge">Testimonio 02 · Liderazgo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- ==================================================================
+               TESTIMONIO 3: VIDEO IZQUIERDA · TEXTO DERECHA — VIVIANA
+               ================================================================== -->
+          <article class="testimonial-zigzag-row" id="testimonio-viviana">
+            
+            <!-- Columna Video (Izquierda) -->
+            <div class="testimonial-video-col">
+              <div class="testimonial-video-backdrop"></div>
+              <div class="testimonial-video-frame">
+                <video class="testimonial-video-player" controls preload="metadata" playsinline poster="assets/videos/poster_viviana.jpg">
+                  <source src="assets/videos/testimonio_viviana.mp4" type="video/mp4">
+                  Tu navegador no soporta reproducción de video HTML5.
+                </video>
+                <div class="testimonial-floating-tag">
+                  <div class="testimonial-tag-seal">
+                    <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+                  </div>
+                  <div class="testimonial-tag-meta">
+                    <span class="testimonial-tag-author">Viviana</span>
+                    <span class="testimonial-tag-badge">Testimonio 03 · Niño Interior</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Texto (Derecha) -->
+            <div class="testimonial-text-col">
+              <div>
+                <span class="eyebrow eyebrow-sol-luna" style="margin-bottom: 0.5rem;">
+                  <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" class="sol-luna-icon sol-luna-xs">
+                  <span>Capítulo III · Sanación de Heridas</span>
+                </span>
+                <h3 class="headline-md" style="font-size: clamp(1.8rem, 3.2vw, 2.3rem); color: var(--on-surface);">
+                  Viviana · Reconciliación con el Propio Sentir y el Niño Interior
+                </h3>
+              </div>
+
+              <div class="body-md" style="display: flex; flex-direction: column; gap: 1.15rem; color: var(--on-surface-variant);">
+                <p>
+                  Viviana transitaba un momento de profunda transición vital, lidiando con viejas heridas de rechazo y una constante sensación de culpa cuando intentaba priorizarse a sí misma.
+                </p>
+                <p>
+                  Junto a Cata, construyó un refugio sagrado para escuchar, abrazar y sanar a su niña interior, logrando trazar límites amorosos y firmes que le devolvieron la soberanía sobre su tiempo y su energía.
+                </p>
+              </div>
+
+              <!-- Cita Editorial Enmarcada -->
+              <div class="testimonial-quote-box">
+                <p>
+                  «Llegué rota y con miedo a sentir. Las sesiones con Cata fueron una caricia al alma y un despertar de conciencia que me devolvieron las ganas de florecer y habitar mi vida sin culpa.»
+                </p>
+              </div>
+
+              <!-- Badges del Testimonio -->
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="badge-pill" style="background: var(--surface-container); color: var(--on-surface-variant);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">favorite</span>
+                  Niño Interior
+                </span>
+                <span class="badge-pill" style="background: var(--secondary-container); color: var(--secondary);">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">lock_open</span>
+                  Límites Amorosos
+                </span>
+                <span class="badge-pill" style="background: var(--surface-low); color: var(--on-surface);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">spa</span>
+                  Renacer Sagrado
+                </span>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- ==================================================================
+               TESTIMONIO 4: TEXTO IZQUIERDA · VIDEO DERECHA (INVERSO) — YORLADY
+               ================================================================== -->
+          <article class="testimonial-zigzag-row row-reverse" id="testimonio-yorlady">
+            
+            <!-- Columna Texto (Izquierda) -->
+            <div class="testimonial-text-col">
+              <div>
+                <span class="eyebrow eyebrow-sol-luna" style="margin-bottom: 0.5rem;">
+                  <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" class="sol-luna-icon sol-luna-xs">
+                  <span>Capítulo IV · Soberanía & Metamorfosis</span>
+                </span>
+                <h3 class="headline-md" style="font-size: clamp(1.8rem, 3.2vw, 2.3rem); color: var(--on-surface);">
+                  Yorlady · Trascendencia del Miedo y Renacer en Confianza
+                </h3>
+              </div>
+
+              <div class="body-md" style="display: flex; flex-direction: column; gap: 1.15rem; color: var(--on-surface-variant);">
+                <p>
+                  Yorlady experimentó una metamorfosis transformadora al permitirse soltar viejos condicionamientos del pasado y resignificar momentos de alto dolor emocional acumulados en el cuerpo.
+                </p>
+                <p>
+                  Guiada paso a paso mediante prácticas de presencia y decodificación de linaje, transformó la incertidumbre en confianza profunda, viviendo hoy en plena gratitud, serenidad y soberanía espiritual.
+                </p>
+              </div>
+
+              <!-- Cita Editorial Enmarcada -->
+              <div class="testimonial-quote-box">
+                <p>
+                  «Fue un antes y un después en mi vida. Gracias a Cata comprendí que el dolor era solo el portal sagrado hacia mi mayor fortaleza interior. Su calidez y sostén son incomparables.»
+                </p>
+              </div>
+
+              <!-- Badges del Testimonio -->
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="badge-pill" style="background: var(--surface-container); color: var(--on-surface-variant);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--secondary);">auto_awesome</span>
+                  Soberanía Personal
+                </span>
+                <span class="badge-pill" style="background: var(--secondary-fixed); color: var(--secondary);">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">energy_savings_leaf</span>
+                  Sanación de Linaje
+                </span>
+                <span class="badge-pill" style="background: var(--surface-low); color: var(--on-surface);">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">wb_sunny</span>
+                  Metamorfosis
+                </span>
+              </div>
+            </div>
+
+            <!-- Columna Video (Derecha) -->
+            <div class="testimonial-video-col">
+              <div class="testimonial-video-backdrop"></div>
+              <div class="testimonial-video-frame">
+                <video class="testimonial-video-player" controls preload="metadata" playsinline poster="assets/videos/poster_yorlady.jpg">
+                  <source src="assets/videos/testimonio_yorlady.mp4" type="video/mp4">
+                  Tu navegador no soporta reproducción de video HTML5.
+                </video>
+                <div class="testimonial-floating-tag">
+                  <div class="testimonial-tag-seal">
+                    <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+                  </div>
+                  <div class="testimonial-tag-meta">
+                    <span class="testimonial-tag-author">Yorlady</span>
+                    <span class="testimonial-tag-badge">Testimonio 04 · Soberanía</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+
+        <!-- Banner de Cierre & Llamado a la Acción -->
+        <div style="margin-top: 4.5rem; padding: 2.75rem 2rem; background: #1a140e; border: 1.5px solid rgba(229, 195, 146, 0.35); border-radius: var(--radius-2xl, 24px); text-align: center; box-shadow: 0 20px 45px rgba(0,0,0,0.25); position: relative; overflow: hidden;">
+          <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" style="position: absolute; right: -40px; bottom: -40px; width: 220px; opacity: 0.05; pointer-events: none;">
+          <div style="position: relative; z-index: 1; max-width: 650px; margin: 0 auto;">
+            <span class="eyebrow eyebrow-sol-luna" style="color: #e5c392; justify-content: center; margin-bottom: 0.5rem;">
+              <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="" class="sol-luna-icon sol-luna-xs">
+              <span>Tu Momento de Florecer</span>
+            </span>
+            <h3 style="font-family: var(--font-display, serif); font-size: clamp(1.6rem, 2.8vw, 2.1rem); color: #fff; margin-bottom: 0.85rem;">
+              ¿Sientes el llamado a iniciar tu propio camino de sanación?
+            </h3>
+            <p style="color: #d6c6b4; font-size: 0.96rem; line-height: 1.6; margin-bottom: 1.75rem;">
+              Cada historia comenzó con una sola decisión: dejar de huir de uno mismo y abrirse a recibir acompañamiento real, seguro y compasivo.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+              <a href="contacto-y-faq.html#formulario" class="btn btn-primary" style="padding: 0.95rem 1.85rem; background: linear-gradient(135deg, #e5c392 0%, #c99f67 100%); color: #1a140e; font-weight: 700; border: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="font-size: 20px;">calendar_month</span>
+                <span>Agendar Cita</span>
+              </a>
+              <a href="mentorias-y-cursos.html" class="btn btn-outline" style="padding: 0.95rem 1.75rem; color: #f4ede0; border-color: rgba(229, 195, 146, 0.4);">
+                <span>Ver Mentorías & Cursos</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer site-footer-fractal">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand-link" title="Cata Arango · Trascendamos Juntos" style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;">
+            <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" class="sol-luna-icon sol-luna-md" style="filter: drop-shadow(0 2px 8px rgba(229, 195, 146, 0.4));">
+            <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="footer-brand-logo">
+          </a>
+          <p class="quote-editorial" style="font-size: 1rem; color: rgba(255, 249, 232, 0.95); max-width: 320px;">
+            «Integración de Sombra y Luz con soberanía personal, respeto a tus tiempos y amor incondicional.»
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem;">
+            <a href="https://www.instagram.com/cataarango9" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: var(--radius-full); background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #e5c392;" title="Instagram"><span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span></a>
+            <a href="https://youtube.com/@cataarango9" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: var(--radius-full); background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #e5c392;" title="YouTube"><span class="material-symbols-outlined" style="font-size: 18px;">smart_display</span></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #e5c392; margin-bottom: 1rem;">Navegación</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem;">
+            <li><a href="index.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Inicio</a></li>
+            <li><a href="sobre-mi.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Sobre Mí</a></li>
+            <li><a href="testimonios.html" style="color: #e5c392; font-weight: 600; text-decoration: none;">Testimonios</a></li>
+            <li><a href="mentorias-y-cursos.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Mentorías y Cursos</a></li>
+            <li><a href="comunidad.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Comunidad</a></li>
+            <li><a href="contacto-y-faq.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Contacto & FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #e5c392; margin-bottom: 1rem;">Atención & Pagos</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 249, 232, 0.88);">
+            <span>trascedamosjuntos89@gmail.com</span>
+            <span>L-V 9:00 a.m - 4:00 p.m (Hora Colombia)</span>
+            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: #e5c392; margin-top: 0.5rem;">Medios Habilitados:</span>
+            <span>Tarjetas de Crédito y Débito • PSE</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255, 249, 232, 0.7);">
+        <p>© 2026 CATA ARANGO • Trascendamos Juntos. Todos los derechos reservados.</p>
+        <p style="color: #e5c392;">Espacio seguro y contenedor de desarrollo integral</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    // Auto-pausa entre videos
+    document.addEventListener('DOMContentLoaded', function() {
+      const videos = document.querySelectorAll('.testimonial-video-player');
+      videos.forEach(function(video) {
+        video.addEventListener('play', function() {
+          const col = video.closest('.testimonial-video-col');
+          if (col) col.classList.add('is-playing');
+          videos.forEach(function(other) {
+            if (other !== video && !other.paused) {
+              other.pause();
+            }
+          });
+        });
+        video.addEventListener('pause', function() {
+          const col = video.closest('.testimonial-video-col');
+          if (col) col.classList.remove('is-playing');
+        });
+        video.addEventListener('ended', function() {
+          const col = video.closest('.testimonial-video-col');
+          if (col) col.classList.remove('is-playing');
+        });
+      });
+    });
+  </script>
+
+  <!-- Three.js Library & Sacred Geometry Dynamic 3D Experience -->
+  <script src="assets/js/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="assets/js/sacred-three.js" defer></script>
+
+  <!-- Pasarela Oficial -->
+  <script src="assets/js/bold-config.js"></script>
+  <script src="assets/js/bold-checkout.js"></script>
+
+  <!-- Agente de Voz Conversacional ElevenLabs -->
+  <elevenlabs-convai agent-id="agent_4301m6vny004frp8mgcqy6cb1xyj"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+  <!-- Regulación del Sistema Nervioso · Sonido Ambiental de la Naturaleza -->
+  <script src="assets/js/nature-sound.js" defer></script>
+
+</body>
+</html>

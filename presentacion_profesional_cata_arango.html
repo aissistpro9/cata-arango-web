@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación Profesional — CATA ARANGO | Trascendamos Juntos</title>
+  <link rel="icon" type="image/png" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link rel="apple-touch-icon" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F7F1DE;
+      --sage: #748873;
+      --sage-dark: #4e614e;
+      --bronze: #A77F60;
+      --blush: #FFDCDC;
+      --dark: #1e1c10;
+      --surface: #fff9e8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; font-family: 'Montserrat', sans-serif; background: var(--dark); }
+    
+    /* Slide container */
+    .slides-wrapper {
+      width: 100%; height: 100vh;
+      position: relative; overflow: hidden;
+    }
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      padding: 40px;
+    }
+    .slide.active {
+      opacity: 1 !important; transform: translateX(0) !important;
+      pointer-events: all !important;
+      z-index: 10;
+    }
+    .slide.exit-left {
+      opacity: 0 !important; transform: translateX(-60px) !important;
+      pointer-events: none !important;
+    }
+    .slide.exit-right {
+      opacity: 0 !important; transform: translateX(60px) !important;
+      pointer-events: none !important;
+    }
+    
+    /* Slide content */
+    .slide-content {
+      max-width: 1200px; width: 100%;
+      background: linear-gradient(145deg, rgba(247,241,222,0.97), rgba(250,243,224,0.95));
+      border-radius: 24px;
+      padding: 48px 56px;
+      box-shadow: 0 32px 80px -16px rgba(0,0,0,0.35), 0 0 0 1px rgba(116,136,115,0.08);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .slide-content::-webkit-scrollbar { width: 4px; }
+    .slide-content::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 4px; }
+    
+    /* Dark slides */
+    .slide-dark .slide-content {
+      background: linear-gradient(145deg, rgba(78,97,78,0.98), rgba(60,80,60,0.95));
+      color: var(--cream);
+    }
+    .slide-dark .slide-content h2,
+    .slide-dark .slide-content h3 { color: var(--cream); }
+    .slide-dark .slide-content p { color: rgba(247,241,222,0.85); }
+    
+    /* Typography */
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    h2 { font-size: 36px; font-weight: 600; color: var(--sage-dark); letter-spacing: -0.02em; line-height: 1.2; }
+    h3 { font-size: 24px; font-weight: 500; color: var(--sage); margin-bottom: 12px; }
+    p { font-size: 16px; line-height: 1.7; color: #434842; }
+    
+    /* Labels */
+    .eyebrow {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em;
+      font-weight: 600; color: var(--bronze); margin-bottom: 12px; display: block;
+    }
+    .slide-dark .eyebrow { color: #ecbd9b; }
+    
+    /* Badge */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(116,136,115,0.1); color: var(--sage);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    
+    /* Grid layouts */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+    
+    /* Cards */
+    .mini-card {
+      background: white; border-radius: 16px; padding: 24px;
+      border: 1px solid rgba(116,136,115,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .mini-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px -4px rgba(116,136,115,0.12); }
+    .mini-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--sage-dark); margin-bottom: 8px; }
+    .mini-card p { font-size: 13px; color: #666; }
+    
+    .dark-card {
+      background: rgba(247,241,222,0.08); border-radius: 16px; padding: 24px;
+      border: 1px solid rgba(247,241,222,0.12);
+    }
+    .dark-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); margin-bottom: 8px; }
+    .dark-card p { font-size: 13px; color: rgba(247,241,222,0.7); }
+    
+    /* Screenshot images */
+    .screenshot {
+      width: 100%; border-radius: 12px; 
+      box-shadow: 0 8px 32px -8px rgba(0,0,0,0.2);
+      border: 1px solid rgba(116,136,115,0.15);
+      object-fit: cover;
+    }
+    .screenshot-sm {
+      max-height: 360px; object-fit: cover; object-position: top;
+    }
+    
+    /* Navigation */
+    .nav-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 72px; z-index: 100;
+      background: rgba(30,28,16,0.92); backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      border-top: 1px solid rgba(116,136,115,0.15);
+    }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--sage-dark); color: white;
+      border: none; padding: 10px 24px; border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 13px;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .nav-btn:hover { background: var(--sage); transform: translateY(-1px); }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+    .nav-btn.primary { background: var(--bronze); }
+    .nav-btn.primary:hover { background: #8e684c; }
+    
+    .slide-counter {
+      color: rgba(247,241,222,0.6); font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 101;
+      background: linear-gradient(90deg, var(--sage), var(--bronze));
+      transition: width 0.5s ease;
+    }
+    
+    /* Dot navigation */
+    .dots {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(247,241,222,0.2); cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: var(--bronze); width: 24px; border-radius: 4px;
+    }
+    
+    /* Logo watermark */
+    .watermark {
+      position: fixed; top: 20px; left: 28px; z-index: 100;
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(247,241,222,0.5);
+    }
+    .watermark span { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; }
+    .watermark small { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; display: block; color: var(--bronze); opacity: 0.7; }
+    
+    /* Slide-specific number */
+    .slide-number {
+      position: absolute; top: 20px; right: 28px;
+      font-size: 72px; font-weight: 700; font-family: 'Playfair Display', serif;
+      color: rgba(116,136,115,0.06); line-height: 1;
+    }
+    .slide-dark .slide-number { color: rgba(247,241,222,0.06); }
+    
+    /* Stat boxes */
+    .stat-box { text-align: center; padding: 20px; }
+    .stat-box .number {
+      font-family: 'Playfair Display', serif; font-size: 40px;
+      font-weight: 600; color: var(--bronze); line-height: 1;
+    }
+    .stat-box .label {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--sage); font-weight: 600; margin-top: 8px;
+    }
+    
+    /* Divider */
+    .divider {
+      width: 48px; height: 2px; background: var(--bronze);
+      border-radius: 2px; margin: 20px 0;
+    }
+    
+    /* Heatmap container */
+    .heatmap-container {
+      position: relative; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .heatmap-container img { width: 100%; display: block; }
+    
+    /* Scrollable content */
+    .scroll-area { max-height: 500px; overflow-y: auto; padding-right: 12px; }
+    .scroll-area::-webkit-scrollbar { width: 3px; }
+    .scroll-area::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+    
+    /* Checkmark list */
+    .check-list { list-style: none; padding: 0; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; font-size: 14px; color: #434842;
+    }
+    .check-list li .material-symbols-outlined { color: var(--sage); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    
+    /* Animated entrance */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide.active .animate-in {
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .slide.active .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .slide.active .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .slide.active .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .slide.active .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    .slide.active .delay-5 { animation-delay: 0.5s; opacity: 0; }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .slide-content { padding: 32px 28px; }
+      h2 { font-size: 28px; }
+      .nav-bar { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+<!-- Watermark -->
+<div class="watermark">
+  <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="height: 26px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(229,195,146,0.4));">
+  <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango" style="height: 24px; width: auto; object-fit: contain;">
+  <div>
+    <span>CATA ARANGO</span>
+    <small>Trascendamos Juntos · BlessiaTech</small>
+  </div>
+  <a href="index.html" target="_blank" class="nav-btn" style="padding: 6px 16px; font-size: 11px; margin-left: 16px; background: var(--bronze); color: #fff9e8; border-radius: 8px; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+    <span class="material-symbols-outlined" style="font-size: 14px;">language</span>
+    Ver Web en Vivo (5 Páginas)
+  </a>
+</div>
+
+<!-- Slides Container -->
+<div class="slides-wrapper" id="slidesWrapper">
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 01: PORTADA -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide slide-dark active" data-slide="0">
+    <div class="slide-content" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 520px;">
+      <div class="slide-number">01</div>
+      <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" class="animate-in delay-1" style="height: 64px; width: auto; margin-bottom: 12px; filter: drop-shadow(0 4px 18px rgba(229,195,146,0.5));">
+      <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango Logo Oficial" class="animate-in delay-1" style="height: 48px; width: auto; margin-bottom: 22px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));">
+      <div class="badge animate-in delay-1" style="background: rgba(247,241,222,0.1); color: #ecbd9b; margin-bottom: 32px;">
+        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
+        Presentación Ejecutiva de Proyecto
+      </div>
+      <h2 class="animate-in delay-2" style="font-size: 52px; margin-bottom: 16px; max-width: 700px;">Cata Arango<br><span style="font-weight: 400; font-style: italic; color: #ecbd9b;">Trascendamos Juntos</span></h2>
+      <div class="divider animate-in delay-3" style="margin: 24px auto; background: #ecbd9b;"></div>
+      <p class="animate-in delay-3" style="max-width: 600px; font-size: 17px; line-height: 1.8; margin-bottom: 32px;">
+        Prototipo Web Completo, Kit de Marketing & Copywriting, Análisis UX con Heatmaps Predictivos y Estrategia de Conversión Digital.
+      </p>
+      <div class="animate-in delay-4" style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+        <div class="stat-box">
+          <div class="number" style="color: #ecbd9b;">5</div>
+          <div class="label" style="color: rgba(247,241,222,0.6);">Páginas Web</div>
+        </div>
+        <div class="stat-box">
+          <div class="number" style="color: #ecbd9b;">4</div>
+          <div class="label" style="color: rgba(247,241,222,0.6);">Activos Marketing</div>
+        </div>
+        <div class="stat-box">
+          <div class="number" style="color: #ecbd9b;">3</div>
+          <div class="label" style="color: rgba(247,241,222,0.6);">Heatmaps UX</div>
+        </div>
+        <div class="stat-box">
+          <div class="number" style="color: #ecbd9b;">1</div>
+          <div class="label" style="color: rgba(247,241,222,0.6);">Design System</div>
+        </div>
+      </div>
+      <p class="animate-in delay-5" style="font-size: 12px; margin-top: 40px; opacity: 0.5; letter-spacing: 0.1em; text-transform: uppercase;">
+        Octubre 2026 · Preparado con dedicación por BlessiaTech
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 02: TABLA DE CONTENIDOS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="1">
+    <div class="slide-content">
+      <div class="slide-number">02</div>
+      <span class="eyebrow animate-in delay-1">Agenda de Presentación</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 32px;">Contenido del Entregable</h2>
+      <div class="grid-3 animate-in delay-3" style="gap: 16px;">
+        <div class="mini-card" style="border: 2px solid var(--bronze); background: rgba(167,127,96,0.04);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: var(--bronze); font-size: 26px;">videocam</span>
+            <h4 style="font-size: 16px;">01 — Conferencia & Acuerdos</h4>
+          </div>
+          <p style="font-size: 12px;">Análisis frame por frame del 13 Oct, decisiones de Cata, numerología ($999 USD) y pasarela de pago.</p>
+        </div>
+        <div class="mini-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: var(--sage); font-size: 26px;">palette</span>
+            <h4 style="font-size: 16px;">02 — Design System</h4>
+          </div>
+          <p style="font-size: 12px;">Identidad "Grounded Soul Sanctuary": paleta orgánica, tipografía editorial y cero spiritual bypassing.</p>
+        </div>
+        <div class="mini-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: var(--sage); font-size: 26px;">web</span>
+            <h4 style="font-size: 16px;">03 — Prototipo Web (5 Págs)</h4>
+          </div>
+          <p style="font-size: 12px;">Inicio con halo de luz, Sobre Mí íntimo, Mentorías 1 a 1, Comunidad continua y Contacto/FAQ.</p>
+        </div>
+        <div class="mini-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: var(--bronze); font-size: 26px;">campaign</span>
+            <h4 style="font-size: 16px;">04 — Funnel & Marketing</h4>
+          </div>
+          <p style="font-size: 12px;">Escáner de Patrones (4 arquetipos inconscientes), post social, banners y copywriting maestro.</p>
+        </div>
+        <div class="mini-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: #ba4a4a; font-size: 26px;">local_fire_department</span>
+            <h4 style="font-size: 16px;">05 — Heatmaps UX</h4>
+          </div>
+          <p style="font-size: 12px;">Atención visual predictiva en Home, Servicios y Contacto con recomendaciones de conversión.</p>
+        </div>
+        <div class="mini-card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span class="material-symbols-outlined" style="color: var(--sage-dark); font-size: 26px;">checklist</span>
+            <h4 style="font-size: 16px;">06 — Hoja de Ruta</h4>
+          </div>
+          <p style="font-size: 12px;">Plan de entrega, integración de pasarela de pago y lanzamiento escalonado con SEO y pauta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 03: CONFERENCIA & DECISIONES DE CATA ARANGO -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide slide-dark" data-slide="2">
+    <div class="slide-content">
+      <div class="slide-number">03</div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <span class="badge" style="background: rgba(236,189,155,0.15); color: #ecbd9b;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">videocam</span>
+          Videoconferencia Oficial · 13 Octubre 2026
+        </span>
+        <span class="badge" style="background: rgba(247,241,222,0.1); color: var(--cream);">
+          Grabación: vph-kbze-zym
+        </span>
+      </div>
+      <h2 style="margin-bottom: 8px; color: var(--cream);">Auditoría de Conferencia & Requerimientos de Cata</h2>
+      <p style="margin-bottom: 24px; color: rgba(247,241,222,0.85); font-size: 14px;">
+        Análisis frame por frame de la sesión, acuerdos estratégicos de diseño, numerología de precios ($999 USD), pasarelas y arquitectura de conversión.
+      </p>
+
+      <div class="grid-2" style="gap: 24px;">
+        <!-- Col 1: Frame por Frame -->
+        <div>
+          <h3 style="font-size: 17px; color: #ecbd9b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="font-size: 20px;">timer</span>
+            Análisis Frame por Frame de la Sesión
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #ecbd9b; font-size: 13px;">⏱️ Frame 04:56 — Cohesión Editorial de Activos</strong>
+                <span style="font-size: 10px; background: rgba(247,241,222,0.15); padding: 2px 6px; border-radius: 4px; color: var(--cream);">Identidad</span>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Revisión de los PDFs del Workbook de Límites y cartas introspectivas. Cata exige desmarcarse de plantillas genéricas de "gurú"; cada recurso debe transmitir intimidad, sobriedad y verdad.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #ecbd9b; font-size: 13px;">⏱️ Frame 11:20 — Validación del Prototipo Web</strong>
+                <span style="font-size: 10px; background: rgba(247,241,222,0.15); padding: 2px 6px; border-radius: 4px; color: var(--cream);">UX / Catálogo</span>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Navegación por mentorías en vivo. Se aprueba la progresión de 3 niveles: <em>Regreso a Ti</em> (1 sesión), <em>Proceso Despertar</em> (3 sesiones, badge más elegido) y <em>Renacer Interno</em> (VIP 3 meses).
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #ecbd9b; font-size: 13px;">⏱️ Frame 28:10 — El Benchmark Sagrado</strong>
+                <span style="font-size: 10px; background: rgba(247,241,222,0.15); padding: 2px 6px; border-radius: 4px; color: var(--cream);">Inspiración</span>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Análisis de <code>labrujafilosofica.com/sobre-mi/</code>. Cata solicita una apertura en penumbra y halo de luz en su retrato editorial, logrando una conexión emocional profunda antes de los tonos tierra.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong style="color: #ecbd9b; font-size: 13px;">⏱️ Frame 48:00 — Consulta TRM & Pasarela en Línea</strong>
+                <span style="font-size: 10px; background: rgba(247,241,222,0.15); padding: 2px 6px; border-radius: 4px; color: var(--cream);">Finanzas</span>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Revisión de la tasa de cambio ($3,194 COP) y pasarela en línea. Se aprueba blindar la mentoría VIP en <strong>$999 USD</strong> con numerología de precios impares ($78, $212, $999, $22).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Decisiones Estratégicas Consolidadas -->
+        <div>
+          <h3 style="font-size: 17px; color: #ecbd9b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="font-size: 20px;">gavel</span>
+            Decisiones Maestras Acordadas
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="material-symbols-outlined" style="color: #ecbd9b; font-size: 18px;">payments</span>
+                <strong style="color: var(--cream); font-size: 13px;">Precio Fijo $999 USD & Números Impares</strong>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Se descartan números redondos. Los precios 999, 212, 78 y 22 neutralizan la volatilidad cambiaria de Colombia y resuenan con la numerología sagrada que conecta con su audiencia.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="material-symbols-outlined" style="color: #ecbd9b; font-size: 18px;">credit_card_off</span>
+                <strong style="color: var(--cream); font-size: 13px;">Cero Financiación Directa Interna</strong>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Rechazo rotundo a cobrar cuotas manuales. El consultante que desee diferir lo hace mediante su tarjeta de crédito en la pasarela oficial <strong>Bold</strong>. Pagos directos vía pasarela en línea protegida.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="material-symbols-outlined" style="color: #ecbd9b; font-size: 18px;">location_on</span>
+                <strong style="color: var(--cream); font-size: 13px;">Modalidad Híbrida (Medellín) vs. Virtual (Global)</strong>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Encuentros presenciales o virtuales exclusivos para consultantes en Medellín. 100% virtual por videollamada para el resto de Colombia y el mundo.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="material-symbols-outlined" style="color: #ecbd9b; font-size: 18px;">schedule</span>
+                <strong style="color: var(--cream); font-size: 13px;">Horario Oficial de Contención</strong>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.8);">
+                Atención al cliente de Lunes a Viernes de 9:00 a.m. a 4:00 p.m. Hora Colombia (COT) mediante WhatsApp oficial y <code>trascedamosjuntos89@gmail.com</code>.
+              </p>
+            </div>
+
+            <div class="dark-card" style="padding: 14px 16px; border: 1px solid rgba(236,189,155,0.3); background: rgba(236,189,155,0.06);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="material-symbols-outlined" style="color: #ecbd9b; font-size: 18px;">psychology</span>
+                <strong style="color: #ecbd9b; font-size: 13px;">Lead Magnet: Escáner de Patrones (4 Arquetipos)</strong>
+              </div>
+              <p style="font-size: 12px; line-height: 1.5; color: rgba(247,241,222,0.85);">
+                Test de 10 preguntas en Tally que clasifica al usuario en: <em>Duda, Control, Complacencia o Hiperindependencia</em>, canalizando hacia la mentoría 1 a 1 vía WhatsApp.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 04: DESIGN SYSTEM -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Identidad Visual</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 8px;">Design System: Grounded Soul Sanctuary</h2>
+      <p class="animate-in delay-2" style="margin-bottom: 28px;">Lujo orgánico, honestidad radical y transformación con raíces. Cada decisión visual refleja la filosofía de cero spiritual bypassing.</p>
+      
+      <div class="grid-2 animate-in delay-3">
+        <!-- Paleta de Colores -->
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">Paleta Cromática</h3>
+          <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div style="width: 64px; height: 64px; border-radius: 16px; background: #748873; box-shadow: 0 4px 12px rgba(116,136,115,0.3);"></div>
+              <span style="font-size: 10px; font-weight: 600; color: #748873; margin-top: 6px; display: block;">Sage Green</span>
+              <span style="font-size: 9px; color: #999;">#748873</span>
+            </div>
+            <div style="text-align: center;">
+              <div style="width: 64px; height: 64px; border-radius: 16px; background: #A77F60; box-shadow: 0 4px 12px rgba(167,127,96,0.3);"></div>
+              <span style="font-size: 10px; font-weight: 600; color: #A77F60; margin-top: 6px; display: block;">Earthy Bronze</span>
+              <span style="font-size: 9px; color: #999;">#A77F60</span>
+            </div>
+            <div style="text-align: center;">
+              <div style="width: 64px; height: 64px; border-radius: 16px; background: #F7F1DE; border: 1px solid #ddd;"></div>
+              <span style="font-size: 10px; font-weight: 600; color: #748873; margin-top: 6px; display: block;">Pure Cream</span>
+              <span style="font-size: 9px; color: #999;">#F7F1DE</span>
+            </div>
+            <div style="text-align: center;">
+              <div style="width: 64px; height: 64px; border-radius: 16px; background: #FFDCDC;"></div>
+              <span style="font-size: 10px; font-weight: 600; color: #6f5656; margin-top: 6px; display: block;">Pale Blush</span>
+              <span style="font-size: 9px; color: #999;">#FFDCDC</span>
+            </div>
+          </div>
+          
+          <h3 style="font-size: 18px; margin-bottom: 12px;">Tipografía</h3>
+          <div style="background: white; border-radius: 12px; padding: 20px; border: 1px solid rgba(116,136,115,0.1);">
+            <div style="font-family: 'Playfair Display'; font-size: 28px; color: var(--sage-dark); margin-bottom: 8px;">Playfair Display</div>
+            <p style="font-size: 12px; margin-bottom: 16px;">Headlines, quotes editoriales y titulares. Transmite contemplación y dignidad literaria.</p>
+            <div style="font-family: 'Montserrat'; font-size: 16px; color: var(--sage-dark); margin-bottom: 8px; font-weight: 500;">Montserrat</div>
+            <p style="font-size: 12px;">Cuerpo de texto, labels y micro-copy. Legibilidad moderna y cálida.</p>
+          </div>
+        </div>
+        
+        <!-- Principios de Diseño -->
+        <div>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">Principios de Diseño</h3>
+          <ul class="check-list">
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Tonal Layering:</strong> Separación de superficies con crema, blanco y rosa pálido, sin sombras sintéticas.</div>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Espaciado Generoso:</strong> 80–96px entre secciones para forzar desaceleración emocional del scroll.</div>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Bordes Orgánicos:</strong> Esquinas redondeadas de 24px que evocan piedras suavizadas y arcilla.</div>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Botones con Intención:</strong> Earthy Bronze para CTAs primarios con hover suave y glow cálido.</div>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Deep Immersion Mode:</strong> Secciones con fondo Sage Green invertido para momentos de contemplación profunda.</div>
+            </li>
+            <li>
+              <span class="material-symbols-outlined">check_circle</span>
+              <div><strong>Grid de 12 columnas:</strong> Max-width de 1280px con márgenes generosos de 80px en desktop.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 05: PROTOTIPO WEB — INICIO -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Prototipo Web — Página 1/5</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Inicio: Trascendamos Juntos</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <img src="inicio_trascendamos_juntos/screen.png" class="screenshot screenshot-sm" alt="Página de Inicio">
+        </div>
+        <div>
+          <h3>Elementos Clave</h3>
+          <ul class="check-list">
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Hero Editorial:</strong> Headline "Trascendamos Juntos" con imagen contemplativa y CTA principal.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Pilares Emocionales:</strong> Cero Spiritual Bypassing, Contenedor Seguro, Integración de Sombra y Luz.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Manifiesto:</strong> Sección deep-immersion con fondo Sage Green y cita editorial.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Lead Magnet:</strong> Formulario para el "Botiquín Somático Nocturno" con validación interactiva.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Strip de Confianza:</strong> Retrato de Catalina + badges de atención global y espacio seguro.</div></li>
+          </ul>
+          <div style="background: rgba(167,127,96,0.08); border-left: 3px solid var(--bronze); padding: 16px 20px; border-radius: 0 12px 12px 0; margin-top: 20px;">
+            <p style="font-size: 13px; font-style: italic; color: var(--sage-dark);">"Un espacio seguro para abrazar tu sombra, aquietar la mente y transformar tu dolor infantil en soberanía emocional."</p>
+          </div>
+          <div style="margin-top: 16px;">
+            <a href="index.html" target="_blank" class="nav-btn primary" style="padding: 8px 18px; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 8px;">
+              <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+              Ver Inicio en Vivo ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 06: PROTOTIPO WEB — SOBRE MÍ -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Prototipo Web — Página 2/5</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Sobre Mí: Catalina Arango Rivera</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <img src="sobre_m_catalina_arango/screen.png" class="screenshot screenshot-sm" alt="Página Sobre Mí">
+        </div>
+        <div>
+          <h3>Secciones Incluidas</h3>
+          <ul class="check-list">
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Retrato Editorial:</strong> Composición con foto de alta calidad, badges de identidad y etiquetas de presencia.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Narrativa Auténtica:</strong> Historia de transformación personal: 18 años corporativos → noche oscura → guía de procesos.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Métricas de Impacto:</strong> +1,200 almas guiadas, 100% confidencial, Eje de Soberanía.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>3 Principios:</strong> Cero Culpa, Soberanía y Discernimiento, Descompresión Somática.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>CTA de Cierre:</strong> "Explorar mis Procesos de Acompañamiento" con badges de servicios.</div></li>
+          </ul>
+          <div style="margin-top: 16px;">
+            <a href="sobre-mi.html" target="_blank" class="nav-btn primary" style="padding: 8px 18px; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 8px;">
+              <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+              Ver Sobre Mí en Vivo ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 07: PROTOTIPO WEB — MENTORÍAS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Prototipo Web — Página 3/5</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Mentorías & Cursos: Procesos 1 a 1</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <img src="mentor_as_y_cursos_procesos_1_a_1/screen.png" class="screenshot screenshot-sm" alt="Página Mentorías">
+        </div>
+        <div>
+          <h3>Estructura de Servicios</h3>
+          <div class="grid-3" style="gap: 12px; margin-bottom: 16px;">
+            <div style="background: white; padding: 16px; border-radius: 12px; text-align: center; border: 1px solid rgba(116,136,115,0.1);">
+              <div style="font-family: 'Playfair Display'; font-size: 24px; color: var(--bronze); font-weight: 600;">$78</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--sage); text-transform: uppercase; letter-spacing: 0.1em;">Regreso a Ti</div>
+              <div style="font-size: 10px; color: #999;">1 sesión</div>
+            </div>
+            <div style="background: var(--sage); padding: 16px; border-radius: 12px; text-align: center; color: var(--cream); position: relative;">
+              <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: var(--bronze); color: white; font-size: 8px; padding: 2px 8px; border-radius: 8px; font-weight: 600; text-transform: uppercase;">Más elegido</div>
+              <div style="font-family: 'Playfair Display'; font-size: 24px; font-weight: 600;">$212</div>
+              <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Proceso Despertar</div>
+              <div style="font-size: 10px; opacity: 0.7;">3 sesiones</div>
+            </div>
+            <div style="background: white; padding: 16px; border-radius: 12px; text-align: center; border: 1px solid rgba(116,136,115,0.1);">
+              <div style="font-family: 'Playfair Display'; font-size: 24px; color: var(--bronze); font-weight: 600;">$999</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--sage); text-transform: uppercase; letter-spacing: 0.1em;">Renacer Interno</div>
+              <div style="font-size: 10px; color: #999;">VIP 3 meses</div>
+            </div>
+          </div>
+          <h3 style="margin-top: 16px;">Curso Signature</h3>
+          <div style="background: rgba(167,127,96,0.08); padding: 16px; border-radius: 12px;">
+            <div style="font-family: 'Playfair Display'; font-size: 18px; color: var(--sage-dark); margin-bottom: 4px;">MAPA DE LA CRISIS — $150 USD</div>
+            <p style="font-size: 12px;">Trascendiendo el "Retraso Vital" de los 30s. 4 módulos, cuadernos clínicos y ejercicios somáticos. Acceso de por vida.</p>
+          </div>
+          <div style="margin-top: 16px;">
+            <a href="mentorias-y-cursos.html" target="_blank" class="nav-btn primary" style="padding: 8px 18px; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 8px;">
+              <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+              Ver Mentorías & Cursos en Vivo ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 08: PROTOTIPO WEB — COMUNIDAD -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Prototipo Web — Página 4/5</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Comunidad: Sostén Continuo</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <img src="comunidad_sost_n_continuo/screen.png" class="screenshot screenshot-sm" alt="Página Comunidad">
+        </div>
+        <div>
+          <h3>4 Niveles de Membresía</h3>
+          <div class="grid-2" style="gap: 12px;">
+            <div style="background: white; padding: 14px; border-radius: 12px; border: 1px solid rgba(116,136,115,0.1);">
+              <div style="font-size: 10px; font-weight: 600; color: var(--sage); text-transform: uppercase;">Nivel I</div>
+              <div style="font-family: 'Playfair Display'; font-size: 16px; color: var(--sage-dark);">El Despertar — $0</div>
+              <p style="font-size: 11px; color: #888; margin-top: 4px;">Audio ritual + Carta mensual</p>
+            </div>
+            <div style="background: white; padding: 14px; border-radius: 12px; border: 1px solid rgba(116,136,115,0.1);">
+              <div style="font-size: 10px; font-weight: 600; color: var(--sage); text-transform: uppercase;">Nivel II</div>
+              <div style="font-family: 'Playfair Display'; font-size: 16px; color: var(--sage-dark);">Memoria Sagrada — $17</div>
+              <p style="font-size: 11px; color: #888; margin-top: 4px;">Circuito 11 días + Bitácora</p>
+            </div>
+            <div style="background: rgba(167,127,96,0.1); padding: 14px; border-radius: 12px; border: 2px solid var(--bronze);">
+              <div style="font-size: 10px; font-weight: 600; color: var(--bronze); text-transform: uppercase;">Nivel III · Recomendado</div>
+              <div style="font-family: 'Playfair Display'; font-size: 16px; color: var(--sage-dark);">El Refugio — $45</div>
+              <p style="font-size: 11px; color: #888; margin-top: 4px;">2 sesiones vivas + Comunidad</p>
+            </div>
+            <div style="background: white; padding: 14px; border-radius: 12px; border: 1px solid rgba(116,136,115,0.1);">
+              <div style="font-size: 10px; font-weight: 600; color: #6f5656; text-transform: uppercase;">Nivel IV · VIP</div>
+              <div style="font-family: 'Playfair Display'; font-size: 16px; color: var(--sage-dark);">El Santuario — $99</div>
+              <p style="font-size: 11px; color: #888; margin-top: 4px;">Sesión 1:1 + Canal de crisis</p>
+            </div>
+          </div>
+          <div style="margin-top: 16px;">
+            <a href="comunidad.html" target="_blank" class="nav-btn primary" style="padding: 8px 18px; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 8px;">
+              <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+              Ver Comunidad en Vivo ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 09: PROTOTIPO WEB — CONTACTO -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Prototipo Web — Página 5/5</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Contacto & FAQ</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <img src="contacto_y_faq_cata_arango/screen.png" class="screenshot screenshot-sm" alt="Página Contacto">
+        </div>
+        <div>
+          <h3>Funcionalidades</h3>
+          <ul class="check-list">
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>FAQ Interactivo:</strong> Acordeón con 4 preguntas frecuentes con animación de apertura/cierre.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Formulario Seguro:</strong> Campos de nombre, email, motivo de consulta y mensaje con consentimiento de datos.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Canales Directos:</strong> Correo, horarios Colombia, métodos de pago (Tarjetas y PSE).</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Confirmación Dinámica:</strong> Banner de éxito con mensaje empático tras enviar.</div></li>
+            <li><span class="material-symbols-outlined">check_circle</span><div><strong>Transparencia Radical:</strong> Sidebar editorial con principios éticos y compromiso de cero falsa positividad.</div></li>
+          </ul>
+          <div style="margin-top: 16px;">
+            <a href="contacto-y-faq.html" target="_blank" class="nav-btn primary" style="padding: 8px 18px; font-size: 11px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 8px;">
+              <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+              Ver Contacto & FAQ en Vivo ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 10: MARKETING KIT -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="9">
+    <div class="slide-content">
+      <div class="slide-number">10</div>
+      <span class="eyebrow animate-in delay-1">Marketing Kit & Copywriting</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 24px;">Activos Promocionales Entregados</h2>
+      <div class="grid-2 animate-in delay-3">
+        <div>
+          <h3>Piezas Visuales</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <img src="square_social_media_post_for_instagram_linkedin_promoting_cata_arango/screen.png" class="screenshot" style="max-height: 180px; object-fit: cover; object-position: top;" alt="Post Social Media">
+              <p style="font-size: 10px; text-align: center; margin-top: 6px; font-weight: 600; color: var(--sage);">POST REDES 1:1</p>
+            </div>
+            <div>
+              <img src="email_newsletter_header_image_16_9_banner_for_cata_arango_trascendamos_juntos_/screen.png" class="screenshot" style="max-height: 180px; object-fit: cover; object-position: top;" alt="Newsletter Header">
+              <p style="font-size: 10px; text-align: center; margin-top: 6px; font-weight: 600; color: var(--sage);">HEADER NEWSLETTER</p>
+            </div>
+          </div>
+          <div>
+            <img src="wide_banner_ad_16_9_for_holistic_mentoring_and_somatic_therapy_cata_arango/screen.png" class="screenshot" style="max-height: 150px; object-fit: cover; object-position: center;" alt="Banner Ad">
+            <p style="font-size: 10px; text-align: center; margin-top: 6px; font-weight: 600; color: var(--sage);">BANNER PAUTA DIGITAL 16:9</p>
+          </div>
+        </div>
+        <div>
+          <h3>Documento Maestro de Copywriting</h3>
+          <img src="marketing_kit_copywriting_cata_arango/screen.png" class="screenshot" style="max-height: 280px; object-fit: cover; object-position: top; margin-bottom: 16px;" alt="Marketing Kit HTML">
+          <div class="mini-card" style="padding: 16px;">
+            <h4 style="font-size: 15px;">Incluye:</h4>
+            <ul class="check-list" style="font-size: 12px;">
+              <li><span class="material-symbols-outlined">mail</span><div>Secuencia de email de bienvenida con 2 opciones de asunto.</div></li>
+              <li><span class="material-symbols-outlined">share</span><div>Copy para Instagram/LinkedIn con gancho emocional.</div></li>
+              <li><span class="material-symbols-outlined">ads_click</span><div>Titular + texto + CTA para Meta Ads y Google Display.</div></li>
+              <li><span class="material-symbols-outlined">voice_selection</span><div>Pilares del mensaje: Tono Guía Sabio, Vocabulario Innegociable, Promesa de Contenedor.</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 11: HEATMAP — HOMEPAGE -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide slide-dark" data-slide="12">
+    <div class="slide-content">
+      <div class="slide-number">13</div>
+      <span class="eyebrow animate-in delay-1">Análisis UX · Heatmap Predictivo 1/3</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 8px;">Mapa de Calor — Página de Inicio</h2>
+      <p class="animate-in delay-2" style="margin-bottom: 24px; font-size: 14px;">Análisis predictivo de atención visual y comportamiento del usuario en la landing principal.</p>
+      <div class="grid-2 animate-in delay-3">
+        <div class="heatmap-container">
+          <img src="heatmap_homepage.jpg" alt="Heatmap Homepage" style="max-height: 440px; object-fit: cover; object-position: top;">
+        </div>
+        <div>
+          <h3 style="color: var(--cream);">Hallazgos Clave</h3>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🔴 Zonas de Alta Atención</h4>
+            <p>El headline "Trascendamos Juntos" y el CTA "Inicia tu Sanación" concentran el mayor foco visual. Click-through potential estimado: 78%.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🟡 Engagement del Lead Magnet</h4>
+            <p>El "Botiquín Somático Nocturno" muestra 61% de engagement predictivo. La promesa de resultado en 8 minutos genera interés inmediato.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">📊 Scroll Depth</h4>
+            <p>Se estima que el 65% de visitantes alcanzarán el manifiesto y la sección de lead magnet. El diseño espacioso invita a explorar.</p>
+          </div>
+          <div class="dark-card">
+            <h4 style="font-size: 15px;">👁️ Avg. Gaze Time</h4>
+            <p>2.1 segundos en la imagen editorial del hero. La composición orgánica y el retrato generan conexión emocional inmediata.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 12: HEATMAP — SERVICIOS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide slide-dark" data-slide="12">
+    <div class="slide-content">
+      <div class="slide-number">13</div>
+      <span class="eyebrow animate-in delay-1">Análisis UX · Heatmap Predictivo 2/3</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 8px;">Mapa de Calor — Mentorías & Servicios</h2>
+      <p class="animate-in delay-2" style="margin-bottom: 24px; font-size: 14px;">Análisis de conversión en la página de servicios con price anchoring y engagement de CTAs.</p>
+      <div class="grid-2 animate-in delay-3">
+        <div class="heatmap-container">
+          <img src="heatmap_mentorias.jpg" alt="Heatmap Servicios" style="max-height: 440px; object-fit: cover; object-position: top;">
+        </div>
+        <div>
+          <h3 style="color: var(--cream);">Insights de Conversión</h3>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🔴 Conversion Hotspot</h4>
+            <p>El plan "Proceso de Despertar" ($212) con badge "MÁS ELEGIDO" genera el mayor foco de atención. Técnica de price anchoring funcional.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🟠 CTA Engagement Peak</h4>
+            <p>Los botones "Comenzar Proceso" y "Inscribirme al Curso" marcan picos de interacción. Diseño y color contrastante efectivo.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">📋 Features Scanning</h4>
+            <p>Los checkmarks de beneficios siguen un patrón F de lectura. Los iconos verificados refuerzan la confianza en el servicio.</p>
+          </div>
+          <div class="dark-card">
+            <h4 style="font-size: 15px;">💳 Payment Details</h4>
+            <p>La sección de medios de pago muestra interés moderado. Transparencia en precios genera confianza en el proceso de compra.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 13: HEATMAP — CONTACTO -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide slide-dark" data-slide="12">
+    <div class="slide-content">
+      <div class="slide-number">13</div>
+      <span class="eyebrow animate-in delay-1">Análisis UX · Heatmap Predictivo 3/3</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 8px;">Mapa de Calor — Contacto & FAQ</h2>
+      <p class="animate-in delay-2" style="margin-bottom: 24px; font-size: 14px;">Análisis del flujo de conversión final: formulario de contacto y resolución de objeciones.</p>
+      <div class="grid-2 animate-in delay-3">
+        <div class="heatmap-container">
+          <img src="heatmap_contacto.jpg" alt="Heatmap Contacto" style="max-height: 440px; object-fit: cover; object-position: top;">
+        </div>
+        <div>
+          <h3 style="color: var(--cream);">Insights de Conversión Final</h3>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🔴 Form Engagement Peak</h4>
+            <p>El formulario de contacto concentra la atención máxima. El CTA "Enviar Mensaje con Confianza" genera seguridad emocional para la acción.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">📖 FAQ Interaction Zone</h4>
+            <p>Las 2 primeras preguntas (precios y tiempos de sanación) capturan el mayor interés. Resuelven objeciones críticas antes de la conversión.</p>
+          </div>
+          <div class="dark-card" style="margin-bottom: 12px;">
+            <h4 style="font-size: 15px;">🛡️ Trust Signal Area</h4>
+            <p>La sidebar de "Transparencia Radical" y el badge de "Canal cifrado y seguro" fortalecen la confianza en un sector sensible.</p>
+          </div>
+          <div class="dark-card">
+            <h4 style="font-size: 15px;">🔄 Flow to Conversion</h4>
+            <p>Flujo navegacional: Inicio (9.9%) → Sobre Mí (2.3%) → Contacto (4.8%). El FAQ funciona como último filtro antes de la acción.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SLIDE 14: RESUMEN EJECUTIVO Y CIERRE -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="slide" data-slide="13">
+    <div class="slide-content" style="text-align: center;">
+      <div class="slide-number">14</div>
+      <span class="eyebrow animate-in delay-1">Resumen Ejecutivo</span>
+      <h2 class="animate-in delay-2" style="margin-bottom: 32px; font-size: 40px;">Todo Listo para <span style="color: var(--bronze); font-style: italic;">Trascender</span></h2>
+      
+      <div class="grid-4 animate-in delay-3" style="margin-bottom: 40px;">
+        <div class="mini-card" style="text-align: center;">
+          <span class="material-symbols-outlined" style="font-size: 36px; color: var(--sage); display: block; margin-bottom: 12px;">web</span>
+          <h4 style="font-size: 15px;">5 Páginas Web</h4>
+          <p style="font-size: 12px;">Prototipo completo con navegación, formularios y micro-interacciones.</p>
+        </div>
+        <div class="mini-card" style="text-align: center;">
+          <span class="material-symbols-outlined" style="font-size: 36px; color: var(--bronze); display: block; margin-bottom: 12px;">campaign</span>
+          <h4 style="font-size: 15px;">4 Activos Marketing</h4>
+          <p style="font-size: 12px;">Post social, banner, header newsletter y documento de copywriting.</p>
+        </div>
+        <div class="mini-card" style="text-align: center;">
+          <span class="material-symbols-outlined" style="font-size: 36px; color: #ba4a4a; display: block; margin-bottom: 12px;">local_fire_department</span>
+          <h4 style="font-size: 15px;">3 Heatmaps UX</h4>
+          <p style="font-size: 12px;">Análisis predictivo de conversión en páginas críticas del funnel.</p>
+        </div>
+        <div class="mini-card" style="text-align: center;">
+          <span class="material-symbols-outlined" style="font-size: 36px; color: var(--sage); display: block; margin-bottom: 12px;">palette</span>
+          <h4 style="font-size: 15px;">Design System</h4>
+          <p style="font-size: 12px;">Grounded Soul Sanctuary con colores, tipografía y componentes.</p>
+        </div>
+      </div>
+
+      <div class="divider animate-in delay-4" style="margin: 32px auto;"></div>
+
+      <div class="animate-in delay-4" style="max-width: 700px; margin: 0 auto;">
+        <h3 style="font-size: 22px; margin-bottom: 16px;">Próximos Pasos Recomendados</h3>
+        <div style="text-align: left; display: inline-block;">
+          <ul class="check-list">
+            <li><span class="material-symbols-outlined" style="color: var(--bronze);">arrow_forward</span><div>Revisión y feedback sobre el prototipo y las piezas de marketing.</div></li>
+            <li><span class="material-symbols-outlined" style="color: var(--bronze);">arrow_forward</span><div>Ajustes de contenido y redacción según las indicaciones de Catalina.</div></li>
+            <li><span class="material-symbols-outlined" style="color: var(--bronze);">arrow_forward</span><div>Desarrollo frontend final y conexión con pasarelas de pago (Tarjetas y PSE).</div></li>
+            <li><span class="material-symbols-outlined" style="color: var(--bronze);">arrow_forward</span><div>Configuración de email marketing y campañas de lanzamiento.</div></li>
+            <li><span class="material-symbols-outlined" style="color: var(--bronze);">arrow_forward</span><div>Lanzamiento escalonado con piezas de pauta digital y SEO.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="animate-in delay-5" style="margin-top: 32px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="index.html" target="_blank" class="nav-btn primary" style="padding: 12px 24px; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-radius: 10px;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">language</span>
+          Explorar Web en Vivo (5 Páginas)
+        </a>
+        <a href="portal-agencia.html" target="_blank" class="nav-btn" style="padding: 12px 24px; font-size: 13px; background: rgba(78,97,78,0.9); color: #fff9e8; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border-radius: 10px;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">analytics</span>
+          Portal de Agencia & Heatmaps
+        </a>
+      </div>
+
+      <div class="animate-in delay-5" style="margin-top: 28px; padding: 22px 36px; background: var(--sage-dark); border-radius: 18px; color: var(--cream); display: inline-block;">
+        <p style="font-family: 'Playfair Display'; font-size: 18px; font-style: italic; color: var(--cream); margin-bottom: 6px;">
+          "Cada detalle ha sido diseñado para honrar tu visión y conectar con las almas que buscan un contenedor genuino."
+        </p>
+        <p style="font-size: 11px; color: #ecbd9b; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">
+          BlessiaTech · Agencia de Desarrollo Digital
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation Bar -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+    Anterior
+  </button>
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <div class="dots" id="dotsContainer"></div>
+    <span class="slide-counter" id="slideCounter">01 / 14</span>
+  </div>
+  <button class="nav-btn primary" id="nextBtn" onclick="changeSlide(1)">
+    Siguiente
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+  </button>
+</div>
+
+<script>
+  const totalSlides = 14;
+  let currentSlide = 0;
+  
+  // Initialize dots
+  const dotsContainer = document.getElementById('dotsContainer');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+  
+  function changeSlide(direction) {
+    const nextIndex = currentSlide + direction;
+    if (nextIndex < 0 || nextIndex >= totalSlides) return;
+    goToSlide(nextIndex);
+  }
+  
+  function goToSlide(index, updateHistory = true) {
+    if (index < 0 || index >= totalSlides) return;
+
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevSlide = currentSlide;
+    const isForward = index >= prevSlide;
+    
+    // Clear state on other slides
+    slides.forEach((s, idx) => {
+      if (idx !== prevSlide && idx !== index) {
+        s.classList.remove('active');
+        s.classList.remove('exit-left');
+        s.classList.remove('exit-right');
+      }
+    });
+
+    // Exit old slide
+    if (slides[prevSlide]) {
+      slides[prevSlide].classList.remove('active');
+      slides[prevSlide].classList.remove('exit-left');
+      slides[prevSlide].classList.remove('exit-right');
+      slides[prevSlide].classList.add(isForward ? 'exit-left' : 'exit-right');
+      if (dots[prevSlide]) dots[prevSlide].classList.remove('active');
+    }
+    
+    // Enter new slide
+    currentSlide = index;
+    if (slides[currentSlide]) {
+      slides[currentSlide].classList.remove('exit-left');
+      slides[currentSlide].classList.remove('exit-right');
+      slides[currentSlide].classList.add('active');
+    }
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    
+    // Clean up exit classes
+    setTimeout(() => {
+      slides.forEach((s, idx) => {
+        if (idx !== currentSlide) {
+          s.classList.remove('active');
+          s.classList.remove('exit-left');
+          s.classList.remove('exit-right');
+        }
+      });
+    }, 450);
+    
+    // Update counter
+    const counterEl = document.getElementById('slideCounter');
+    if (counterEl) {
+      counterEl.textContent = 
+        String(currentSlide + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+    }
+    
+    // Update progress
+    const progressEl = document.getElementById('progressBar');
+    if (progressEl) {
+      progressEl.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+    }
+    
+    // Update buttons
+    const prevBtn = document.getElementById('prevBtn');
+    if (prevBtn) prevBtn.disabled = currentSlide === 0;
+
+    const nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+    
+    // Scroll content to top
+    if (slides[currentSlide]) {
+      const content = slides[currentSlide].querySelector('.slide-content');
+      if (content) content.scrollTop = 0;
+    }
+
+    // History support
+    if (updateHistory) {
+      try {
+        history.pushState({ slide: index }, '', `#slide-${index + 1}`);
+      } catch (err) {}
+    }
+  }
+
+  window.goToSlide = goToSlide;
+  window.changeSlide = changeSlide;
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+    if (e.key === 'Escape') {
+      window.location.href = 'index.html';
+    }
+  });
+
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', (e) => {
+    if (e.state && typeof e.state.slide === 'number') {
+      goToSlide(e.state.slide, false);
+    } else {
+      const hashMatch = window.location.hash.match(/#slide-(\d+)/);
+      if (hashMatch) {
+        const num = parseInt(hashMatch[1], 10) - 1;
+        if (num >= 0 && num < totalSlides) goToSlide(num, false);
+      } else {
+        goToSlide(0, false);
+      }
+    }
+  });
+
+  // Initial check
+  const hashMatch = window.location.hash.match(/#slide-(\d+)/);
+  if (hashMatch) {
+    const num = parseInt(hashMatch[1], 10) - 1;
+    if (num > 0 && num < totalSlides) goToSlide(num, false);
+  }
+  document.getElementById('progressBar').style.width = (1 / totalSlides * 100) + '%';
+</script>
+
+</body>
+</html>

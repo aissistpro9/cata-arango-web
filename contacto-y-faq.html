@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto & FAQ · Catalina Arango | Trascendamos Juntos</title>
+  <meta name="description" content="Canales de contacto y preguntas frecuentes sobre las mentorías y círculos de Catalina Arango. Medios de pago seguros, tarjetas y PSE, atención presencial en Medellín y virtual global.">
+  <link rel="icon" type="image/png" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link rel="apple-touch-icon" href="assets/images/ISOTIPO_LOGO_OFICIAL-removebg.png">
+  <link rel="preload" as="image" href="assets/images/hero_contacto.webp" type="image/webp">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wrapper" title="Cata Arango · Trascendamos Juntos">
+        <img src="assets/images/LOGO_COMPLETO-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="brand-logo-img">
+        <div class="brand-title-group sr-only">
+          <span class="brand-name">CATA ARANGO</span>
+          <span class="brand-tagline">Trascendamos Juntos</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-menu">
+        <a href="index.html?bienvenida=true" class="nav-welcome-link" title="Abrir portada de bienvenida">
+          <span class="material-symbols-outlined" style="font-size: 16px;">wb_twilight</span>
+          <span>Bienvenida</span>
+        </a>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="sobre-mi.html" class="nav-link">Sobre Mí</a>
+        <a href="testimonios.html" class="nav-link">Testimonios</a>
+        <a href="mentorias-y-cursos.html" class="nav-link">Mentorías y Cursos</a>
+        <a href="comunidad.html" class="nav-link">Comunidad</a>
+        <a href="contacto-y-faq.html" class="nav-link active">Contacto & FAQ</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="#formulario" class="btn btn-primary header-cta">Escríbenos</a>
+        
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú" onclick="toggleMobileMenu()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="index.html?bienvenida=true" class="nav-link" style="color: var(--secondary); font-weight: 600;">Portada de Bienvenida</a>
+    <a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Inicio</a>
+    <a href="sobre-mi.html" class="nav-link" onclick="toggleMobileMenu()">Sobre Mí</a>
+    <a href="testimonios.html" class="nav-link" onclick="toggleMobileMenu()">Testimonios</a>
+    <a href="mentorias-y-cursos.html" class="nav-link" onclick="toggleMobileMenu()">Mentorías y Cursos</a>
+    <a href="comunidad.html" class="nav-link" onclick="toggleMobileMenu()">Comunidad</a>
+    <a href="contacto-y-faq.html" class="nav-link active" onclick="toggleMobileMenu()">Contacto & FAQ</a>
+    <div style="margin-top: 0.5rem;">
+      <a href="#formulario" class="btn btn-primary" style="width: 100%;" onclick="toggleMobileMenu()">Escríbenos</a>
+    </div>
+  </div>
+
+  <main style="padding-top: 80px;">
+
+    <!-- ==========================================================================
+         HERO SECTION — LA BRUJA FILOSÓFICA STYLE
+         Diario Abierto con Luz Dorada, Velas, Lavanda, Cuarzo y Geometría
+         ========================================================================== -->
+    <section class="hero-mystic hero-mystic-contacto" aria-label="Hero Contacto y FAQ">
+      <div class="hero-mystic-content">
+        
+        <!-- Emblema Sagrado Sol y Luna -->
+        <div class="hero-sol-luna-wrap">
+          <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna · Trascendamos Juntos" class="hero-sol-luna-img" width="56" height="60">
+        </div>
+
+        <h1 class="hero-mystic-title">
+          Contacto & <br>
+          <span style="font-style: italic; font-weight: 400; color: #f7d598;">Preguntas Frecuentes</span>
+        </h1>
+
+        <p class="hero-mystic-subtitle">
+          La claridad disuelve la incertidumbre. Respondemos a tus dudas con transparencia, amor y rigor terapéutico.
+        </p>
+
+        <p class="hero-mystic-text">
+          Consulta las respuestas a continuación o contáctanos directamente a través de nuestro correo electrónico oficial.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Cortina de transición -->
+    <div class="hero-curtain-transition"></div>
+
+    <!-- ==========================================================================
+         FAQ SECTION (INTERACTIVE ACCORDION + SIDEBAR)
+         ========================================================================== -->
+    <section class="section section-warm" style="padding-top: 3rem;">
+      <div class="container">
+        <div class="grid-12 faq-grid-layout">
+
+          <!-- Sidebar Editorial Note (Sticky Sidebar) -->
+          <div class="col-span-4 faq-sidebar-col">
+            <div class="faq-sticky-sidebar">
+            <div class="card" style="background: #ffffff; padding: 2rem; border-radius: var(--radius-xl); border: 1.5px solid rgba(116, 136, 115, 0.25); box-shadow: var(--shadow-md);">
+              <div class="sol-luna-seal" style="margin-bottom: 0.85rem; width: 48px; height: 48px; background: rgba(116, 136, 115, 0.12);">
+                <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+              </div>
+              <h2 style="font-size: 1.35rem; margin-bottom: 0.75rem;">Claridad & Respeto</h2>
+              <p class="body-sm" style="line-height: 1.7; margin-bottom: 1.25rem;">
+                Creemos en acuerdos transparentes. Deseamos que ingreses a este espacio con un sí consciente y en total sintonía con tu momento vital.
+              </p>
+              <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary);">
+                <span class="material-symbols-outlined" style="font-size: 18px;">verified</span>
+                <span>Atención Híbrida & Global</span>
+              </div>
+            </div>
+
+            <!-- Canales Directos -->
+            <div class="card" style="background: #ffffff; padding: 1.75rem; border-radius: var(--radius-lg); border: 1.5px solid rgba(167, 127, 96, 0.28); box-shadow: var(--shadow-sm);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="material-symbols-outlined" style="color: var(--secondary); font-size: 20px;">headset_mic</span>
+                <span class="eyebrow" style="color: var(--secondary); margin-bottom: 0;">Canales Oficiales</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.88rem;" class="body-sm">
+                <div>
+                  <strong style="color: var(--on-surface); display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary);">Correo de Atención:</strong>
+                  <span style="font-weight: 500;">trascedamosjuntos89@gmail.com</span>
+                </div>
+                <div>
+                  <strong style="color: var(--on-surface); display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary);">Horario de Respuesta:</strong>
+                  <span>Lunes a Viernes · 9:00 a.m a 4:00 p.m (Hora Colombia)</span>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion Stack -->
+          <div class="col-span-8">
+            <div id="faqAccordion">
+
+              <!-- Item 1 -->
+              <div class="faq-item active">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Cómo puedo pagar y qué valor tiene cada Mentoría?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Contamos con 3 niveles de mentorías individuales y programas de acompañamiento diseñados para distintas necesidades:</p>
+                  <ul style="margin: 0.75rem 0 0.75rem 1.25rem; line-height: 1.7;">
+                    <li><strong>REGRESO A TI:</strong> $85 USD / $350.000 COP (1 sesión intensiva de 90 min + bloqueo emocional raíz + ejercicio consciente de integración + audio guiado).</li>
+                    <li><strong>PROCESO DESPERTAR:</strong> $219 USD / $890.000 COP (3 semanas / 3 sesiones de 90 min + niño interior + herida de abandono/rechazo + bitácora de escritura + ritual sagrado).</li>
+                    <li><strong>RENACER INTERNO VIP:</strong> $999 USD / $4.100.000 COP (12 sesiones semanales por 3 meses + 3 audios personalizados + llamada de emergencia mensual + acceso prioritario + diario digital + ritual y meditación).</li>
+                  </ul>
+                  <p>Aceptamos tarjetas de crédito y débito internacionales con opción de diferir en cuotas y pagos digitales vía PSE a través de nuestra pasarela de pagos segura y protegida.</p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿En cuánto tiempo podré sanar y cuánto dura el proceso interior?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>La sanación no es una meta lineal con fecha de vencimiento ni una carrera contra el reloj; es una espiral de desmantelamiento de mandatos y autodescubrimiento compasivo. Desde la primera sesión de 90 minutos experimentarás un alivio emocional tangible, ligereza en el pecho y claridad para poner límites sanos. Los procesos de 3 sesiones y 12 sesiones permiten arraigar este cambio de manera permanente en tu sistema nervioso y en tu vida cotidiana.</p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Puedo pagar en varias cuotas?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Para el contenedor de 3 meses <em>Renacer Interno ($999 USD)</em>, puedes diferir el pago en las cuotas que prefieras directamente con tu tarjeta de crédito a través de nuestra pasarela de pagos oficial. No ofrecemos crédito ni financiación directa interna; todas las transacciones se realizan de manera automatizada y protegida por la pasarela de pagos.</p>
+                </div>
+              </div>
+
+              <!-- Item: Seguridad de los Pagos -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Qué tan seguros son los pagos en línea?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Para garantizar la total seguridad, protección y confidencialidad de tus transacciones, utilizamos una pasarela de pagos en línea certificada bajo los más altos estándares de la industria financiera mundial.</p>
+                  <p>Nuestra plataforma opera con certificación <strong>PCI-DSS Nivel 1</strong> y cifrado de datos SSL/TLS de 256 bits. Esto garantiza que los datos de tu tarjeta de crédito o débito nunca quedan almacenados en nuestro sitio web ni pueden ser vistos por terceros. Recibirás tu comprobante digital oficial de pago inmediatamente después de completar tu reserva.</p>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿La Mentoría es gratis? ¿Hay opciones sin costo?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Las mentorías 1 a 1 son espacios privados y de alta dedicación energética que conllevan una inversión. Sin embargo, para que nadie quede excluido de comenzar su camino, Catalina ha creado el <strong>Santuario de Calma Gratuito</strong> (Test de Rol Inconsciente + Audio guiado de 8 min) y el <strong>Nivel I de Comunidad ($0 USD)</strong> con cartas de introspección y audio rituales mensuales.</p>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Es virtual la Mentoría y por cuál medio o aplicación se realiza?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Para consultantes ubicados en <strong>Medellín, Colombia</strong>, las sesiones se acuerdan en modalidad híbrida (presencial o virtual según prefieras). Para el resto de Colombia y el exterior, las sesiones son <strong>100% virtuales vía videollamada privada</strong>. Al agendar, recibirás tu enlace privado directo en tu correo.</p>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Cuánto tiempo dura la sesión de Mentoría?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Cada sesión individual tiene una duración de <strong>hora y media (90 minutos)</strong>. No trabajamos con sesiones apresuradas de 45 minutos; nos tomamos el tiempo necesario para escuchar tu cuerpo, desarmar las defensas y realizar el anclaje profundo de cierre.</p>
+                </div>
+              </div>
+
+              <!-- Item 7 -->
+              <div class="faq-item">
+                <button class="faq-header" type="button" onclick="toggleFaq(this)">
+                  <span>¿Puedo tomar una Mentoría y luego continuar con otra diferente?</span>
+                  <span class="faq-icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-body">
+                  <p>Completamente. Muchas personas inician con <em>Regreso a Ti ($77 USD)</em> para conocer a Catalina y tener un diagnóstico profundo, y luego deciden profundizar en <em>Proceso Despertar ($219 USD)</em> o en el acompañamiento integral <em>Renacer Interno ($999 USD)</em> abonando la diferencia dentro del primer mes.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         AGENDA INTERACTIVA & FORMULARIO — SANTUARIO SALVIA
+         Lado Izquierdo: Calendario (Lunes a Viernes 9am - 12pm) + Horarios
+         Lado Derecho: Formulario de Contacto & Agendamiento de Videollamada
+         ========================================================================== -->
+    <section id="formulario" class="section section-sage" style="padding-top: 4rem; padding-bottom: 5rem;">
+      <div class="container">
+        
+        <!-- Encabezado de Sección -->
+        <div style="text-align: center; margin-bottom: 2.75rem;">
+          <div class="section-crest">
+            <span class="section-crest-line" style="background: linear-gradient(90deg, transparent, rgba(167, 127, 96, 0.65), transparent);"></span>
+            <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" class="sol-luna-icon sol-luna-sm">
+            <span class="section-crest-line" style="background: linear-gradient(90deg, transparent, rgba(167, 127, 96, 0.65), transparent);"></span>
+          </div>
+          <div class="badge-pill" style="background: var(--primary); color: #ffffff; margin-bottom: 0.75rem;">
+            <span class="material-symbols-outlined" style="font-size: 16px;">calendar_month</span>
+            <span>AGENDA EN VIVO · VIDEOLLAMADA (10 MIN MÁX)</span>
+          </div>
+          <h2 class="headline-md">Agenda tu Espacio con Catalina Arango</h2>
+          <p class="body-sm" style="margin-top: 0.65rem; max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.65;">
+            Selecciona tu fecha y horario preferido en el calendario (Lunes a Viernes de 9:00 a.m. a 12:00 p.m. · Reuniones de 10 min máx.) y completa tus datos. Recibirás automáticamente el acceso a tu videollamada privada para solventar tus dudas. <strong>La confirmación se gestiona exclusivamente por correo electrónico</strong>.
+          </p>
+        </div>
+
+        <div class="agenda-layout-grid">
+
+          <!-- COLUMNA IZQUIERDA: CALENDARIO & HORARIOS DISPUESTOS HORIZONTALMENTE -->
+          <div class="agenda-panel" id="calendarPanel">
+            <div style="display: flex; flex-direction: column; gap: 0.95rem; height: 100%;">
+              
+              <!-- PARTE SUPERIOR: CALENDARIO MENSUAL -->
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span class="eyebrow" style="color: var(--secondary); margin-bottom: 0; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Paso 1: Elige tu Día & Hora</span>
+                  <span class="badge-pill" style="font-size: 0.72rem; background: rgba(116, 136, 115, 0.12); color: var(--primary); font-weight: 600;">Lunes a Viernes · 10 min</span>
+                </div>
+                
+                <!-- Header Calendario -->
+                <div class="calendar-month-bar">
+                  <button type="button" id="calPrevBtn" class="calendar-nav-btn" title="Mes anterior">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+                  </button>
+                  <div id="calMonthTitle" class="calendar-month-title">Cargando...</div>
+                  <button type="button" id="calNextBtn" class="calendar-nav-btn" title="Mes siguiente">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+                  </button>
+                </div>
+
+                <!-- Días de la Semana -->
+                <div class="calendar-weekdays-row" style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
+                  <span>Lun</span>
+                  <span>Mar</span>
+                  <span>Mié</span>
+                  <span>Jue</span>
+                  <span>Vie</span>
+                  <span style="opacity: 0.45;">Sáb</span>
+                  <span style="opacity: 0.45;">Dom</span>
+                </div>
+
+                <!-- Matriz de Días -->
+                <div id="calDaysGrid" class="calendar-days-grid"></div>
+
+                <!-- Micro Leyenda -->
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--outline); padding-top: 0.45rem;">
+                  <div style="display: flex; align-items: center; gap: 0.35rem;">
+                    <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--primary); display: inline-block;"></span>
+                    <span>Disponible (Lun - Vie)</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.35rem; color: var(--secondary); font-weight: 600;">
+                    <span>Toca un día para actualizar horarios</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PARTE INFERIOR: HORARIOS DISPUESTOS HORIZONTALMENTE EN EL ESPACIO RESTANTE -->
+              <div style="border-top: 1px dashed rgba(116, 136, 115, 0.28); padding-top: 0.85rem; margin-top: auto;">
+                
+                <!-- Barra de encabezado del horario -->
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.65rem; gap: 0.5rem; flex-wrap: wrap;">
+                  <div style="display: flex; align-items: center; gap: 0.35rem;">
+                    <span class="material-symbols-outlined" style="font-size: 16px; color: var(--secondary);">schedule</span>
+                    <h4 style="margin: 0; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary);">
+                      Horarios Disponibles (COT)
+                    </h4>
+                  </div>
+                  <span id="stepSelectedDateText" class="badge-pill" style="font-size: 0.72rem; background: rgba(167, 127, 96, 0.15); color: var(--secondary); font-weight: 700;">
+                    Día Seleccionado
+                  </span>
+                </div>
+
+                <!-- Cuadrícula horizontal de 12 slots de 10 min -->
+                <div id="timeSlotsGrid" class="time-slots-grid"></div>
+
+                <!-- Resumen en vivo de selección -->
+                <div class="booking-live-summary" style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(116, 136, 115, 0.08); border-radius: 8px; border: 1px solid rgba(116, 136, 115, 0.2); display: flex; align-items: center; gap: 0.6rem;">
+                  <div class="summary-icon-box" style="width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center;">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">videocam</span>
+                  </div>
+                  <div class="summary-text" id="bookingSelectionText" style="font-size: 0.78rem; line-height: 1.35; color: var(--on-surface);">
+                    <strong>Selecciona un día y horario</strong>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA: FORMULARIO DE CONTACTO & DATOS -->
+          <div class="agenda-panel">
+
+            <div id="formPanelContent">
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <span class="eyebrow" style="color: var(--secondary); margin-bottom: 0;">Paso 2: Confirma tus Datos</span>
+                  <div id="bookingSelectionBadge" class="badge-pill" style="background: rgba(116, 136, 115, 0.14); color: var(--primary); font-size: 0.72rem; padding: 0.25rem 0.65rem; display: none;">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">event</span>
+                    <span>Selecciona fecha</span>
+                  </div>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 0.35rem; color: var(--on-surface);">Escríbele a Catalina Arango</h3>
+                <p class="body-sm" style="font-size: 0.85rem; line-height: 1.5; color: var(--on-surface-variant);">
+                  Completa tus datos para confirmar tu espacio. Recibirás tu confirmación inmediata y el enlace privado para tu videollamada.
+                </p>
+              </div>
+
+              <form id="contactForm" onsubmit="handleAgendaSubmit(event)">
+                <!-- Datos ocultos de fecha y hora seleccionados -->
+                <input type="hidden" id="hiddenBookingDate" name="booking_date">
+                <input type="hidden" id="hiddenBookingTime" name="booking_time">
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label" for="contactName" style="font-size: 0.85rem;">Nombre Completo <span style="color: var(--secondary);">*</span></label>
+                  <input type="text" id="contactName" name="name" class="form-control" placeholder="Ej: Carolina Gómez" required style="padding: 0.85rem 1rem;">
+                </div>
+
+                <div class="grid-12" style="gap: 1rem; margin-bottom: 0;">
+                  <div class="col-span-6" style="margin-bottom: 1rem;">
+                    <label class="form-label" for="contactEmail" style="font-size: 0.85rem;">Correo Electrónico <span style="color: var(--secondary);">*</span></label>
+                    <input type="email" id="contactEmail" name="email" class="form-control" placeholder="carolina@ejemplo.com" required style="padding: 0.85rem 1rem;">
+                  </div>
+                  <div class="col-span-6" style="margin-bottom: 1rem;">
+                    <label class="form-label" for="contactPhone" style="font-size: 0.85rem;">WhatsApp / Teléfono <span style="font-weight: 400; font-size: 0.75rem; color: var(--outline);">(Opcional)</span></label>
+                    <input type="tel" id="contactPhone" name="phone" class="form-control" placeholder="+57 300 123 4567" style="padding: 0.85rem 1rem;">
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label class="form-label" for="contactService" style="font-size: 0.85rem;">Proceso o Asunto de Interés <span style="color: var(--secondary);">*</span></label>
+                  <select id="contactService" name="service" class="form-control" required style="padding: 0.85rem 1rem;">
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="Sesión de Dudas & Valoración (10 min máx.)">Sesión de Dudas & Valoración (10 min máx.)</option>
+                    <option value="Mentoría 1 Sesión: Regreso a Ti ($85 USD)">Mentoría 1 Sesión: Regreso a Ti ($85 USD / $350.000 COP)</option>
+                    <option value="Mentoría 3 Sesiones: Proceso Despertar ($219 USD)">Mentoría 3 Sesiones: Proceso Despertar ($219 USD / $890.000 COP)</option>
+                    <option value="Mentoría 12 Sesiones: Renacer Interno VIP ($999 USD)">Mentoría 12 Sesiones: Renacer Interno VIP ($999 USD / $4.100.000 COP)</option>
+                    <option value="Programa de Escritura Terapéutica ($150 USD)">Programa de Escritura Terapéutica ($150 USD / $600.000 COP)</option>
+                    <option value="Membresías de Comunidad (Refugio / Santuario)">Membresías de Comunidad (Refugio / Santuario)</option>
+                    <option value="Consulta General / Otro Asunto">Consulta General / Otro Asunto</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.35rem;">
+                  <label class="form-label" for="contactMsg" style="font-size: 0.85rem;">¿Qué te trae a este espacio hoy? <span style="color: var(--secondary);">*</span></label>
+                  <textarea id="contactMsg" name="message" class="form-control" rows="3" placeholder="Comparte brevemente qué estás viviendo o qué duda deseas resolver con Cata en la videollamada..." required style="padding: 0.85rem 1rem;"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                  <span class="material-symbols-outlined" id="submitBtnIcon" style="font-size: 20px;">video_call</span>
+                  <span id="submitBtnText">Confirmar Cita</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- TARJETA DE CITA CONFIRMADA (SUPER DISEÑO) -->
+            <div id="bookingSuccessCard" style="display: none; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
+              
+              <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(116, 136, 115, 0.15); display: flex; align-items: center; justify-content: center; border: 2px solid var(--primary);">
+                <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="width: 44px; height: 44px; object-fit: contain;">
+              </div>
+
+              <div class="badge-pill" style="background: rgba(37, 211, 102, 0.15); color: #075e54; border: 1px solid #25D366;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+                <span>¡CITA CONFIRMADA!</span>
+              </div>
+
+              <h3 style="font-size: 1.5rem; margin: 0; color: var(--primary);">Tu Espacio Ha Sido Reservado</h3>
+              
+              <p class="body-sm" style="margin: 0; color: var(--on-surface-variant); max-width: 420px; line-height: 1.6;">
+                Hemos reservado tu horario en el calendario de Catalina y generado tu sala privada de videollamada.
+              </p>
+
+              <!-- Detalles de la Cita -->
+              <div style="width: 100%; background: var(--surface-low); border: 1.5px solid rgba(116, 136, 115, 0.22); border-radius: var(--radius-lg); padding: 1.25rem; text-align: left; font-size: 0.88rem;">
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.6rem; border-bottom: 1px dashed rgba(116, 136, 115, 0.25); margin-bottom: 0.6rem;">
+                  <span style="color: var(--outline); font-size: 0.78rem; text-transform: uppercase;">Consultante:</span>
+                  <strong id="resCustomerName" style="color: var(--on-surface);">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.6rem; border-bottom: 1px dashed rgba(116, 136, 115, 0.25); margin-bottom: 0.6rem;">
+                  <span style="color: var(--outline); font-size: 0.78rem; text-transform: uppercase;">Correo:</span>
+                  <span id="resCustomerEmail" style="color: var(--on-surface); font-weight: 500;">-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.6rem; border-bottom: 1px dashed rgba(116, 136, 115, 0.25); margin-bottom: 0.6rem;">
+                  <span style="color: var(--outline); font-size: 0.78rem; text-transform: uppercase;">Fecha:</span>
+                  <strong id="resAppointmentDate" style="color: var(--primary);">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.6rem; border-bottom: 1px dashed rgba(116, 136, 115, 0.25); margin-bottom: 0.6rem;">
+                  <span style="color: var(--outline); font-size: 0.78rem; text-transform: uppercase;">Horario:</span>
+                  <strong id="resAppointmentTime" style="color: var(--secondary);">-</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--outline); font-size: 0.78rem; text-transform: uppercase;">Proceso:</span>
+                  <span id="resAppointmentService" style="font-weight: 600; color: var(--on-surface);">-</span>
+                </div>
+              </div>
+
+              <!-- Confirmación Oficial Exclusiva por Correo -->
+              <div style="width: 100%; background: #fdfbf7; border: 1.5px solid rgba(116, 136, 115, 0.35); border-radius: var(--radius-lg); padding: 1.15rem 1.25rem; display: flex; align-items: flex-start; gap: 0.85rem; text-align: left; box-sizing: border-box;">
+                <span class="material-symbols-outlined" style="font-size: 28px; color: var(--primary); margin-top: 2px; flex-shrink: 0;">mark_email_read</span>
+                <div>
+                  <strong style="color: var(--primary); display: block; font-size: 0.95rem; margin-bottom: 0.35rem;">Confirmación enviada a tu correo</strong>
+                  <span style="font-size: 0.84rem; color: var(--on-surface-variant); line-height: 1.55; display: block;">
+                    Hemos enviado los detalles completos de tu sesión de 10 min y tu enlace de videollamada a <strong id="resEmailNotice" style="color: var(--primary);">-</strong>. Por favor revisa tu bandeja de entrada o carpeta de spam.
+                  </span>
+                </div>
+              </div>
+
+              <!-- Acción: Agendar otra cita o reprogramar -->
+              <div style="margin-top: 0.75rem; width: 100%; display: flex; justify-content: center;">
+                <button type="button" onclick="resetBookingView()" class="btn btn-secondary" style="font-size: 0.88rem; padding: 0.75rem 1.5rem; text-transform: none; letter-spacing: normal; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">event_repeat</span>
+                  <span>Agendar otra cita o reprogramar</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer site-footer-fractal">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-brand-link" title="Cata Arango · Trascendamos Juntos" style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;">
+            <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" class="sol-luna-icon sol-luna-md" style="filter: drop-shadow(0 2px 8px rgba(229, 195, 146, 0.4));">
+            <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="footer-brand-logo">
+          </a>
+          <p class="quote-editorial" style="font-size: 1rem; color: rgba(255, 249, 232, 0.95); max-width: 320px;">
+            «Integración de Sombra y Luz con soberanía personal, respeto a tus tiempos y amor incondicional.»
+          </p>
+          <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem;">
+            <a href="https://www.instagram.com/cataarango9" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: var(--radius-full); background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #e5c392;" title="Instagram"><span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span></a>
+            <a href="https://youtube.com/@cataarango9" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: var(--radius-full); background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: #e5c392;" title="YouTube"><span class="material-symbols-outlined" style="font-size: 18px;">smart_display</span></a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #e5c392; margin-bottom: 1rem;">Navegación</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem;">
+            <li><a href="index.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Inicio</a></li>
+            <li><a href="sobre-mi.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Sobre Mí</a></li>
+            <li><a href="mentorias-y-cursos.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Mentorías y Cursos</a></li>
+            <li><a href="comunidad.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Comunidad</a></li>
+            <li><a href="contacto-y-faq.html" style="color: #e5c392; font-weight: 600; text-decoration: none;">Contacto & FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #e5c392; margin-bottom: 1rem;">Atención & Pagos</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 249, 232, 0.88);">
+            <span>trascedamosjuntos89@gmail.com</span>
+            <span>L-V 9:00 a.m - 4:00 p.m (Hora Colombia)</span>
+            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: #e5c392; margin-top: 0.5rem;">Medios Habilitados:</span>
+            <span>Tarjetas de Crédito y Débito • PSE</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255, 249, 232, 0.7);">
+        <p>© 2026 CATA ARANGO • Trascendamos Juntos. Todos los derechos reservados.</p>
+        <p style="color: #e5c392;">Espacio seguro y contenedor de desarrollo integral</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+  </script>
+
+  <!-- Three.js Library & Sacred Geometry Dynamic 3D Experience -->
+  <script src="assets/js/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="assets/js/sacred-three.js" defer></script>
+
+  <!-- Pasarela Oficial -->
+  <script src="assets/js/bold-config.js"></script>
+  <script src="assets/js/bold-checkout.js"></script>
+
+  <!-- Sistema de Agenda & Google Calendar / Meet -->
+  <script src="assets/js/calendar-booking.js"></script>
+
+  <!-- Agente de Voz Conversacional ElevenLabs -->
+  <elevenlabs-convai agent-id="agent_4301m6vny004frp8mgcqy6cb1xyj"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+  <!-- Regulación del Sistema Nervioso · Sonido Ambiental de la Naturaleza -->
+  <script src="assets/js/nature-sound.js" defer></script>
+
+</body>
+</html>

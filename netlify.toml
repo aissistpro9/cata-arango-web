@@ -1,0 +1,53 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# ==============================================================================
+# ENCABEZADOS DE MÁXIMA SEGURIDAD (OWASP / MOZILLA OBSERVATORY A+)
+# Protege la web contra Clickjacking, XSS, MIME sniffing, inyecciones y fugas
+# Permite de forma segura imágenes, fuentes, scripts, pasarela y el agente de voz de ElevenLabs
+# ==============================================================================
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Permissions-Policy = "camera=(), microphone=*, geolocation=(), payment=*"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https: blob:; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://checkout.bold.co https://api.web3forms.com https://unpkg.com https://elevenlabs.io https://*.elevenlabs.io https://apis.google.com https://accounts.google.com; worker-src 'self' blob: data: https:; child-src 'self' blob: https:; connect-src 'self' https: wss: blob: data: stun: turn: turns:; media-src 'self' data: https: blob:; frame-src 'self' https://checkout.bold.co https://www.youtube.com https://youtube.com https://elevenlabs.io https://*.elevenlabs.io https://calendar.google.com https://meet.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com https://checkout.bold.co;"
+
+# ==============================================================================
+# RUTAS DE API SEGURAS (SERVERLESS BACKEND)
+# Oculta todas las credenciales privadas y claves de API del cliente frontend
+# ==============================================================================
+[[redirects]]
+  from = "/api/send-scanner-link"
+  to = "/.netlify/functions/send-scanner-link"
+  status = 200
+
+[[redirects]]
+  from = "/api/contact"
+  to = "/.netlify/functions/contact"
+  status = 200
+
+[[redirects]]
+  from = "/api/calendar"
+  to = "/.netlify/functions/google-calendar"
+  status = 200
+
+[[redirects]]
+  from = "/api/google-calendar"
+  to = "/.netlify/functions/google-calendar"
+  status = 200
+
+[[redirects]]
+  from = "/api/bold-checkout"
+  to = "/.netlify/functions/bold-checkout"
+  status = 200
+
+[[redirects]]
+  from = "/api/bold-webhook"
+  to = "/.netlify/functions/bold-webhook"
+  status = 200
