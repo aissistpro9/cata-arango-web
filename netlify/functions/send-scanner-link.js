@@ -44,7 +44,7 @@ exports.handler = async (event) => {
     const token = crypto.createHmac('sha256', MAGIC_SECRET).update(email).digest('hex');
 
     // Determinación del dominio base
-    const host = event.headers.host || 'blessiatech-cata-arango.netlify.app';
+    const host = event.headers.host || 'cataarango.blessiatech.com';
     const protocol = host.includes('localhost') ? 'http' : 'https';
     const baseUrl = `${protocol}://${host}`;
     const magicUrl = `${baseUrl}/escaner-de-patrones.html?magic_token=${token}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(name)}`;
