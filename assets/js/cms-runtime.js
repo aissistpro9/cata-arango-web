@@ -1,10 +1,8 @@
 /**
  * CMS RUNTIME — Catalina Arango · Trascendamos Juntos
- * Sincroniza dinámicamente el contenido del Panel de Autogestión (admin.html)
- * en todas las páginas del sitio web en tiempo real:
- * - Tirilla de Promoción Superior (Sitewide)
- * - Textos editados con data-cms
- * - Redes sociales y WhatsApp globales
+ * Sincroniza dinámicamente todo el contenido guardado desde el Panel de Autogestión (admin.html)
+ * en tiempo real en todas las páginas de la web.
+ * Soporta elementos por atributo [data-cms="key"] o por su id="key".
  */
 (function() {
   'use strict';
@@ -14,7 +12,7 @@
     applyCmsOverrides();
   }
 
-  // 1. RENDER DE TIRILLA DE PROMOCIÓN
+  // 1. RENDER DE TIRILLA DE PROMOCIÓN SUPERIOR
   function renderPromoStrip() {
     try {
       const p = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
@@ -54,15 +52,16 @@
     } catch(e) {}
   }
 
-  // 2. OVERRIDES DE CONTENIDO CMS
+  // 2. OVERRIDES DE CONTENIDO CMS EN TIEMPO REAL
   function applyCmsOverrides() {
     try {
       const data = JSON.parse(localStorage.getItem('cata_cms_content') || '{}');
       if (!data || Object.keys(data).length === 0) return;
 
+      // Aplicar por atributo data-cms
       document.querySelectorAll('[data-cms]').forEach(function(el) {
         const key = el.getAttribute('data-cms');
-        if (data[key] !== undefined && data[key] !== null && data[key].trim() !== '') {
+        if (data[key] !== undefined && data[key] !== null && String(data[key]).trim() !== '') {
           if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.value = data[key];
           } else {
@@ -71,7 +70,53 @@
         }
       });
 
-      // WhatsApp oficial
+      // Aplicar por id directo
+      Object.keys(data).forEach(function(key) {
+        const val = data[key];
+        if (val === undefined || val === null || String(val).trim() === '') return;
+        const el = document.getElementById(key);
+        if (el) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.value = val;
+          } else {
+            el.innerHTML = val;
+          }
+        }
+      });
+
+      // Mapeo inteligente de precios USD visibles
+      if (data['mentorias_regreso_usd']) {
+        document.querySelectorAll('[data-cms="mentorias_regreso_usd_display"]').forEach(function(el) {
+          el.textContent = '$' + data['mentorias_regreso_usd'];
+        });
+      }
+      if (data['mentorias_despertar_usd']) {
+        document.querySelectorAll('[data-cms="mentorias_despertar_usd_display"]').forEach(function(el) {
+          el.textContent = '$' + data['mentorias_despertar_usd'];
+        });
+      }
+      if (data['mentorias_renacer_usd']) {
+        document.querySelectorAll('[data-cms="mentorias_renacer_usd_display"]').forEach(function(el) {
+          el.textContent = '$' + data['mentorias_renacer_usd'];
+        });
+      }
+      if (data['mentorias_escritura_usd']) {
+        document.querySelectorAll('[data-cms="mentorias_escritura_usd_display"]').forEach(function(el) {
+          el.textContent = '$' + data['mentorias_escritura_usd'];
+        });
+      }
+      if (data['escaner_oferta_precio']) {
+        document.querySelectorAll('[data-cms="escaner_oferta_precio_display"]').forEach(function(el) {
+          el.textContent = '$' + data['escaner_oferta_precio'];
+        });
+      }
+      if (data['footer_lema']) {
+        document.querySelectorAll('[data-cms="footer_lema"]').forEach(function(el) {
+          el.textContent = data['footer_lema'];
+        });
+      }
+
+      // WhatsApp oficial en todos los enlaces
       if (data['global_whatsapp']) {
         const cleanPhone = data['global_whatsapp'].replace(/[^0-9]/g, '');
         document.querySelectorAll('a[href*="wa.me"]').forEach(function(a) {
@@ -83,7 +128,7 @@
         });
       }
 
-      // Correo
+      // Correo oficial
       if (data['global_email']) {
         document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
           a.href = 'mailto:' + data['global_email'];
@@ -91,7 +136,7 @@
         });
       }
 
-      // Redes
+      // Redes sociales globales
       if (data['global_instagram']) {
         document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a) { a.href = data['global_instagram']; });
       }

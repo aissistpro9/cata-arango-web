@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Autogestión Total · Cata Arango</title>
+  <title>Panel de Autogestión Integral · Cata Arango</title>
   <link rel="icon" type="image/png" href="assets/images/FAVICON_SOL_Y_LUNA.png">
 
   <!-- Google Fonts & Material Symbols -->
@@ -15,14 +15,14 @@
   <style>
     :root {
       --primary: #4e614e;
-      --primary-light: #748873;
+      --primary-dark: #374737;
       --secondary: #8c7355;
       --gold: #c9a87a;
       --gold-light: #f7d598;
       --surface: #fbf9f5;
       --surface-card: #ffffff;
-      --surface-sidebar: #1e231e;
-      --surface-sidebar-hover: #2a312a;
+      --surface-sidebar: #191e19;
+      --surface-sidebar-hover: #262e26;
       --text: #232822;
       --text-muted: #6b6055;
       --border: rgba(78, 97, 78, 0.16);
@@ -44,7 +44,7 @@
 
     /* HEADER */
     .admin-header {
-      background: #141714;
+      background: #121512;
       color: #fff9ee;
       padding: 0.85rem 2rem;
       display: flex;
@@ -68,7 +68,7 @@
       color: var(--gold-light);
     }
     .admin-header-sub {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: rgba(255,249,238,0.6);
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -78,6 +78,36 @@
       align-items: center;
       gap: 1rem;
     }
+
+    /* QUICK SEARCH */
+    .search-bar-wrap {
+      position: relative;
+      width: 280px;
+    }
+    .search-bar-wrap input {
+      width: 100%;
+      padding: 0.45rem 0.85rem 0.45rem 2.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 0.82rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-bar-wrap input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--gold-light);
+    }
+    .search-bar-wrap .material-symbols-outlined {
+      position: absolute;
+      left: 0.65rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+    }
+
     .btn-site-link {
       display: inline-flex;
       align-items: center;
@@ -99,7 +129,7 @@
     /* LAYOUT */
     .admin-layout {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 270px 1fr;
       flex: 1;
       min-height: calc(100vh - 58px);
     }
@@ -107,7 +137,7 @@
     /* SIDEBAR */
     .sidebar {
       background: var(--surface-sidebar);
-      padding: 1.5rem 0;
+      padding: 1.25rem 0 3rem;
       border-right: 1px solid rgba(255,255,255,0.06);
       position: sticky;
       top: 58px;
@@ -127,10 +157,10 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.72rem 1.5rem;
       color: rgba(255,249,238,0.78);
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 500;
       border-left: 3px solid transparent;
       transition: all 0.2s;
@@ -145,7 +175,7 @@
       border-left-color: var(--gold-light);
       font-weight: 600;
     }
-    .sidebar-nav li a .material-symbols-outlined { font-size: 20px; }
+    .sidebar-nav li a .material-symbols-outlined { font-size: 19px; }
 
     /* MAIN CONTENT */
     .main-content {
@@ -211,7 +241,7 @@
     }
     .card-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 1.25rem;
@@ -229,11 +259,21 @@
     }
     .form-group:last-child { margin-bottom: 0; }
     .form-label {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.45rem;
+    }
+    .form-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.04);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
     }
     .form-hint {
       font-size: 0.76rem;
@@ -258,7 +298,7 @@
       box-shadow: 0 0 0 3px rgba(78, 97, 78, 0.12);
     }
     textarea.form-control {
-      min-height: 95px;
+      min-height: 90px;
       resize: vertical;
       line-height: 1.55;
     }
@@ -266,6 +306,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
+    }
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
     }
 
     /* TOGGLE SWITCH */
@@ -430,7 +475,7 @@
       transition: all 0.2s;
     }
     .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: #3c4c3c; }
+    .btn-primary:hover { background: var(--primary-dark); }
     .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
     .btn-outline:hover { background: #faf8f5; border-color: var(--primary); }
     .btn-gold { background: var(--gold); color: #1a1e1a; font-weight: 700; }
@@ -441,6 +486,7 @@
       .sidebar { display: none; }
       .main-content { padding: 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
+      .search-bar-wrap { display: none; }
     }
   </style>
 </head>
@@ -456,6 +502,10 @@
       </div>
     </div>
     <div class="admin-header-actions">
+      <div class="search-bar-wrap">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" placeholder="Buscar texto o sección..." id="quickSearchInput" oninput="filterFields(this.value)">
+      </div>
       <button class="btn btn-gold" onclick="saveAllCms()" style="padding: 0.5rem 1.25rem; font-size: 0.82rem;">
         <span class="material-symbols-outlined" style="font-size: 16px;">save</span>
         Guardar Todo
@@ -471,13 +521,13 @@
 
     <!-- SIDEBAR -->
     <nav class="sidebar">
-      <div class="sidebar-section-title">Páginas Principales</div>
+      <div class="sidebar-section-title">Páginas de la Web</div>
       <ul class="sidebar-nav">
         <li><a href="#" class="active" onclick="switchTab('inicio')">
           <span class="material-symbols-outlined">home</span> 1. Inicio (index.html)
         </a></li>
         <li><a href="#" onclick="switchTab('sobremi')">
-          <span class="material-symbols-outlined">person</span> 2. Sobre Mí
+          <span class="material-symbols-outlined">person</span> 2. Sobre Mí (sobre-mi.html)
         </a></li>
         <li><a href="#" onclick="switchTab('mentorias')">
           <span class="material-symbols-outlined">self_improvement</span> 3. Mentorías & Cursos
@@ -493,6 +543,9 @@
         </a></li>
         <li><a href="#" onclick="switchTab('contacto')">
           <span class="material-symbols-outlined">calendar_month</span> 7. Contacto & FAQ
+        </a></li>
+        <li><a href="#" onclick="switchTab('pagoconfirmado')">
+          <span class="material-symbols-outlined">check_circle</span> 8. Pago Confirmado
         </a></li>
       </ul>
 
@@ -512,7 +565,7 @@
         </a></li>
       </ul>
 
-      <div class="sidebar-section-title">Ajustes & Sistema</div>
+      <div class="sidebar-section-title">Sistema & Respaldos</div>
       <ul class="sidebar-nav">
         <li><a href="#" onclick="switchTab('global')">
           <span class="material-symbols-outlined">settings</span> Configuración Global
@@ -532,73 +585,210 @@
       <section id="tab-inicio" class="panel active">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">home</span> Página de Inicio (index.html)</h1>
-            <p class="panel-subtitle">Edita los titulares de impacto, subtítulos, biografía corta y tarjetas de mentorías de la portada.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">home</span> 1. Página de Inicio (index.html)</h1>
+            <p class="panel-subtitle">Edita todos los bloques de la portada: Bienvenida mística, Hero, Quién Soy, Filosofía, Santuario de Calma y Precios 1 a 1.</p>
           </div>
           <a href="index.html" target="_blank" class="panel-page-link">
-            <span>Ver index.html</span>
+            <span>Abrir index.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">auto_awesome</span> Bienvenida Inmersiva (Portada Mística)</h2>
+        <!-- 1.1 Bienvenida Mística -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">auto_awesome</span> 1.1 Portada de Bienvenida Mística</h2>
           <div class="form-group">
-            <label class="form-label">Frase de Bienvenida</label>
+            <label class="form-label"><span>Distintivo Superior</span><span class="form-tag">home_welcome_badge</span></label>
+            <input type="text" class="form-control" id="home_welcome_badge" value="Espacio Sagrado de Sanación" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Nombre / Título Central</span><span class="form-tag">home_welcome_name</span></label>
+            <input type="text" class="form-control" id="home_welcome_name" value="CATALINA ARANGO" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Subtítulo Poético</span><span class="form-tag">home_welcome_subtitle</span></label>
+            <textarea class="form-control" id="home_welcome_subtitle" oninput="markDirty()">El viaje consciente para integrar tu sombra, despertar tu luz y reconstruir el vínculo sagrado contigo.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Frase de Apertura</span><span class="form-tag">home_welcome_title</span></label>
             <input type="text" class="form-control" id="home_welcome_title" value="Bienvenida Alma Valiente a este espacio, donde la intención siempre será a que regreses a tí." oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Frase de Cierre / Anclaje</label>
+            <label class="form-label"><span>Frase de Cierre / Anclaje</span><span class="form-tag">home_welcome_quote</span></label>
             <input type="text" class="form-control" id="home_welcome_quote" value="¡Eres polvo de estrellas, no lo olvides!" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Texto del Botón de Entrada (Principal)</span><span class="form-tag">home_welcome_btn</span></label>
+            <input type="text" class="form-control" id="home_welcome_btn" value="SABER MÁS · ENTRAR AL SITIO" oninput="markDirty()">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Texto Botón 2 (Ver Mentorías)</span><span class="form-tag">home_welcome_btn_mentorias</span></label>
+              <input type="text" class="form-control" id="home_welcome_btn_mentorias" value="Ver Mentorías" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Texto Botón 3 (Sobre Cata)</span><span class="form-tag">home_welcome_btn_sobre</span></label>
+              <input type="text" class="form-control" id="home_welcome_btn_sobre" value="Sobre Cata" oninput="markDirty()">
+            </div>
+          </div>
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+          <div class="form-group">
+            <label class="form-label"><span>Manifiesto · Párrafo 1 (18 años corporativos)</span><span class="form-tag">home_welcome_manifesto_p1</span></label>
+            <textarea class="form-control" id="home_welcome_manifesto_p1" oninput="markDirty()">¡Un gusto tenerte acá! Mi nombre es Catalina Arango Rivera. Tras 18 años en el mundo corporativo y atravesar mi propia 'noche oscura del alma', comprendí que el dolor no es un castigo, sino la brújula sagrada para recordar quién eres verdaderamente.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Manifiesto · Párrafo 2 (Espacio seguro y heridas de infancia)</span><span class="form-tag">home_welcome_manifesto_p2</span></label>
+            <textarea class="form-control" id="home_welcome_manifesto_p2" oninput="markDirty()">Este espacio nace como un refugio de contención real, integración de sombra y reconexión profunda con tu esencia. Aquí desarmamos la autoexigencia, reconciliamos tus heridas de infancia y ancestrales y activamos tu poder personal sin juicios ni dogmas.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Manifiesto · Cita Final</span><span class="form-tag">home_welcome_manifesto_quote</span></label>
+            <textarea class="form-control" id="home_welcome_manifesto_quote" oninput="markDirty()">«Para renacer en tu luz más expansiva, primero debes aprender a sentarte en compasión con tus sombras.»</textarea>
           </div>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">title</span> Hero Principal (Inicio)</h2>
+        <!-- 1.2 Hero Principal -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">title</span> 1.2 Hero Principal (Encabezado Inicio)</h2>
           <div class="form-group">
-            <label class="form-label">Título Principal (H1)</label>
+            <label class="form-label"><span>Título Principal (H1)</span><span class="form-tag">home_hero_title</span></label>
             <input type="text" class="form-control" id="home_hero_title" value="Integra tu Sombra. Despierta tu Luz." oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Subtítulo Hero</label>
+            <label class="form-label"><span>Subtítulo Principal</span><span class="form-tag">home_hero_subtitle</span></label>
             <textarea class="form-control" id="home_hero_subtitle" oninput="markDirty()">Un espacio seguro y sin dogmas para liberar el dolor de las heridas de tu infancia y ancestrales, memorias de dolor, traumas y bloqueos emocionales. Para que puedas ‘aquietar tu mente y reconciliarte con tu centro personal’.</textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Texto Secundario (Modalidades y Alcance)</label>
-            <input type="text" class="form-control" id="home_hero_secondary" value="Guiado por Catalina Arango Rivera. Sesiones individuales híbridas en Medellín, Colombia y 100% virtuales para el resto del mundo." oninput="markDirty()">
+            <label class="form-label"><span>Texto Secundario (Modalidades y Alcance)</span><span class="form-tag">home_hero_secondary</span></label>
+            <textarea class="form-control" id="home_hero_secondary" oninput="markDirty()">Guiado por Catalina Arango Rivera. Sesiones individuales híbridas en Medellín, Colombia y 100% virtuales para el resto del mundo.</textarea>
+          </div>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label class="form-label"><span>Botón 1 (Principal)</span></label>
+              <input type="text" class="form-control" id="home_hero_btn1" value="Iniciar Mi Proceso" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Botón 2 (Biografía)</span></label>
+              <input type="text" class="form-control" id="home_hero_btn2" value="Conoce a Cata" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Botón 3 (Gratuito)</span></label>
+              <input type="text" class="form-control" id="home_hero_btn3" value="Recurso Gratuito" oninput="markDirty()">
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">person</span> Sección Quién Soy & Filosofía</h2>
+        <!-- 1.3 Quién Soy Yo -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">person</span> 1.3 Sección "Quién Soy Yo"</h2>
           <div class="form-group">
-            <label class="form-label">Párrafo Introductorio sobre Cata</label>
-            <textarea class="form-control" id="home_quien_soy_text" oninput="markDirty()">Soy originaria de Medellín, Colombia. Durante 18 años transité la vida corporativa buscando pertenecer, hasta que tomé la valiente decisión de soltar esa armadura para recordar quién era en verdad y acompañar a otros a volver a su centro.</textarea>
+            <label class="form-label"><span>Título de la Sección</span><span class="form-tag">home_quien_soy_title</span></label>
+            <input type="text" class="form-control" id="home_quien_soy_title" value="¡Un gusto tenerte acá! Soy Catalina Arango Rivera." oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Cita Destacada de Filosofía</label>
+            <label class="form-label"><span>Párrafo 1 (Historia corporativa y punto de quiebre)</span><span class="form-tag">home_quien_soy_p1</span></label>
+            <textarea class="form-control" id="home_quien_soy_p1" oninput="markDirty()">Soy originaria de Medellín, Colombia. Durante 18 años transité la vida corporativa buscando pertenecer, hasta que tomé la valiente decisión de soltar esa armadura. Ese fue mi verdadero punto de quiebre: el colapso de las máscaras que había construido para sentirme protegida.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Párrafo 2 (Noche oscura del alma)</span><span class="form-tag">home_quien_soy_p2</span></label>
+            <textarea class="form-control" id="home_quien_soy_p2" oninput="markDirty()">Esa transición me sumergió en mi primera 'noche oscura del alma': el fin de una relación de años, proyectos creados desde el ego, bancarrota y patrones de codependencia a los que mi cuerpo ya se había habituado. Tocando fondo, dejé de buscar afuera y miré hacia adentro.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Editorial Enmarcada</span><span class="form-tag">home_quien_soy_quote</span></label>
+            <textarea class="form-control" id="home_quien_soy_quote" oninput="markDirty()">«Comprendí que ningún dolor fue en vano: todo era parte de un aprendizaje necesario para hoy servir de puente y acompañar a otros a transformar el dolor en poder personal.»</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Párrafo 3 (Integración actual)</span><span class="form-tag">home_quien_soy_p3</span></label>
+            <textarea class="form-control" id="home_quien_soy_p3" oninput="markDirty()">Hoy integro la comunicación consciente, la bioenergética, el trabajo de sombra y la regulación emocional para recordarte que no tienes que sostenerlo todo solo.</textarea>
+          </div>
+        </div>
+
+        <!-- 1.4 Filosofía & Tres Pilares -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">wb_twilight</span> 1.4 Mi Filosofía & 3 Pilares</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Cita de Filosofía Principal</span><span class="form-tag">home_filosofia_quote</span></label>
             <textarea class="form-control" id="home_filosofia_quote" oninput="markDirty()">«El dolor no es un castigo ni una falla; es la brújula sagrada de tu alma pidiéndote regresar a casa: a ti mismo.»</textarea>
           </div>
+          <div class="form-group">
+            <label class="form-label"><span>Pilar 1 (Título y Descripción)</span></label>
+            <input type="text" class="form-control" id="home_pilar1_title" value="01 · Integración de Sombra" style="margin-bottom:0.5rem;" oninput="markDirty()">
+            <textarea class="form-control" id="home_pilar1_desc" oninput="markDirty()">Mirar de frente lo que rechazamos en nosotros para dejar de pelearnos con el pasado y transformar el dolor en poder personal.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Pilar 2 (Título y Descripción)</span></label>
+            <input type="text" class="form-control" id="home_pilar2_title" value="02 · Sistema Nervioso & Calma" style="margin-bottom:0.5rem;" oninput="markDirty()">
+            <textarea class="form-control" id="home_pilar2_desc" oninput="markDirty()">Autorregulación somática y respiración consciente para salir del estado de alerta continuo y habitar tu cuerpo en paz.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Pilar 3 (Título y Descripción)</span></label>
+            <input type="text" class="form-control" id="home_pilar3_title" value="03 · Soberanía Personal" style="margin-bottom:0.5rem;" oninput="markDirty()">
+            <textarea class="form-control" id="home_pilar3_desc" oninput="markDirty()">Desmantelar lealtades invisibles y mandatos familiares para caminar con tus propias decisiones y autenticidad.</textarea>
+          </div>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">image</span> Imágenes de la Portada</h2>
+        <!-- 1.5 Santuario de Calma (Recurso Gratis) -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">spatial_audio</span> 1.5 Santuario de Calma (Recurso Gratuito)</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título Principal</span><span class="form-tag">home_santuario_title</span></label>
+            <input type="text" class="form-control" id="home_santuario_title" value="Santuario de Calma Gratuito" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Subtítulo del Recurso</span><span class="form-tag">home_santuario_subtitle</span></label>
+            <input type="text" class="form-control" id="home_santuario_subtitle" value="Test de Rol Inconsciente + Audio Guiado Exclusivo de Regulación" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de Valor</span><span class="form-tag">home_santuario_desc</span></label>
+            <textarea class="form-control" id="home_santuario_desc" oninput="markDirty()">Un espacio seguro de primer contacto para identificar tu dinámica de supervivencia (perfeccionismo, complacencia, hipervigilancia) y recibir en tu correo el audio guiado de calma somática.</textarea>
+          </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Retrato Principal Cata (Hero)</label>
+              <label class="form-label"><span>Título del Audio</span></label>
+              <input type="text" class="form-control" id="home_santuario_audio_title" value="Audio Guiado Exclusivo · Voz de Catalina Arango" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Cita del Audio</span></label>
+              <input type="text" class="form-control" id="home_santuario_audio_quote" value="«Dejo de ser mi crítica para empezar a ser mi refugio.»" oninput="markDirty()">
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.6 Comunidad & Suscripciones en Portada -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">groups</span> 1.6 Sección "Comunidad & Suscripciones" en Portada</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Distintivo Superior (Llamativo)</span><span class="form-tag">home_comunidad_eyebrow</span></label>
+            <input type="text" class="form-control" id="home_comunidad_eyebrow" value="COMUNIDAD & SUSCRIPCIONES" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Título de la Sección</span><span class="form-tag">home_comunidad_title</span></label>
+            <input type="text" class="form-control" id="home_comunidad_title" value="Tu Camino de Transformación Continua" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de la Sección</span><span class="form-tag">home_comunidad_desc</span></label>
+            <textarea class="form-control" id="home_comunidad_desc" oninput="markDirty()">Elige el nivel de acompañamiento que resuene con tu momento actual. Desde el despertar gratuito hasta la mentoría continua VIP.</textarea>
+          </div>
+        </div>
+
+        <!-- 1.7 Imágenes de Inicio -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">image</span> 1.7 Imágenes de la Portada</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Foto Lateral Cata (Hero Inicio)</span></label>
               <div class="img-upload-box">
                 <input type="file" accept="image/*" onchange="previewCmsImg(this, 'prev-home-cata')">
                 <span class="material-symbols-outlined" style="font-size: 32px; color: var(--gold);">add_photo_alternate</span>
-                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Cambiar Foto Principal (JPG, PNG, WebP)</span>
+                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Haz clic para cambiar imagen (JPG, PNG, WebP)</span>
                 <img id="prev-home-cata" class="img-preview" src="assets/images/cata_hero.jpg" style="display: block;">
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label">Imagen de Fondo Sombra y Luz</label>
+              <label class="form-label"><span>Fondo Místico Sombra y Luz</span></label>
               <div class="img-upload-box">
                 <input type="file" accept="image/*" onchange="previewCmsImg(this, 'prev-home-bg')">
                 <span class="material-symbols-outlined" style="font-size: 32px; color: var(--gold);">wallpaper</span>
-                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Cambiar Fondo Místico</span>
+                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Haz clic para cambiar fondo</span>
                 <img id="prev-home-bg" class="img-preview" src="assets/images/hero_inicio.jpg" style="display: block;">
               </div>
             </div>
@@ -612,40 +802,149 @@
       <section id="tab-sobremi" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">person</span> Sobre Mí (sobre-mi.html)</h1>
-            <p class="panel-subtitle">Administra los textos autobiográficos, historia de vocación y momentos clave de Catalina.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">person</span> 2. Sobre Mí (sobre-mi.html)</h1>
+            <p class="panel-subtitle">Edita los textos autobiográficos, capítulos de vida, punto de quiebre, misión de alma y metodología.</p>
           </div>
           <a href="sobre-mi.html" target="_blank" class="panel-page-link">
-            <span>Ver sobre-mi.html</span>
+            <span>Abrir sobre-mi.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">history_edu</span> Encabezado Hero</h2>
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">history_edu</span> 2.1 Encabezado Hero</h2>
           <div class="form-group">
-            <label class="form-label">Título Hero</label>
+            <label class="form-label"><span>Título Hero</span><span class="form-tag">sobremi_hero_title</span></label>
             <input type="text" class="form-control" id="sobremi_hero_title" value="La Travesía Hacia Mi Interior" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Subtítulo Hero</label>
+            <label class="form-label"><span>Subtítulo Hero</span><span class="form-tag">sobremi_hero_subtitle</span></label>
             <textarea class="form-control" id="sobremi_hero_subtitle" oninput="markDirty()">De 18 años en el mundo corporativo a sostener procesos de sanación profunda, integración de sombra y renacer del alma.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Texto de Alcance</span><span class="form-tag">sobremi_hero_text</span></label>
+            <textarea class="form-control" id="sobremi_hero_text" oninput="markDirty()">Un camino recorrido en carne propia para acompañarte a transformar tu dolor en soberanía personal sin juicios ni falsas promesas.</textarea>
           </div>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">menu_book</span> Capítulos de su Historia</h2>
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">menu_book</span> 2.2 Capítulos de Vida</h2>
+          
           <div class="form-group">
-            <label class="form-label">Capítulo I: El Origen y la Vocación</label>
-            <textarea class="form-control" id="sobremi_capitulo1" oninput="markDirty()">Soy originaria de Medellín, Colombia, y desde muy joven sentí una profunda necesidad de estar al servicio de los demás. A los 27 años estudié Comunicación y Medios Periodísticos y posteriormente me especialicé en Talento Humano.</textarea>
+            <label class="form-label"><span>Capítulo I · Título</span></label>
+            <input type="text" class="form-control" id="sobremi_cap1_title" value="¡Un gusto tenerte acá! Mi nombre es Catalina Arango Rivera." oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Capítulo II: 18 Años Corporativos y el Punto de Quiebre</label>
-            <textarea class="form-control" id="sobremi_capitulo2" oninput="markDirty()">Durante 18 años transité la vida corporativa buscando pertenecer, hasta que el alma comenzó a pesarme más que cualquier seguridad aparente. Renunciar fue el instante sagrado en que se cayeron las máscaras e identidades defensivas.</textarea>
+            <label class="form-label"><span>Capítulo I · Párrafo 1</span></label>
+            <textarea class="form-control" id="sobremi_cap1_p1" oninput="markDirty()">Soy originaria de Medellín, Colombia, y desde muy joven sentí una profunda necesidad de estar al servicio de los demás, aunque en ese momento aún no comprendía del todo cómo canalizar ese llamado que latía en mi corazón.</textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Párrafo Revelación y Misión de Alma</label>
-            <textarea class="form-control" id="sobremi_proposito_quote" oninput="markDirty()">«Fue allí donde Dios y mis guías me mostraron y corroboraron cuál es mi propósito de vida y misión de alma.»</textarea>
+            <label class="form-label"><span>Capítulo I · Párrafo 2 (Vocación y estudios)</span></label>
+            <textarea class="form-control" id="sobremi_cap1_p2" oninput="markDirty()">Buscando ese propósito, a los 27 años comencé a estudiar Comunicación y Medios Periodísticos. Posteriormente me especialicé en Talento Humano, un área centrada en el corazón de las personas y sus dinámicas vinculares.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo II · Título</span></label>
+            <input type="text" class="form-control" id="sobremi_cap2_title" value="18 Años Corporativos y el Desmantelamiento del 'Deber Ser'" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo II · Párrafo 1</span></label>
+            <textarea class="form-control" id="sobremi_cap2_p1" oninput="markDirty()">Durante 18 años transité la vida corporativa, gestionando equipos, respondiendo a altas expectativas y buscando encajar en moldes externos. Sin embargo, llegó un momento en que el alma comenzó a pesarme más que cualquier seguridad aparente.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo II · Párrafo 2</span></label>
+            <textarea class="form-control" id="sobremi_cap2_p2" oninput="markDirty()">Tomé la valiente decisión de renunciar. Este fue mi verdadero punto de quiebre: el instante sagrado en que se cayeron las máscaras, títulos e identidades que había construido como mecanismos de defensa y supervivencia.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo III · Título</span></label>
+            <input type="text" class="form-control" id="sobremi_cap3_title" value="El Colapso de las Falsas Certezas y la Noche Oscura del Alma" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo III · Párrafo 1</span></label>
+            <textarea class="form-control" id="sobremi_cap3_p1" oninput="markDirty()">Al salir del entorno corporativo, la vida me despojó de todo lo que creía controlar: el fin de una relación de años, quiebre económico y la confrontación directa con mis mayores miedos.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo III · Párrafo 2 (Misión de Alma & Dios)</span></label>
+            <textarea class="form-control" id="sobremi_cap3_p2" oninput="markDirty()">Fue allí donde Dios y mis guías me mostraron y corroboraron cuál es mi propósito de vida y misión de alma.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita de Sabiduría de Cierre</span></label>
+            <textarea class="form-control" id="sobremi_cap3_quote" oninput="markDirty()">«Tocar fondo no fue una condena; fue el portal sagrado para recordar quién soy verdaderamente y desarmar el miedo a ser yo misma.»</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo IV · Título</span><span class="form-tag">sobremi_cap4_title</span></label>
+            <input type="text" class="form-control" id="sobremi_cap4_title" value="Ser Puente para tu Soberanía, Paz y Regulación Emocional" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo IV · Párrafo 1</span><span class="form-tag">sobremi_cap4_p1</span></label>
+            <textarea class="form-control" id="sobremi_cap4_p1" oninput="markDirty()">Hoy acompaño a cientos de personas en Colombia y en el mundo a través de un espacio íntimo, confidencial y sin dogmas.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Capítulo IV · Párrafo 2 (Sin spiritual bypassing)</span><span class="form-tag">sobremi_cap4_p2</span></label>
+            <textarea class="form-control" id="sobremi_cap4_p2" oninput="markDirty()">Mi enfoque rechaza categóricamente el 'spiritual bypassing' (la evasión espiritual o el pensamiento positivo forzado). Aquí no te voy a decir que sonrías si tu pecho duele; te ofrezco un contenedor seguro donde tu sistema nervioso pueda soltar la guardia, mirar de frente los mandatos invisibles y transmutar la herida en poder personal.</textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Texto Botón 1</span></label>
+              <input type="text" class="form-control" id="sobremi_btn_explorar" value="Explorar Mis Mentorías" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Texto Botón 2</span></label>
+              <input type="text" class="form-control" id="sobremi_btn_agendar" value="Agendar Sesión ($88 USD)" oninput="markDirty()">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 Métricas de Impacto -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">analytics</span> 2.3 Métricas de Trayectoria & Impacto</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 1 (Número)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric1_num" value="+1,200" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 1 (Etiqueta)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric1_label" value="Almas Acompañadas" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 2 (Número)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric2_num" value="18" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 2 (Etiqueta)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric2_label" value="Años de Trayectoria & Liderazgo" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 3 (Número)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric3_num" value="100%" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 3 (Etiqueta)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric3_label" value="Confidencialidad y Amor" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 4 (Número)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric4_num" value="Global" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Métrica 4 (Etiqueta)</span></label>
+              <input type="text" class="form-control" id="sobremi_metric4_label" value="Atención Híbrida & Virtual" oninput="markDirty()">
+            </div>
           </div>
         </div>
       </section>
@@ -656,88 +955,158 @@
       <section id="tab-mentorias" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">self_improvement</span> Mentorías & Cursos</h1>
-            <p class="panel-subtitle">Edita descripciones, precios oficiales y características de los procesos 1 a 1 y del programa de escritura.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">self_improvement</span> 3. Mentorías & Cursos</h1>
+            <p class="panel-subtitle">Administra los títulos, precios oficiales (USD y COP), características y descripciones de todos los contenedores 1 a 1 y de Escritura Terapéutica.</p>
           </div>
           <a href="mentorias-y-cursos.html" target="_blank" class="panel-page-link">
-            <span>Ver mentorias-y-cursos.html</span>
+            <span>Abrir mentorias-y-cursos.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <!-- REGRESO A TI -->
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">filter_1</span> 1. Regreso a Ti (Nivel Inicial · 1 Sesión)</h2>
+        <!-- 3.0 Encabezado Hero -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">title</span> 3.0 Encabezado Hero</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título Hero</span><span class="form-tag">mentorias_hero_title</span></label>
+            <input type="text" class="form-control" id="mentorias_hero_title" value="Procesos de Sanación & Mentorías Individuales" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Subtítulo Hero</span><span class="form-tag">mentorias_hero_subtitle</span></label>
+            <textarea class="form-control" id="mentorias_hero_subtitle" oninput="markDirty()">Espacios íntimos, confidenciales y sin dogmas para mirar de frente las lealtades invisibles, sanar el niño interior y volver a tu centro.</textarea>
+          </div>
+        </div>
+
+        <!-- 3.1 Regreso a Ti -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_1</span> 3.1 Regreso a Ti (Nivel Inicial · 1 Sesión)</h2>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Precio en USD</label>
+              <label class="form-label"><span>Precio USD</span></label>
               <input type="number" class="form-control" id="mentorias_regreso_usd" value="88" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Precio en COP</label>
+              <label class="form-label"><span>Precio COP</span></label>
               <input type="number" class="form-control" id="mentorias_regreso_cop" value="360000" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Descripción</label>
+            <label class="form-label"><span>Descripción de la Mentoría</span></label>
             <textarea class="form-control" id="mentorias_regreso_desc" oninput="markDirty()">Mentoría intensiva individual de 90 minutos para identificar con precisión el bloqueo emocional raíz y reconectar con tu presencia consciente y paz interior.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Beneficio 1</span></label>
+            <input type="text" class="form-control" id="mentorias_regreso_feat1" value="Sesión individual de 90 minutos con Cata Arango" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Beneficio 2</span></label>
+            <input type="text" class="form-control" id="mentorias_regreso_feat2" value="Identificación del bloqueo emocional raíz" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Beneficio 3</span></label>
+            <input type="text" class="form-control" id="mentorias_regreso_feat3" value="Ejercicio de escritura terapéutico guiado" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Beneficio 4</span></label>
+            <input type="text" class="form-control" id="mentorias_regreso_feat4" value="Audio de integración guiada de 5 a 7 min (anclaje profundo)" oninput="markDirty()">
           </div>
         </div>
 
-        <!-- PROCESO DESPERTAR -->
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">filter_2</span> 2. Proceso Despertar (Inmersión 3 Semanas)</h2>
+        <!-- 3.2 Proceso Despertar -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_2</span> 3.2 Proceso Despertar (Inmersión 3 Semanas)</h2>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Precio en USD</label>
+              <label class="form-label"><span>Precio USD</span></label>
               <input type="number" class="form-control" id="mentorias_despertar_usd" value="222" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Precio en COP</label>
+              <label class="form-label"><span>Precio COP</span></label>
               <input type="number" class="form-control" id="mentorias_despertar_cop" value="900000" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Descripción</label>
+            <label class="form-label"><span>Descripción General</span></label>
             <textarea class="form-control" id="mentorias_despertar_desc" oninput="markDirty()">Proceso estructurado de 3 semanas para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Paso 01 · El Origen</span></label>
+            <textarea class="form-control" id="mentorias_despertar_step1" oninput="markDirty()">El Origen (90 min) — Mapeo emocional profundo y desprogramación del bloqueo raíz primario.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Paso 02 · El Niño Interior</span></label>
+            <textarea class="form-control" id="mentorias_despertar_step2" oninput="markDirty()">El Niño Interior (90 min) — Sanación de la herida de abandono, rechazo, culpa inconsciente y heridas o traumas que se identifiquen dentro de la sesión.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Paso 03 · Soberanía & Cierre</span></label>
+            <textarea class="form-control" id="mentorias_despertar_step3" oninput="markDirty()">Soberanía & Cierre (90 min) — Ritual sagrado de integración, anclaje interior y poder personal.</textarea>
           </div>
         </div>
 
-        <!-- RENACER INTERNO -->
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">filter_3</span> 3. Renacer Interno VIP (12 Sesiones · 3 Meses)</h2>
+        <!-- 3.3 Renacer Interno VIP -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_3</span> 3.3 Renacer Interno VIP (12 Sesiones · 3 Meses)</h2>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Precio en USD</label>
+              <label class="form-label"><span>Precio USD</span></label>
               <input type="number" class="form-control" id="mentorias_renacer_usd" value="999" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Precio en COP</label>
+              <label class="form-label"><span>Precio COP</span></label>
               <input type="number" class="form-control" id="mentorias_renacer_cop" value="4100000" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Descripción Oficial</label>
+            <label class="form-label"><span>Descripción Oficial</span></label>
             <textarea class="form-control" id="mentorias_renacer_desc" oninput="markDirty()">Contenedor holístico VIP de 3 meses. 12 sesiones personalizadas para sanar linajes familiares, heridas y traumas individuales y reprogramación de la mente y sistema nervioso, para que recuerdes que eres la grandeza misma.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Lista de Beneficios Incluidos</span></label>
+            <textarea class="form-control" id="mentorias_renacer_features" style="min-height: 140px;" oninput="markDirty()">• 12 sesiones personalizadas 1 a 1 de 90 min con Catalina
+• Diario digital de tu proceso
+• Meditaciones guiadas y rituales
+• Ejercicios de visualización
+• Equilibrar energía femenina y masculina
+• Trabajo de sombra, de heridas y traumas ancestrales
+• 3 audios de integración y reconexión personalizados (1 por mes)
+• 1 llamada prioritaria mensual para emergencias emocionales
+• Acceso prioritario a agenda</textarea>
           </div>
         </div>
 
-        <!-- ESCRITURA TERAPÉUTICA -->
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">edit_note</span> 4. Escritura Terapéutica & Sanación Consciente</h2>
+        <!-- 3.4 Escritura Terapéutica -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">edit_note</span> 3.4 Escritura Terapéutica & Sanación Consciente</h2>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Precio Mensual en USD</label>
+              <label class="form-label"><span>Precio Mensual USD</span></label>
               <input type="number" class="form-control" id="mentorias_escritura_usd" value="55" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Precio Mensual en COP</label>
+              <label class="form-label"><span>Precio Mensual COP</span></label>
               <input type="number" class="form-control" id="mentorias_escritura_cop" value="225000" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Descripción</label>
+            <label class="form-label"><span>Título del Programa</span></label>
+            <input type="text" class="form-control" id="mentorias_escritura_title" value="Escritura Terapéutica & Sanación Consciente" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <input type="text" class="form-control" id="mentorias_escritura_quote" value="«Trascendiendo la Sombra y el Mandato Inconsciente a través de la Palabra.»" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción del Programa</span></label>
             <textarea class="form-control" id="mentorias_escritura_desc" oninput="markDirty()">Acceso mensual al programa estructurado de escritura terapéutica con guías descargables e audios de reprogramación interior para ponerle nombre a lo que el cuerpo retiene en silencio.</textarea>
+          </div>
+        </div>
+
+        <!-- 3.5 Modalidad de Encuentros -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">pin_drop</span> 3.5 Aclaración de Modalidad</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Texto Modalidad (Medellín & Global)</span></label>
+            <textarea class="form-control" id="mentorias_modalidad_text" oninput="markDirty()">Para consultantes en Medellín, Colombia, las sesiones se acuerdan en modalidad Híbrida (presencial o virtual). Para el resto de Colombia e internacional, 100% virtual vía videollamada privada.</textarea>
           </div>
         </div>
       </section>
@@ -748,32 +1117,92 @@
       <section id="tab-comunidad" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">groups</span> Comunidad Sagrada (comunidad.html)</h1>
-            <p class="panel-subtitle">Administra los niveles de membresías grupales, círculos por Zoom y canales de Telegram.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">groups</span> 4. Comunidad Sagrada (comunidad.html)</h1>
+            <p class="panel-subtitle">Administra los textos, precios y características de los 4 niveles de membresías mensuales.</p>
           </div>
           <a href="comunidad.html" target="_blank" class="panel-page-link">
-            <span>Ver comunidad.html</span>
+            <span>Abrir comunidad.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">diversity_3</span> Membresías Mensuales</h2>
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">diversity_3</span> 4.1 Encabezado Hero</h2>
           <div class="form-group">
-            <label class="form-label">Nivel I: El Despertar (Gratis · $0 USD)</label>
-            <input type="text" class="form-control" id="comunidad_nivel1_desc" value="Acceso inicial a la comunidad abierta y reflexiones de Catalina." oninput="markDirty()">
+            <label class="form-label"><span>Título Hero</span></label>
+            <input type="text" class="form-control" id="comunidad_hero_title" value="Comunidad: Sostén Continuo" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Nivel II: Memoria Sagrada ($17 USD / mes)</label>
-            <input type="text" class="form-control" id="comunidad_nivel2_desc" value="Circuito de hábitos conscientes, meditaciones exclusivas descargables y bitácora de autorregulación." oninput="markDirty()">
+            <label class="form-label"><span>Subtítulo Hero</span></label>
+            <textarea class="form-control" id="comunidad_hero_subtitle" oninput="markDirty()">La sanación no se vive en soledad. Un contenedor colectivo para sostener tus procesos, cultivar la presencia y caminar acompañados sin máscaras.</textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Nivel III: El Refugio ($45 USD / mes · Círculos en Vivo)</label>
-            <input type="text" class="form-control" id="comunidad_nivel3_desc" value="2 círculos en vivo al mes por Zoom con Catalina Arango, canal privado de Telegram y sesiones de preguntas en vivo." oninput="markDirty()">
+            <label class="form-label"><span>Texto Secundario (Zoom & Telegram)</span></label>
+            <textarea class="form-control" id="comunidad_hero_text" oninput="markDirty()">Círculos en vivo por Zoom, canal privado de introspección y programas de autorregulación guiados por Catalina Arango Rivera.</textarea>
+          </div>
+        </div>
+
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">loyalty</span> 4.2 Niveles de Membresía (Precios y Descripciones)</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Nivel I · Precio USD</span></label>
+              <input type="text" class="form-control" id="comunidad_nivel1_price" value="$0" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Nivel I · El Despertar (Descripción)</span></label>
+              <textarea class="form-control" id="comunidad_nivel1_desc" oninput="markDirty()">Acceso inicial a la comunidad abierta, cartas mensuales de introspección y reflexiones guiadas de Catalina.</textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Nivel II · Precio USD</span></label>
+              <input type="text" class="form-control" id="comunidad_nivel2_price" value="$17" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Nivel II · Memoria Sagrada (Descripción)</span></label>
+              <textarea class="form-control" id="comunidad_nivel2_desc" oninput="markDirty()">Circuito de hábitos conscientes, meditaciones exclusivas descargables y bitácora de autorregulación emocional.</textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Nivel III · Precio USD</span></label>
+              <input type="text" class="form-control" id="comunidad_nivel3_price" value="$45" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Nivel III · El Refugio (Descripción)</span></label>
+              <textarea class="form-control" id="comunidad_nivel3_desc" oninput="markDirty()">2 círculos en vivo al mes por Zoom con Catalina Arango, canal privado de Telegram con Cata y sesiones de preguntas en vivo.</textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label"><span>Nivel IV · Precio USD</span></label>
+              <input type="text" class="form-control" id="comunidad_nivel4_price" value="$99" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span>Nivel IV · El Santuario (Descripción)</span></label>
+              <textarea class="form-control" id="comunidad_nivel4_desc" oninput="markDirty()">Todo el acceso a El Refugio más 1 sesión individual privada mensual de 60 minutos con Catalina Arango y canal prioritario.</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">shield</span> 4.3 Los 3 Pilares del Espacio Sagrado</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Pilar 1 (Un Refugio Libre de Juicios)</span></label>
+            <input type="text" class="form-control" id="comunidad_pilar1_title" value="Un Refugio Libre de Juicios" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">Nivel IV: El Santuario ($99 USD / mes · VIP Integral)</label>
-            <input type="text" class="form-control" id="comunidad_nivel4_desc" value="Todo el acceso a El Refugio más 1 sesión individual privada mensual de 60 minutos con Catalina Arango." oninput="markDirty()">
+            <label class="form-label"><span>Pilar 2 (Confidencialidad Sagrada)</span></label>
+            <input type="text" class="form-control" id="comunidad_pilar2_title" value="Confidencialidad Sagrada" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Pilar 3 (Cero Espiritualidad Tóxica)</span></label>
+            <input type="text" class="form-control" id="comunidad_pilar3_title" value="Cero Espiritualidad Tóxica" oninput="markDirty()">
           </div>
         </div>
       </section>
@@ -784,36 +1213,123 @@
       <section id="tab-testimonios" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">reviews</span> Testimonios en Video (testimonios.html)</h1>
-            <p class="panel-subtitle">Administra los títulos, citas y testimonios en video de los consultantes.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">reviews</span> 5. Testimonios en Video (testimonios.html)</h1>
+            <p class="panel-subtitle">Edita los títulos, citas textuales y descripciones de las 5 consultantes grabadas.</p>
           </div>
           <a href="testimonios.html" target="_blank" class="panel-page-link">
-            <span>Ver testimonios.html</span>
+            <span>Abrir testimonios.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> Testimonios Activos (5 Consultantes)</h2>
+        <!-- 5.0 Encabezado Hero -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">title</span> 5.0 Encabezado Hero Testimonios</h2>
           <div class="form-group">
-            <label class="form-label">01. April · El Desarme de la Autoexigencia</label>
-            <input type="text" class="form-control" value="Capítulo I · Transformación Personal · El Desarme de la Autoexigencia y el Retorno a la Calma" readonly style="opacity: 0.85;">
+            <label class="form-label"><span>Título Hero</span><span class="form-tag">testimonios_hero_title</span></label>
+            <input type="text" class="form-control" id="testimonios_hero_title" value="Historias Reales de Despertar & Sanación" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">02. Iván · Sanar la Herida Paterna</label>
-            <input type="text" class="form-control" value="Capítulo II · Soberanía & Propósito · Sanar la Herida Paterna y Habitar el Liderazgo Consciente" readonly style="opacity: 0.85;">
+            <label class="form-label"><span>Subtítulo / Cita Hero</span><span class="form-tag">testimonios_hero_subtitle</span></label>
+            <textarea class="form-control" id="testimonios_hero_subtitle" oninput="markDirty()">«El testimonio más honesto nace del cuerpo que se atrevió a sentir.»</textarea>
+          </div>
+        </div>
+
+        <!-- April -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> 5.1 Testimonio 01 · April</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Capítulo</span></label>
+            <input type="text" class="form-control" id="testimonio1_title" value="April · El Desarme de la Autoexigencia y el Retorno a la Calma" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">03. Viviana · Liberar Lealtades Inconscientes</label>
-            <input type="text" class="form-control" value="Capítulo III · Sanación de Linaje · Liberar Lealtades Inconscientes y Reconciliarse con el Cuerpo" readonly style="opacity: 0.85;">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <textarea class="form-control" id="testimonio1_quote" oninput="markDirty()">«Llegué sintiéndome rota y encontré un espacio donde no tuve que fingir fortaleza. Cata me enseñó a abrazar mi vulnerabilidad como mi mayor medicina.»</textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">04. Yorlady · De la Culpa al Abrazo de la Sombra</label>
-            <input type="text" class="form-control" value="Capítulo IV · Paz y Claridad Interior · De la Culpa Inconsciente al Abrazo Compasivo de la Sombra" readonly style="opacity: 0.85;">
+            <label class="form-label"><span>Descripción de su Proceso</span></label>
+            <textarea class="form-control" id="testimonio1_desc" oninput="markDirty()">April llegó al espacio sintiéndose agotada por la exigencia constante de complacer al entorno y la desconexión con su propio sentir. Buscaba un camino de claridad ante un momento de confusión y encrucijada vital.</textarea>
+          </div>
+        </div>
+
+        <!-- Iván -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> 5.2 Testimonio 02 · Iván</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Capítulo</span></label>
+            <input type="text" class="form-control" id="testimonio2_title" value="Iván · Sanar la Herida Paterna y Habitar el Liderazgo Consciente" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">05. Bárbara · Retorno al Centro y Paz con la Historia Familiar</label>
-            <input type="text" class="form-control" value="Capítulo V · Renacer y Sanación Emocional · El Retorno al Centro y la Paz con la Historia Familiar" readonly style="opacity: 0.85;">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <textarea class="form-control" id="testimonio2_quote" oninput="markDirty()">«Sanar la relación con mi padre internamente me devolvió mi fuerza como hombre y me permitió liderar mi vida sin miedo a fallar.»</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de su Proceso</span></label>
+            <textarea class="form-control" id="testimonio2_desc" oninput="markDirty()">Iván se enfrentaba a bloqueos en su propósito y relaciones debido a una exigencia paterna internalizada que le impedía descansar y confiar en sus propias decisiones.</textarea>
+          </div>
+        </div>
+
+        <!-- Viviana -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> 5.3 Testimonio 03 · Viviana</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Capítulo</span></label>
+            <input type="text" class="form-control" id="testimonio3_title" value="Viviana · Liberar Lealtades Inconscientes y Reconciliarse con el Cuerpo" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <textarea class="form-control" id="testimonio3_quote" oninput="markDirty()">«Comprendí que mi cuerpo solo estaba gritando lo que mi boca callaba. Aprender a escucharme fue el mayor regalo que pude darme.»</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de su Proceso</span></label>
+            <textarea class="form-control" id="testimonio3_desc" oninput="markDirty()">Viviana cargaba síntomas físicos y somatizaciones recurrentes asociadas a memorias no procesadas de su linaje materno y una profunda autoexigencia.</textarea>
+          </div>
+        </div>
+
+        <!-- Yorlady -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> 5.4 Testimonio 04 · Yorlady</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Capítulo</span></label>
+            <input type="text" class="form-control" id="testimonio4_title" value="Yorlady · De la Culpa Inconsciente al Abrazo Compasivo de la Sombra" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <textarea class="form-control" id="testimonio4_quote" oninput="markDirty()">«Fue un antes y un después en mi vida. Gracias a Cata comprendí que el dolor era solo el portal sagrado hacia mi mayor fortaleza interior.»</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de su Proceso</span></label>
+            <textarea class="form-control" id="testimonio4_desc" oninput="markDirty()">Yorlady transitaba patrones de culpa y miedo al rechazo que condicionaban sus vínculos personales y su capacidad para recibir abundancia con tranquilidad.</textarea>
+          </div>
+        </div>
+
+        <!-- Bárbara -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> 5.5 Testimonio 05 · Bárbara</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Capítulo</span></label>
+            <input type="text" class="form-control" id="testimonio5_title" value="Bárbara · El Retorno al Centro y la Paz con la Historia Familiar" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Editorial</span></label>
+            <textarea class="form-control" id="testimonio5_quote" oninput="markDirty()">«El trabajo con Catalina me devolvió la tranquilidad que creía haber perdido. Aprendí a reconciliarme conmigo misma, a soltar lo que no me correspondía y a caminar con el alma liviana y agradecida.»</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de su Proceso</span></label>
+            <textarea class="form-control" id="testimonio5_desc" oninput="markDirty()">Bárbara llegó a este contenedor terapéutico en búsqueda de respuestas para soltar cargas emocionales y lealtades familiares invisibles que no le pertenecían.</textarea>
+          </div>
+        </div>
+
+        <!-- 5.6 Banner de Cierre -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">forum</span> 5.6 Banner de Cierre / Invitación</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Llamado</span></label>
+            <input type="text" class="form-control" id="testimonios_cta_title" value="¿Sientes el llamado a iniciar tu propio camino de sanación?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción de Invitación</span></label>
+            <textarea class="form-control" id="testimonios_cta_desc" oninput="markDirty()">Cada historia que viste aquí comenzó con una decisión valiente: la de dejar de postergarse. Este es tu momento para volver a ti.</textarea>
           </div>
         </div>
       </section>
@@ -824,34 +1340,60 @@
       <section id="tab-escaner" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">psychology</span> Escáner de Patrones</h1>
-            <p class="panel-subtitle">Configura el test interactivo, el diagnóstico raíz y la oferta post-escáner.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">psychology</span> 6. Escáner de Patrones</h1>
+            <p class="panel-subtitle">Configura los textos introductorios, la oferta especial post-escáner ($20 USD) y la sesión de valoración de 10 min.</p>
           </div>
           <a href="escaner-de-patrones.html" target="_blank" class="panel-page-link">
-            <span>Ver escaner-de-patrones.html</span>
+            <span>Abrir escaner-de-patrones.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">redeem</span> Oferta Especial Post-Escáner</h2>
+        <!-- Oferta Post-Escáner -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">redeem</span> 6.1 Oferta Especial Post-Escáner (Escritura $20 USD)</h2>
           <div class="form-group">
-            <label class="form-label">Título de la Oferta</label>
+            <label class="form-label"><span>Distintivo Superior</span></label>
+            <input type="text" class="form-control" id="escaner_oferta_badge" value="🎁 OFERTA ESPECIAL POST-ESCÁNER" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Título del Programa</span></label>
             <input type="text" class="form-control" id="escaner_oferta_title" value="Escritura Terapéutica & Sanación Consciente" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Cita Poética</span></label>
+            <input type="text" class="form-control" id="escaner_oferta_quote" value="«Trascendiendo la Sombra a través de la Palabra»" oninput="markDirty()">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Precio Especial (USD)</label>
+              <label class="form-label"><span>Precio Promocional (USD)</span></label>
               <input type="number" class="form-control" id="escaner_oferta_precio" value="20" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Precio Habitual Tachado (USD)</label>
+              <label class="form-label"><span>Precio Habitual Tachado (USD)</span></label>
               <input type="number" class="form-control" id="escaner_oferta_tachado" value="55" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Descripción de la Oferta</label>
+            <label class="form-label"><span>Descripción de la Oferta</span></label>
             <textarea class="form-control" id="escaner_oferta_desc" oninput="markDirty()">El complemento perfecto para profundizar en tu proceso de sanación. Con guías de escritura terapéutica y audios de reprogramación interior diseñados para liberar lo que tu cuerpo retiene en silencio.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Texto del Botón CTA</span></label>
+            <input type="text" class="form-control" id="escaner_oferta_btn" value="🌿 Quiero Comenzar Mi Sanación — $20 USD" oninput="markDirty()">
+          </div>
+        </div>
+
+        <!-- Asesoría 10 min -->
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">videocam</span> 6.2 Sesión de Dudas & Valoración (10 min Gratis)</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título de la Invitación</span></label>
+            <input type="text" class="form-control" id="escaner_asesoria_title" value="¿Sientes el llamado a profundizar en tus resultados con Catalina?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Descripción del Agendamiento</span></label>
+            <textarea class="form-control" id="escaner_asesoria_desc" oninput="markDirty()">Si deseas una mirada personalizada sobre tu patrón raíz antes de elegir tu proceso, puedes agendar una sesión privada de valoración y dudas de 10 minutos por Google Meet.</textarea>
           </div>
         </div>
       </section>
@@ -862,44 +1404,136 @@
       <section id="tab-contacto" class="panel">
         <div class="panel-header">
           <div>
-            <h1 class="panel-title"><span class="material-symbols-outlined">calendar_month</span> Contacto & FAQ</h1>
-            <p class="panel-subtitle">Edita las respuestas a preguntas frecuentes (FAQ) y los datos de agenda.</p>
+            <h1 class="panel-title"><span class="material-symbols-outlined">calendar_month</span> 7. Contacto & FAQ</h1>
+            <p class="panel-subtitle">Edita los horarios de atención y las 6 preguntas frecuentes completas.</p>
           </div>
           <a href="contacto-y-faq.html" target="_blank" class="panel-page-link">
-            <span>Ver contacto-y-faq.html</span>
+            <span>Abrir contacto-y-faq.html</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
 
-        <div class="card">
-          <h2 class="card-title"><span class="material-symbols-outlined">quiz</span> Preguntas Frecuentes Principales</h2>
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">schedule</span> 7.1 Horario de Atención</h2>
           <div class="form-group">
-            <label class="form-label">FAQ 1: ¿Cómo puedo pagar y qué valor tiene cada Mentoría?</label>
-            <textarea class="form-control" id="faq_precios_text" oninput="markDirty()">Regreso a Ti ($88 USD / $360.000 COP), Proceso Despertar ($222 USD / $900.000 COP), Renacer Interno VIP ($999 USD / $4.100.000 COP). Aceptamos tarjetas internacionales y PSE con enlace seguro de Bold.</textarea>
+            <label class="form-label"><span>Texto de Horario</span></label>
+            <input type="text" class="form-control" id="contacto_horario" value="Lunes a Viernes · 9:00 a.m a 4:00 p.m (Hora Colombia)" oninput="markDirty()">
+          </div>
+        </div>
+
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">quiz</span> 7.2 Las 6 Preguntas Frecuentes (FAQ)</h2>
+          
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 1: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q1" value="¿Cómo puedo pagar y qué valor tiene cada Mentoría?" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">FAQ 2: ¿En cuánto tiempo podré sanar?</label>
-            <textarea class="form-control" id="faq_tiempo_text" oninput="markDirty()">La sanación no es lineal. Desde la primera sesión de 90 minutos notarás un alivio tangible y claridad para poner límites sanos.</textarea>
+            <label class="form-label"><span>FAQ 1: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a1" oninput="markDirty()">Contamos con 3 niveles de mentorías individuales: Regreso a Ti ($88 USD / $360.000 COP), Proceso Despertar ($222 USD / $900.000 COP) y Renacer Interno VIP ($999 USD / $4.100.000 COP). Aceptamos tarjetas internacionales y PSE.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 2: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q2" value="¿En cuánto tiempo podré sanar y cuánto dura el proceso interior?" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label class="form-label">FAQ 3: ¿Es virtual la Mentoría?</label>
-            <textarea class="form-control" id="faq_modalidad_text" oninput="markDirty()">Para consultantes en Medellín, Colombia, modalidad híbrida presencial o virtual. Para el resto de Colombia y el exterior, 100% virtual vía videollamada privada.</textarea>
+            <label class="form-label"><span>FAQ 2: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a2" oninput="markDirty()">La sanación no es una meta lineal con fecha de vencimiento. Desde la primera sesión de 90 minutos notarás un alivio emocional tangible y claridad para poner límites sanos.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 3: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q3" value="¿Puedo pagar en varias cuotas?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 3: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a3" oninput="markDirty()">Para Renacer Interno ($999 USD), puedes diferir el pago en las cuotas que prefieras directamente con tu tarjeta de crédito a través de nuestra pasarela de pagos oficial.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 4: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q4" value="¿Qué tan seguros son los pagos en línea?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 4: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a4" oninput="markDirty()">Nuestra plataforma opera con certificación PCI-DSS Nivel 1 y cifrado SSL de 256 bits, garantizando que tus datos nunca queden expuestos ni guardados en el sitio.</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 5: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q5" value="¿La Mentoría es gratis? ¿Hay opciones sin costo?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 5: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a5" oninput="markDirty()">Las mentorías 1 a 1 conllevan una inversión de alta dedicación energética. Para opciones gratuitas ofrecemos el Santuario de Calma (Test + Audio) y el Nivel I de Comunidad ($0 USD).</textarea>
+          </div>
+
+          <hr style="border: 0; border-top: 1px dashed var(--border); margin: 1.5rem 0;">
+
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 6: Pregunta</span></label>
+            <input type="text" class="form-control" id="faq_q6" value="¿Es virtual la Mentoría y por cuál medio o aplicación se realiza?" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>FAQ 6: Respuesta</span></label>
+            <textarea class="form-control" id="faq_a6" oninput="markDirty()">Para consultantes en Medellín, Colombia, modalidad híbrida (presencial o virtual). Para el resto del país y el mundo, 100% virtual vía Google Meet privado.</textarea>
           </div>
         </div>
       </section>
 
       <!-- ===================================================================
-           TAB 8: TIRILLA DE PROMOCIÓN SUPERIOR
+           TAB 8: PAGO CONFIRMADO (PAGO-CONFIRMADO.HTML)
+           =================================================================== -->
+      <section id="tab-pagoconfirmado" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">check_circle</span> 8. Pago Confirmado</h1>
+            <p class="panel-subtitle">Edita los mensajes que ve el consultante inmediatamente después de realizar un pago exitoso con Bold.</p>
+          </div>
+          <a href="pago-confirmado.html" target="_blank" class="panel-page-link">
+            <span>Abrir pago-confirmado.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="card searchable-card">
+          <h2 class="card-title"><span class="material-symbols-outlined">verified</span> 8.1 Mensaje de Agradecimiento & Próximos Pasos</h2>
+          <div class="form-group">
+            <label class="form-label"><span>Título Principal</span></label>
+            <input type="text" class="form-control" id="pago_hero_title" value="Tu Proceso Comienza Aquí" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Subtítulo de Bienvenida</span></label>
+            <textarea class="form-control" id="pago_hero_subtitle" oninput="markDirty()">Gracias por dar este paso valiente hacia tu interior. Hemos registrado los datos de tu reserva de forma segura a través de nuestra pasarela de pagos certificada.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span>Instrucción del Siguiente Paso</span></label>
+            <textarea class="form-control" id="pago_siguiente_paso" oninput="markDirty()">Siguiente paso: Agendar tu horario en el calendario oficial o escribirle directamente a Catalina por WhatsApp con tu comprobante para coordinar fecha y hora.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 9: TIRILLA DE PROMOCIÓN SUPERIOR
            =================================================================== -->
       <section id="tab-tirilla" class="panel">
         <div class="panel-header">
           <div>
             <h1 class="panel-title"><span class="material-symbols-outlined">campaign</span> Tirilla de Promoción Sitewide</h1>
-            <p class="panel-subtitle">Barra de anuncio ubicada sobre el menú en todas las páginas. Actívala o desactívala cuando quieras.</p>
+            <p class="panel-subtitle">Barra de anuncio ubicada sobre el menú en todas las páginas. Actívala o desactívala cuando quieras con un solo clic.</p>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card searchable-card">
           <div class="toggle-row">
             <div class="toggle-info">
               <strong>Mostrar tirilla en toda la web</strong>
@@ -912,36 +1546,36 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Emoji / Ícono</label>
+            <label class="form-label"><span>Emoji / Ícono</span></label>
             <input type="text" class="form-control" id="promo-emoji" value="🌿" oninput="updatePromoPreview(); markDirty();" style="width: 100px;">
           </div>
           <div class="form-group">
-            <label class="form-label">Texto del Anuncio</label>
+            <label class="form-label"><span>Texto del Anuncio</span></label>
             <input type="text" class="form-control" id="promo-text" value="¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas para este mes." oninput="updatePromoPreview(); markDirty();">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Texto del Enlace / Botón</label>
+              <label class="form-label"><span>Texto del Enlace / Botón</span></label>
               <input type="text" class="form-control" id="promo-cta-text" value="Reservar ahora →" oninput="updatePromoPreview(); markDirty();">
             </div>
             <div class="form-group">
-              <label class="form-label">URL Destino</label>
+              <label class="form-label"><span>URL Destino</span></label>
               <input type="text" class="form-control" id="promo-cta-url" value="mentorias-y-cursos.html" oninput="updatePromoPreview(); markDirty();">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Color de Fondo</label>
+              <label class="form-label"><span>Color de Fondo</span></label>
               <input type="color" class="form-control" id="promo-bg-color" value="#2f342e" oninput="updatePromoPreview(); markDirty();" style="height: 45px; padding: 0.25rem;">
             </div>
             <div class="form-group">
-              <label class="form-label">Color del Texto</label>
+              <label class="form-label"><span>Color del Texto</span></label>
               <input type="color" class="form-control" id="promo-text-color" value="#f7d598" oninput="updatePromoPreview(); markDirty();" style="height: 45px; padding: 0.25rem;">
             </div>
           </div>
 
           <div style="margin-top: 1.5rem;">
-            <label class="form-label">Vista Previa:</label>
+            <label class="form-label"><span>Vista Previa en Vivo:</span></label>
             <div id="promo-preview-box" style="padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; text-align: center; font-size: 0.88rem; background: #2f342e; color: #f7d598;">
               🌿 &nbsp; ¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas para este mes. &nbsp; <span style="text-decoration: underline;">Reservar ahora →</span>
             </div>
@@ -950,7 +1584,7 @@
       </section>
 
       <!-- ===================================================================
-           TAB 9, 10, 11: LANDINGS 1, 2, 3
+           TABS 10, 11, 12: LANDINGS 1, 2, 3
            =================================================================== -->
       <section id="tab-landing1" class="panel">
         <div class="panel-header">
@@ -959,7 +1593,7 @@
             <p class="panel-subtitle">URL pública: <code>landing-regreso-a-ti.html</code></p>
           </div>
           <a href="landing-regreso-a-ti.html" target="_blank" class="panel-page-link">
-            <span>Ver landing online</span>
+            <span>Abrir landing online</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
@@ -973,7 +1607,7 @@
             <p class="panel-subtitle">URL pública: <code>landing-escritura.html</code></p>
           </div>
           <a href="landing-escritura.html" target="_blank" class="panel-page-link">
-            <span>Ver landing online</span>
+            <span>Abrir landing online</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
@@ -987,7 +1621,7 @@
             <p class="panel-subtitle">URL pública: <code>landing-despertar.html</code></p>
           </div>
           <a href="landing-despertar.html" target="_blank" class="panel-page-link">
-            <span>Ver landing online</span>
+            <span>Abrir landing online</span>
             <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
         </div>
@@ -995,7 +1629,7 @@
       </section>
 
       <!-- ===================================================================
-           TAB 12: CONFIGURACIÓN GLOBAL
+           TAB 13: CONFIGURACIÓN GLOBAL
            =================================================================== -->
       <section id="tab-global" class="panel">
         <div class="panel-header">
@@ -1005,43 +1639,47 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card searchable-card">
           <h2 class="card-title"><span class="material-symbols-outlined">contact_phone</span> Canales Oficiales</h2>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">WhatsApp Oficial (con código de país)</label>
+              <label class="form-label"><span>WhatsApp Oficial (con código de país)</span><span class="form-tag">global_whatsapp</span></label>
               <input type="text" class="form-control" id="global_whatsapp" value="+57 314 338 5095" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Correo Oficial de Soporte</label>
+              <label class="form-label"><span>Correo Oficial de Soporte</span><span class="form-tag">global_email</span></label>
               <input type="email" class="form-control" id="global_email" value="trascedamosjuntos89@gmail.com" oninput="markDirty()">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Instagram</label>
+              <label class="form-label"><span>Instagram</span><span class="form-tag">global_instagram</span></label>
               <input type="url" class="form-control" id="global_instagram" value="https://www.instagram.com/cataarango9" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Facebook</label>
+              <label class="form-label"><span>Facebook</span><span class="form-tag">global_facebook</span></label>
               <input type="url" class="form-control" id="global_facebook" value="https://www.facebook.com/share/1GGydKN4HL/" oninput="markDirty()">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">YouTube</label>
+              <label class="form-label"><span>YouTube</span><span class="form-tag">global_youtube</span></label>
               <input type="url" class="form-control" id="global_youtube" value="https://youtube.com/@cataarango9" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">TikTok</label>
+              <label class="form-label"><span>TikTok</span><span class="form-tag">global_tiktok</span></label>
               <input type="url" class="form-control" id="global_tiktok" value="https://www.tiktok.com/@trascendamos" oninput="markDirty()">
             </div>
+          </div>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label"><span>Lema Sagrado del Pie de Página</span><span class="form-tag">footer_lema</span></label>
+            <textarea class="form-control" id="footer_lema" oninput="markDirty()">«Integración de Sombra y Luz con soberanía personal, respeto a tus tiempos y amor incondicional.»</textarea>
           </div>
         </div>
       </section>
 
       <!-- ===================================================================
-           TAB 13: RESPALDO & RESTAURAR
+           TAB 14: RESPALDO & RESTAURAR
            =================================================================== -->
       <section id="tab-backup" class="panel">
         <div class="panel-header">
@@ -1051,7 +1689,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card searchable-card">
           <h2 class="card-title"><span class="material-symbols-outlined">download</span> Exportar Respaldo</h2>
           <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
             Descarga un archivo con todos los textos, precios y configuraciones de tus páginas en un solo clic.
@@ -1062,7 +1700,7 @@
           </button>
         </div>
 
-        <div class="card">
+        <div class="card searchable-card">
           <h2 class="card-title"><span class="material-symbols-outlined">upload</span> Restaurar Respaldo</h2>
           <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
             Selecciona un archivo JSON previamente exportado para restaurar todos los textos y configuraciones.
@@ -1108,6 +1746,7 @@
       if (window.event && window.event.currentTarget) {
         window.event.currentTarget.classList.add('active');
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function markDirty() {
@@ -1120,6 +1759,42 @@
       if (msg) document.getElementById('toastText').textContent = msg;
       toast.style.display = 'flex';
       setTimeout(() => { toast.style.display = 'none'; }, 3200);
+    }
+
+    // BUSCADOR RÁPIDO
+    function filterFields(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        document.querySelectorAll('.searchable-card, .form-group').forEach(el => el.style.display = '');
+        return;
+      }
+
+      // Encontrar todos los inputs y labels que coinciden
+      document.querySelectorAll('.searchable-card').forEach(card => {
+        let cardMatches = false;
+        card.querySelectorAll('.form-group').forEach(group => {
+          const text = group.innerText.toLowerCase();
+          const inputs = Array.from(group.querySelectorAll('input, textarea')).map(i => i.value.toLowerCase()).join(' ');
+          if (text.includes(q) || inputs.includes(q)) {
+            group.style.display = '';
+            cardMatches = true;
+          } else {
+            group.style.display = 'none';
+          }
+        });
+
+        if (cardMatches || card.querySelector('.card-title')?.innerText.toLowerCase().includes(q)) {
+          card.style.display = '';
+          // Abrir la pestaña si está en otra
+          const parentPanel = card.closest('.panel');
+          if (parentPanel && !parentPanel.classList.contains('active')) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            parentPanel.classList.add('active');
+          }
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
 
     // GESTIÓN DE TIRILLA
@@ -1173,29 +1848,29 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">Título de la Pestaña (SEO / Browser Title)</label>
+              <label class="form-label"><span>Título de la Pestaña (SEO)</span></label>
               <input type="text" class="form-control" id="l${num}-title" value="${saved.title}" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Titular Principal de la Página (H1)</label>
+              <label class="form-label"><span>Titular Principal (H1)</span></label>
               <input type="text" class="form-control" id="l${num}-headline" value="${saved.headline}" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label class="form-label">Propuesta de Valor / Descripción de la Oferta</label>
+              <label class="form-label"><span>Propuesta de Valor / Descripción</span></label>
               <textarea class="form-control" id="l${num}-desc" oninput="markDirty()">${saved.desc}</textarea>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Inversión / Precio Visible</label>
+                <label class="form-label"><span>Precio Visible</span></label>
                 <input type="text" class="form-control" id="l${num}-price" value="${saved.price}" oninput="markDirty()">
               </div>
               <div class="form-group">
-                <label class="form-label">Texto del Botón Principal (CTA)</label>
+                <label class="form-label"><span>Texto Botón CTA</span></label>
                 <input type="text" class="form-control" id="l${num}-cta" value="${saved.cta}" oninput="markDirty()">
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label">URL Destino del Botón (o acción de pasarela)</label>
+              <label class="form-label"><span>URL Destino del Botón</span></label>
               <input type="text" class="form-control" id="l${num}-ctaUrl" value="${saved.ctaUrl}" oninput="markDirty()">
             </div>
             
@@ -1257,7 +1932,7 @@
       // 1. Recoger datos de todas las páginas
       const cmsData = {};
       document.querySelectorAll('input[id], textarea[id]').forEach(input => {
-        if (!input.id.startsWith('l1-') && !input.id.startsWith('l2-') && !input.id.startsWith('l3-') && !input.id.startsWith('promo-')) {
+        if (!input.id.startsWith('l1-') && !input.id.startsWith('l2-') && !input.id.startsWith('l3-') && !input.id.startsWith('promo-') && input.id !== 'quickSearchInput') {
           cmsData[input.id] = input.value;
         }
       });
@@ -1288,7 +1963,7 @@
     // EXPORTAR E IMPORTAR JSON
     function exportBackupJson() {
       const fullBackup = {
-        version: "2.0",
+        version: "2.5",
         date: new Date().toISOString(),
         cms: JSON.parse(localStorage.getItem('cata_cms_content') || '{}'),
         promo: JSON.parse(localStorage.getItem('cata_promo_strip') || '{}'),
