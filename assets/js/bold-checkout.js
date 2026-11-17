@@ -56,8 +56,8 @@
                 <div>
                   <span class="bold-price-label">Inversión Total:</span>
                   <div class="bold-price-wrap">
-                    <span id="boldPriceValue" class="bold-price-value">$350.000 COP</span>
-                    <span id="boldPriceSecondary" class="bold-price-sec">($85 USD)</span>
+                    <span id="boldPriceValue" class="bold-price-value">$360.000 COP</span>
+                    <span id="boldPriceSecondary" class="bold-price-sec">($88 USD)</span>
                   </div>
                 </div>
 

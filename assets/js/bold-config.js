@@ -53,22 +53,22 @@ window.BOLD_CONFIG = {
       name: "Regreso a Ti — Mentoría Individual (90 min)",
       shortName: "Regreso a Ti",
       category: "Mentoría 1 a 1",
-      priceUSD: 85,
-      priceCOP: 350000,
+      priceUSD: 88,
+      priceCOP: 360000,
       duration: "1 sesión de 90 minutos",
       badge: "Nivel Inicial",
-      description: "Identificación del bloqueo emocional raíz, reconexión con tu cuerpo, ejercicio de integración y audio guiado de cierre."
+      description: "Identificación del bloqueo emocional raíz, reconexión con tu cuerpo, ejercicio de escritura terapéutico y audio guiado de 5 a 7 min."
     },
     "proceso-despertar": {
       id: "proceso-despertar",
       name: "Proceso Despertar — 3 Sesiones / 3 Semanas",
       shortName: "Proceso Despertar",
       category: "Inmersión 3 Semanas",
-      priceUSD: 219,
-      priceCOP: 890000,
+      priceUSD: 222,
+      priceCOP: 900000,
       duration: "3 sesiones de 90 minutos c/u",
       badge: "Inmersión Recomendada",
-      description: "Mapeo y desprogramación del bloqueo raíz primario, sanación de la herida del niño interior, abandono, culpa y ritual de soberanía."
+      description: "Mapeo y desprogramación del bloqueo raíz primario, sanación de la herida del niño interior, abandono, culpa, heridas o traumas identificados en sesión y ritual de soberanía."
     },
     "renacer-interno": {
       id: "renacer-interno",
