@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Autogestión · Cata Arango</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #4e614e;
+      --secondary: #8c7355;
+      --surface: #fbf9f5;
+      --surface-low: #f4f1eb;
+      --gold: #c9a87a;
+      --text: #2f342e;
+      --text-muted: #6b6055;
+      --border: rgba(78, 97, 78, 0.18);
+      --danger: #c0392b;
+      --success: #27ae60;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .admin-header {
+      background: var(--text);
+      color: #fff9ee;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .admin-header p { font-size: 0.75rem; color: rgba(255,249,238,0.65); margin-top: 0.1rem; }
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: calc(100vh - 64px);
+    }
+    .sidebar {
+      background: #2a2f29;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.5rem;
+      color: rgba(255,249,238,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      background: rgba(201, 168, 122, 0.12);
+      color: var(--gold);
+      border-left-color: var(--gold);
+    }
+    .sidebar-nav li a .material-symbols-outlined { font-size: 18px; }
+    .sidebar-section {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,249,238,0.3);
+      padding: 1.25rem 1.5rem 0.4rem;
+      font-weight: 700;
+    }
+    .main-content { padding: 2.5rem; overflow-y: auto; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .panel-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(78, 97, 78, 0.06);
+    }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    .card h3 .material-symbols-outlined { font-size: 18px; color: var(--primary); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); }
+    textarea.form-control { resize: vertical; min-height: 90px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: #3a4a3a; }
+    .btn-gold { background: var(--gold); color: white; }
+    .btn-gold:hover { background: #a07845; }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-sm { padding: 0.45rem 1rem; font-size: 0.8rem; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: var(--surface-low);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+    }
+    .toggle-label { font-size: 0.9rem; font-weight: 600; }
+    .toggle-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #ccc;
+      border-radius: 26px;
+      transition: 0.4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+    input:checked + .slider { background: var(--success); }
+    input:checked + .slider:before { transform: translateX(22px); }
+    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .badge-active { background: rgba(39, 174, 96, 0.12); color: var(--success); }
+    .badge-inactive { background: rgba(192, 57, 43, 0.12); color: var(--danger); }
+    .landing-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: white;
+      position: relative;
+    }
+    .landing-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; }
+    .landing-url { font-family: monospace; font-size: 0.8rem; background: var(--surface-low); padding: 0.3rem 0.65rem; border-radius: 6px; color: var(--primary); font-weight: 600; }
+    .promo-strip-preview {
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      padding: 0.85rem 1.25rem;
+      background: linear-gradient(90deg, #2f342e, #444a42);
+      color: #f7d598;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    .save-banner {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.75rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 24px rgba(78, 97, 78, 0.35);
+      cursor: pointer;
+      z-index: 999;
+      display: none;
+    }
+    .save-banner.visible { display: flex; }
+    .success-toast {
+      position: fixed;
+      top: 80px;
+      right: 2rem;
+      background: var(--success);
+      color: white;
+      padding: 0.85rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .img-upload-box {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+    .img-upload-box:hover { border-color: var(--primary); }
+    .img-upload-box input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .img-upload-box .material-symbols-outlined { font-size: 36px; color: var(--text-muted); display: block; margin-bottom: 0.5rem; }
+    .img-preview { width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-top: 0.75rem; display: none; }
+    @media (max-width: 768px) {
+      .admin-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="admin-header">
+  <div>
+    <h1>✦ Panel de Autogestión</h1>
+    <p>Catalina Arango · Trascendamos Juntos</p>
+  </div>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <span style="font-size: 0.8rem; color: rgba(255,249,238,0.65);">Sitio: cataarango.blessiatech.com</span>
+    <a href="index.html" class="btn btn-outline" style="color: #f7d598; border-color: rgba(247,213,152,0.3); font-size: 0.8rem; padding: 0.5rem 1rem;" target="_blank">
+      <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+      Ver Web
+    </a>
+  </div>
+</header>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR NAV -->
+  <nav class="sidebar">
+    <ul class="sidebar-nav">
+      <li class="sidebar-section">Principal</li>
+      <li><a href="#" class="active" onclick="showPanel('textos')">
+        <span class="material-symbols-outlined">edit_note</span> Textos e Imágenes
+      </a></li>
+      <li><a href="#" onclick="showPanel('promo')">
+        <span class="material-symbols-outlined">campaign</span> Tirilla de Promoción
+      </a></li>
+      <li class="sidebar-section">Landings</li>
+      <li><a href="#" onclick="showPanel('landing1')">
+        <span class="material-symbols-outlined">web</span> Landing 1
+      </a></li>
+      <li><a href="#" onclick="showPanel('landing2')">
+        <span class="material-symbols-outlined">web</span> Landing 2
+      </a></li>
+      <li><a href="#" onclick="showPanel('landing3')">
+        <span class="material-symbols-outlined">web</span> Landing 3
+      </a></li>
+      <li class="sidebar-section">Configuración</li>
+      <li><a href="#" onclick="showPanel('config')">
+        <span class="material-symbols-outlined">settings</span> Configuración General
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- PANEL: TEXTOS E IMÁGENES -->
+    <div id="panel-textos" class="panel active">
+      <h2 class="panel-title">Textos e Imágenes</h2>
+      <p class="panel-desc">Edita los textos principales de tu web y sube imágenes. Los cambios se guardan localmente.</p>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">title</span> Hero Principal (Inicio)</h3>
+        <div class="form-group">
+          <label>Título Principal</label>
+          <input type="text" class="form-control" id="txt-hero-title" value="Integra tu Sombra. Despierta tu Luz." oninput="markDirty()">
+        </div>
+        <div class="form-group">
+          <label>Subtítulo del Hero</label>
+          <textarea class="form-control" id="txt-hero-subtitle" oninput="markDirty()">Un espacio seguro y sin dogmas para liberar el dolor de las heridas de tu infancia y ancestrales, memorias de dolor, traumas y bloqueos emocionales.</textarea>
+        </div>
+        <div class="form-group">
+          <label>Texto secundario del Hero</label>
+          <input type="text" class="form-control" id="txt-hero-secondary" value="Guiado por Catalina Arango Rivera. Sesiones individuales híbridas en Medellín, Colombia y 100% virtuales para el resto del mundo." oninput="markDirty()">
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">person</span> Sección "Quién Soy Yo"</h3>
+        <div class="form-group">
+          <label>Párrafo 1 sobre Catalina</label>
+          <textarea class="form-control" id="txt-quien-soy-1" oninput="markDirty()">Soy originaria de Medellín, Colombia. Durante 18 años transité la vida corporativa buscando pertenecer, hasta que tomé la valiente decisión de soltar esa armadura.</textarea>
+        </div>
+        <div class="form-group">
+          <label>Cita Destacada (Filosofía)</label>
+          <textarea class="form-control" id="txt-filosofia-quote" oninput="markDirty()">«El dolor no es un castigo ni una falla; es la brújula sagrada de tu alma pidiéndote regresar a casa: a ti mismo.»</textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">image</span> Imágenes Principales</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Foto de Perfil (Portrait)</label>
+            <div class="img-upload-box" onclick="triggerUpload('upload-portrait')">
+              <input type="file" id="upload-portrait" accept="image/*" onchange="previewImg(this, 'preview-portrait')">
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>JPG, PNG, WebP — recomendado 592×848px</small></span>
+              <img id="preview-portrait" class="img-preview">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Hero "Quién Soy" (Foto lateral)</label>
+            <div class="img-upload-box" onclick="triggerUpload('upload-hero-cata')">
+              <input type="file" id="upload-hero-cata" accept="image/*" onchange="previewImg(this, 'preview-hero-cata')">
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>JPG, PNG, WebP — recomendado 450×806px</small></span>
+              <img id="preview-hero-cata" class="img-preview">
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Hero Background (Imagen de fondo)</label>
+            <div class="img-upload-box" onclick="triggerUpload('upload-hero-bg')">
+              <input type="file" id="upload-hero-bg" accept="image/*" onchange="previewImg(this, 'preview-hero-bg')">
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>Imagen panorámica oscura de fondo</small></span>
+              <img id="preview-hero-bg" class="img-preview">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Imagen Promocional (Banner)</label>
+            <div class="img-upload-box" onclick="triggerUpload('upload-promo-img')">
+              <input type="file" id="upload-promo-img" accept="image/*" onchange="previewImg(this, 'preview-promo-img')">
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>Para usar en la tirilla o landings</small></span>
+              <img id="preview-promo-img" class="img-preview">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">price_tag</span> Precios de Mentorías</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Regreso a Ti (USD)</label>
+            <input type="number" class="form-control" id="price-regreso" value="88" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Proceso Despertar (USD)</label>
+            <input type="number" class="form-control" id="price-despertar" value="222" oninput="markDirty()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Renacer Interno (USD)</label>
+            <input type="number" class="form-control" id="price-renacer" value="999" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Escritura Terapéutica (USD)</label>
+            <input type="number" class="form-control" id="price-escritura" value="55" oninput="markDirty()">
+          </div>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">
+          <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">info</span>
+          Cambiar precios aquí requiere actualización manual en el código. Contacta a tu equipo técnico para aplicar.
+        </p>
+      </div>
+    </div>
+
+    <!-- PANEL: TIRILLA DE PROMOCIÓN -->
+    <div id="panel-promo" class="panel">
+      <h2 class="panel-title">Tirilla de Promoción</h2>
+      <p class="panel-desc">Activa una barra de anuncio en la parte superior de tu web. Ideal para descuentos, eventos y lanzamientos.</p>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">toggle_on</span> Estado de la Tirilla</h3>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">Mostrar tirilla en la web</div>
+            <div class="toggle-desc">Cuando está activa, aparece sobre el encabezado de todas las páginas</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="promo-active" onchange="updatePromoPreview()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="material-symbols-outlined">edit</span> Contenido de la Tirilla</h3>
+        <div class="form-group">
+          <label>Emoji / Ícono (opcional)</label>
+          <input type="text" class="form-control" id="promo-emoji" value="🌿" oninput="updatePromoPreview()" style="width: 120px;">
+        </div>
+        <div class="form-group">
+          <label>Texto Principal</label>
+          <input type="text" class="form-control" id="promo-text" value="¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas." oninput="updatePromoPreview()" placeholder="Ej: ¡Oferta especial! 20% de descuento esta semana">
+        </div>
+        <div class="form-group">
+          <label>Texto del Botón / CTA (opcional)</label>
+          <input type="text" class="form-control" id="promo-cta-text" value="Reservar ahora →" oninput="updatePromoPreview()">
+        </div>
+        <div class="form-group">
+          <label>URL del botón</label>
+          <input type="url" class="form-control" id="promo-cta-url" value="mentorias-y-cursos.html" oninput="updatePromoPreview()">
+        </div>
+        <div class="form-group">
+          <label>Color de fondo</label>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <input type="color" class="form-control" id="promo-bg-color" value="#2f342e" oninput="updatePromoPreview()" style="width: 60px; height: 44px; padding: 0.25rem; cursor: pointer;">
+            <input type="color" class="form-control" id="promo-text-color" value="#f7d598" oninput="updatePromoPreview()" style="width: 60px; height: 44px; padding: 0.25rem; cursor: pointer;">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">← Fondo &nbsp;&nbsp; Texto →</span>
+          </div>
+        </div>
+
+        <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;">Vista Previa:</h4>
+        <div id="promo-preview" class="promo-strip-preview">
+          🌿 &nbsp; ¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas. &nbsp; <span style="text-decoration: underline; cursor: pointer;">Reservar ahora →</span>
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="savePromo()">
+            <span class="material-symbols-outlined">save</span> Guardar y Publicar Tirilla
+          </button>
+          <button class="btn btn-outline" onclick="copyPromoCode()">
+            <span class="material-symbols-outlined">content_copy</span> Copiar Código HTML
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANDING TEMPLATE GENERATOR -->
+    <div id="panel-landing1" class="panel">
+      <h2 class="panel-title">Landing Page 1</h2>
+      <p class="panel-desc">Crea y personaliza tu primera página de aterrizaje. Actívala con el toggle para que sea visible al público.</p>
+      <div id="landing-editor-1" class="landing-editor" data-num="1"></div>
+    </div>
+    <div id="panel-landing2" class="panel">
+      <h2 class="panel-title">Landing Page 2</h2>
+      <p class="panel-desc">Segunda landing page — perfecta para un taller, curso o servicio específico.</p>
+      <div id="landing-editor-2" class="landing-editor" data-num="2"></div>
+    </div>
+    <div id="panel-landing3" class="panel">
+      <h2 class="panel-title">Landing Page 3</h2>
+      <p class="panel-desc">Tercera landing page — para campañas, eventos en vivo o lanzamientos especiales.</p>
+      <div id="landing-editor-3" class="landing-editor" data-num="3"></div>
+    </div>
+
+    <!-- CONFIGURACIÓN GENERAL -->
+    <div id="panel-config" class="panel">
+      <h2 class="panel-title">Configuración General</h2>
+      <p class="panel-desc">Datos de contacto y configuración básica del sitio.</p>
+      <div class="card">
+        <h3><span class="material-symbols-outlined">contact_phone</span> Datos de Contacto</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>WhatsApp (con código de país)</label>
+            <input type="text" class="form-control" value="+57 314 338 5095" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Correo de contacto</label>
+            <input type="email" class="form-control" value="trascedamosjuntos89@gmail.com" oninput="markDirty()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Instagram</label>
+            <input type="url" class="form-control" value="https://www.instagram.com/cataarango9" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Facebook</label>
+            <input type="url" class="form-control" value="https://www.facebook.com/share/1GGydKN4HL/" oninput="markDirty()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>YouTube</label>
+            <input type="url" class="form-control" value="https://youtube.com/@cataarango9" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>TikTok</label>
+            <input type="url" class="form-control" value="https://www.tiktok.com/@trascendamos" oninput="markDirty()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SAVE BANNER -->
+<div class="save-banner" id="save-banner" onclick="saveAll()">
+  <span class="material-symbols-outlined">save</span> Guardar Cambios
+</div>
+
+<!-- SUCCESS TOAST -->
+<div class="success-toast" id="success-toast">
+  <span class="material-symbols-outlined">check_circle</span> ¡Guardado con éxito!
+</div>
+
+<script>
+  // ---- Panel Navigation ----
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ---- Dirty State ----
+  let isDirty = false;
+  function markDirty() {
+    isDirty = true;
+    document.getElementById('save-banner').classList.add('visible');
+  }
+
+  function saveAll() {
+    // Save all fields to localStorage
+    const fields = {
+      'hero-title': document.getElementById('txt-hero-title')?.value,
+      'hero-subtitle': document.getElementById('txt-hero-subtitle')?.value,
+      'hero-secondary': document.getElementById('txt-hero-secondary')?.value,
+      'quien-soy-1': document.getElementById('txt-quien-soy-1')?.value,
+      'filosofia-quote': document.getElementById('txt-filosofia-quote')?.value,
+      'price-regreso': document.getElementById('price-regreso')?.value,
+      'price-despertar': document.getElementById('price-despertar')?.value,
+      'price-renacer': document.getElementById('price-renacer')?.value,
+      'price-escritura': document.getElementById('price-escritura')?.value,
+    };
+    localStorage.setItem('cata_admin_fields', JSON.stringify(fields));
+    saveLandings();
+    savePromo();
+    isDirty = false;
+    document.getElementById('save-banner').classList.remove('visible');
+    showToast();
+  }
+
+  function showToast() {
+    const toast = document.getElementById('success-toast');
+    toast.style.display = 'flex';
+    setTimeout(() => { toast.style.display = 'none'; }, 3000);
+  }
+
+  // ---- Image Upload Preview ----
+  function triggerUpload(id) {
+    document.getElementById(id).click();
+  }
+  function previewImg(input, previewId) {
+    const preview = document.getElementById(previewId);
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // ---- Promo Strip ----
+  function updatePromoPreview() {
+    const emoji = document.getElementById('promo-emoji')?.value || '';
+    const text = document.getElementById('promo-text')?.value || '';
+    const ctaText = document.getElementById('promo-cta-text')?.value || '';
+    const bgColor = document.getElementById('promo-bg-color')?.value || '#2f342e';
+    const textColor = document.getElementById('promo-text-color')?.value || '#f7d598';
+    const preview = document.getElementById('promo-preview');
+    if (preview) {
+      preview.style.background = bgColor;
+      preview.style.color = textColor;
+      preview.innerHTML = `${emoji} &nbsp; ${text} &nbsp; <span style="text-decoration:underline;cursor:pointer;">${ctaText}</span>`;
+    }
+  }
+
+  function savePromo() {
+    const promoData = {
+      active: document.getElementById('promo-active')?.checked || false,
+      emoji: document.getElementById('promo-emoji')?.value || '',
+      text: document.getElementById('promo-text')?.value || '',
+      ctaText: document.getElementById('promo-cta-text')?.value || '',
+      ctaUrl: document.getElementById('promo-cta-url')?.value || '',
+      bgColor: document.getElementById('promo-bg-color')?.value || '#2f342e',
+      textColor: document.getElementById('promo-text-color')?.value || '#f7d598',
+    };
+    localStorage.setItem('cata_promo_strip', JSON.stringify(promoData));
+    showToast();
+  }
+
+  function copyPromoCode() {
+    const p = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
+    const code = `<!-- Promo Strip Cata Arango -->
+<div id="promoStripBar" style="display:${p.active?'flex':'none'};align-items:center;justify-content:center;gap:1rem;padding:0.65rem 1.5rem;background:${p.bgColor};color:${p.textColor};font-size:0.88rem;font-weight:600;text-align:center;flex-wrap:wrap;">
+  <span>${p.emoji} ${p.text}</span>
+  ${p.ctaText ? `<a href="${p.ctaUrl}" style="color:${p.textColor};text-decoration:underline;">${p.ctaText}</a>` : ''}
+  <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:${p.textColor};cursor:pointer;font-size:1.1rem;line-height:1;">✕</button>
+</div>`;
+    navigator.clipboard.writeText(code).then(() => showToast());
+  }
+
+  // ---- Landing Pages ----
+  const landingDefaults = [
+    { title: 'Oferta Especial — Regreso a Ti', url: 'landing-regreso-a-ti.html', headline: '¿Lista para reconectar contigo?', desc: 'Una sesión de 90 minutos para identificar el bloqueo emocional raíz y volver a tu centro.', price: '88 USD', cta: 'Quiero mi espacio', ctaUrl: 'mentorias-y-cursos.html' },
+    { title: 'Escritura Terapéutica', url: 'landing-escritura.html', headline: 'Sana a través de la palabra', desc: 'Un programa mensual de escritura terapéutica y audios de reprogramación para liberar lo que tu cuerpo retiene en silencio.', price: '55 USD', cta: 'Comenzar ahora', ctaUrl: 'mentorias-y-cursos.html#escritura-terapeutica' },
+    { title: 'Proceso Despertar', url: 'landing-despertar.html', headline: '3 semanas para transformar tu vida', desc: 'Proceso estructurado de 3 sesiones para desmantelar lealtades inconscientes y renacer en soberanía personal.', price: '222 USD', cta: 'Iniciar mi proceso', ctaUrl: 'mentorias-y-cursos.html' },
+  ];
+
+  function saveLandings() {
+    for (let i = 1; i <= 3; i++) {
+      const d = getLandingData(i);
+      localStorage.setItem('cata_landing_' + i, JSON.stringify(d));
+    }
+  }
+
+  function getLandingData(num) {
+    const f = id => document.getElementById('l' + num + '-' + id)?.value || '';
+    return {
+      active: document.getElementById('l' + num + '-active')?.checked || false,
+      title: f('title'),
+      url: f('url'),
+      headline: f('headline'),
+      desc: f('desc'),
+      price: f('price'),
+      cta: f('cta'),
+      ctaUrl: f('ctaUrl'),
+    };
+  }
+
+  function renderLandingEditors() {
+    for (let i = 1; i <= 3; i++) {
+      const container = document.getElementById('landing-editor-' + i);
+      const def = landingDefaults[i - 1];
+      const saved = JSON.parse(localStorage.getItem('cata_landing_' + i) || 'null') || def;
+      container.innerHTML = `
+        <div class="card">
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Landing ${i} visible al público</div>
+              <div class="toggle-desc">URL: <span class="landing-url">${saved.url}</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <span id="l${i}-status" class="badge badge-${saved.active?'active':'inactive'}">${saved.active?'✓ Activa':'✗ Inactiva'}</span>
+              <label class="switch">
+                <input type="checkbox" id="l${i}-active" ${saved.active?'checked':''} onchange="toggleLandingStatus(${i})">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3><span class="material-symbols-outlined">link</span> URL de la Landing</h3>
+          <div class="form-group">
+            <label>Nombre del archivo (URL de la página)</label>
+            <input type="text" class="form-control" id="l${i}-url" value="${saved.url}" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Título SEO / Pestaña</label>
+            <input type="text" class="form-control" id="l${i}-title" value="${saved.title}" oninput="markDirty()">
+          </div>
+        </div>
+        <div class="card">
+          <h3><span class="material-symbols-outlined">title</span> Contenido Principal</h3>
+          <div class="form-group">
+            <label>Título Principal de la Landing</label>
+            <input type="text" class="form-control" id="l${i}-headline" value="${saved.headline}" oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label>Descripción / Propuesta de valor</label>
+            <textarea class="form-control" id="l${i}-desc" oninput="markDirty()">${saved.desc}</textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Precio / Inversión</label>
+              <input type="text" class="form-control" id="l${i}-price" value="${saved.price}" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label>Texto del Botón CTA</label>
+              <input type="text" class="form-control" id="l${i}-cta" value="${saved.cta}" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>URL destino del botón CTA</label>
+            <input type="url" class="form-control" id="l${i}-ctaUrl" value="${saved.ctaUrl}" oninput="markDirty()">
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="saveLandingAndGenerate(${i})">
+            <span class="material-symbols-outlined">save</span> Guardar Landing ${i} (En Tiempo Real)
+          </button>
+          <a href="${saved.url}" target="_blank" class="btn btn-outline">
+            <span class="material-symbols-outlined">open_in_new</span> Ver Landing Online
+          </a>
+          <button class="btn btn-outline" onclick="generateLandingPage(${i})">
+            <span class="material-symbols-outlined">download</span> Descargar Copia HTML
+          </button>
+        </div>
+      `;
+    }
+  }
+
+  function toggleLandingStatus(num) {
+    const isActive = document.getElementById('l' + num + '-active').checked;
+    const badge = document.getElementById('l' + num + '-status');
+    badge.textContent = isActive ? '✓ Activa' : '✗ Inactiva';
+    badge.className = 'badge badge-' + (isActive ? 'active' : 'inactive');
+    saveLandings();
+    showToast();
+  }
+
+  function saveLandingAndGenerate(num) {
+    saveLandings();
+    showToast();
+  }
+
+  function generateLandingPage(num) {
+    const d = getLandingData(num);
+    if (!d.active) return;
+    const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${d.title} · Catalina Arango</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body { background: #fbf9f5; }
+    .landing-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2f342e 0%, #444a42 100%); padding: 4rem 1.5rem; text-align: center; }
+    .landing-container { max-width: 680px; margin: 0 auto; }
+    .landing-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,5vw,3.5rem); color: #fff; margin-bottom: 1rem; line-height: 1.1; }
+    .landing-desc { color: rgba(255,249,238,0.85); font-size: 1.15rem; line-height: 1.65; margin-bottom: 2rem; }
+    .landing-price { font-family: 'Playfair Display', serif; font-size: 3rem; color: #f7d598; font-weight: 700; margin-bottom: 1.5rem; }
+    .landing-cta { display: inline-flex; align-items: center; gap: 0.65rem; background: #c9a87a; color: #2f342e; font-weight: 700; padding: 1.1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: background 0.2s; }
+    .landing-cta:hover { background: #e5c392; }
+    .landing-back { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,249,238,0.5); }
+    .landing-back a { color: rgba(255,249,238,0.65); }
+  </style>
+</head>
+<body>
+  <section class="landing-hero">
+    <div class="landing-container">
+      <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="width:64px;margin-bottom:1.5rem;opacity:0.9;">
+      <h1 class="landing-title">${d.headline}</h1>
+      <p class="landing-desc">${d.desc}</p>
+      <div class="landing-price">${d.price}</div>
+      <a href="${d.ctaUrl}" class="landing-cta">✦ ${d.cta}</a>
+      <p class="landing-back"><a href="index.html">← Volver al sitio principal</a></p>
+    </div>
+  </section>
+</body>
+</html>`;
+    
+    // Download as file
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = d.url;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // ---- Init ----
+  document.addEventListener('DOMContentLoaded', function() {
+    renderLandingEditors();
+    updatePromoPreview();
+    
+    // Restore saved fields
+    const saved = JSON.parse(localStorage.getItem('cata_admin_fields') || '{}');
+    Object.entries(saved).forEach(([k, v]) => {
+      const el = document.getElementById('txt-' + k) || document.getElementById('price-' + k.replace('price-',''));
+      if (el) el.value = v;
+    });
+    
+    // Restore promo
+    const promo = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
+    if (promo.text) {
+      if (promo.active) document.getElementById('promo-active').checked = true;
+      if (promo.emoji) document.getElementById('promo-emoji').value = promo.emoji;
+      if (promo.text) document.getElementById('promo-text').value = promo.text;
+      if (promo.ctaText) document.getElementById('promo-cta-text').value = promo.ctaText;
+      if (promo.ctaUrl) document.getElementById('promo-cta-url').value = promo.ctaUrl;
+      if (promo.bgColor) document.getElementById('promo-bg-color').value = promo.bgColor;
+      if (promo.textColor) document.getElementById('promo-text-color').value = promo.textColor;
+      updatePromoPreview();
+    }
+  });
+</script>
+
+</body>
+</html>

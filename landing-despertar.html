@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="landingTitle">Proceso Despertar · Inmersión de 3 Semanas | Cata Arango</title>
+  <meta name="description" content="Proceso estructurado de 3 sesiones de 90 min para desmantelar lealtades inconscientes, sanar la herida del niño interior y renacer en soberanía.">
+  <link rel="icon" type="image/png" href="assets/images/FAVICON_SOL_Y_LUNA.png">
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    :root {
+      --gold-primary: #e5c392;
+      --gold-dark: #c99f67;
+      --bg-dark: #12100d;
+      --card-bg: #1a1612;
+      --text-light: #f7ede1;
+      --text-muted: #c4b5a4;
+    }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    .landing-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(229, 195, 146, 0.15);
+      background: rgba(18, 16, 13, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .landing-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-light);
+    }
+    .landing-brand img {
+      height: 38px;
+    }
+    .landing-hero {
+      position: relative;
+      padding: clamp(3.5rem, 7vw, 6rem) 1.5rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .landing-hero-backdrop {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 25%, rgba(247, 213, 152, 0.14) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .landing-hero-container {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .landing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(247, 213, 152, 0.15);
+      border: 1px solid rgba(247, 213, 152, 0.4);
+      color: #f7d598;
+      padding: 0.45rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+    }
+    .landing-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .landing-lead {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .landing-price-box {
+      background: var(--card-bg);
+      border: 1.5px solid rgba(247, 213, 152, 0.35);
+      border-radius: 24px;
+      padding: 2.25rem 2rem;
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .landing-price-val {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 4.2rem);
+      font-weight: 800;
+      color: #f7d598;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .landing-price-sub {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+    .landing-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      width: 100%;
+      background: linear-gradient(135deg, #f7d598 0%, #c99f67 100%);
+      color: #12100d;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 1.15rem 2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(247, 213, 152, 0.35);
+      transition: all 0.25s ease;
+    }
+    .landing-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(247, 213, 152, 0.5);
+    }
+    .landing-grid-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .landing-feature-card {
+      background: rgba(26, 22, 18, 0.6);
+      border: 1px solid rgba(247, 213, 152, 0.2);
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: left;
+    }
+    .landing-feature-card .material-symbols-outlined {
+      color: #f7d598;
+      font-size: 30px;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .landing-feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    .landing-feature-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .landing-inactive-view {
+      display: none;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIEW: ACTIVE LANDING -->
+  <div id="activeLandingView">
+    <header class="landing-header">
+      <a href="index.html" class="landing-brand">
+        <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+        <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango" style="height: 28px;">
+      </a>
+      <a href="index.html" class="btn btn-outline" style="color: var(--gold-primary); border-color: rgba(229,195,146,0.3); font-size: 0.8rem; padding: 0.5rem 1.2rem;">
+        Ir a la web principal →
+      </a>
+    </header>
+
+    <main>
+      <section class="landing-hero">
+        <div class="landing-hero-backdrop"></div>
+        <div class="landing-hero-container">
+          <div class="landing-badge">
+            <span class="material-symbols-outlined" style="font-size: 16px;">stars</span>
+            <span id="landingCategory">Inmersión Recomendada · 3 Semanas</span>
+          </div>
+
+          <h1 class="landing-h1" id="landingHeadline">3 semanas para transformar tu vida</h1>
+          <p class="landing-lead" id="landingDesc">
+            Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.
+          </p>
+
+          <div class="landing-price-box">
+            <div class="landing-price-val" id="landingPrice">$222 USD</div>
+            <div class="landing-price-sub">3 Sesiones de 90 min + Bitácora Semanal + Acompañamiento</div>
+            
+            <button type="button" class="landing-cta-btn" id="landingBtnAction" onclick="handleLandingCheckout()">
+              <span class="material-symbols-outlined">lock</span>
+              <span id="landingCtaText">Iniciar Mi Proceso · $222 USD</span>
+            </button>
+
+            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+              <span class="material-symbols-outlined" style="font-size: 16px; color: var(--gold-primary);">shield</span>
+              <span>Pago 100% Seguro vía Bold · Tarjetas &amp; PSE</span>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <a id="landingWaLink" href="https://wa.me/573143385095?text=Hola%20Cata,%20quiero%20informaci%C3%B3n%20sobre%20el%20Proceso%20Despertar" class="btn btn-outline" style="width: 100%; border-color: rgba(229,195,146,0.35); color: var(--gold-primary); font-size: 0.88rem; padding: 0.75rem;" target="_blank">
+                <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
+                <span>Hablar por WhatsApp antes de reservar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-grid-features">
+        <div class="landing-feature-card">
+          <span class="material-symbols-outlined">hub</span>
+          <h3>01 · El Origen (90 min)</h3>
+          <p>Mapeo emocional exhaustivo y desprogramación del bloqueo raíz y mandato inconsciente primario.</p>
+        </div>
+        <div class="landing-feature-card">
+          <span class="material-symbols-outlined">child_care</span>
+          <h3>02 · El Niño Interior (90 min)</h3>
+          <p>Sanación de la herida de abandono, rechazo, culpa inconsciente y heridas o traumas que emerjan en sesión.</p>
+        </div>
+        <div class="landing-feature-card">
+          <span class="material-symbols-outlined">shield_moon</span>
+          <h3>03 · Soberanía &amp; Cierre (90 min)</h3>
+          <p>Ritual sagrado de integración, anclaje interior y recuperación del poder personal.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer style="text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(229,195,146,0.15); color: var(--text-muted); font-size: 0.82rem;">
+      <p>© 2026 Catalina Arango · Trascendamos Juntos. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+
+  <!-- VIEW: INACTIVE / PAUSED LANDING -->
+  <div id="inactiveLandingView" class="landing-inactive-view">
+    <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="width: 72px; opacity: 0.7; margin-bottom: 1.5rem;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 0.75rem;">Esta página no está disponible en este momento</h2>
+    <p style="color: var(--text-muted); max-width: 480px; margin-bottom: 2rem;">
+      El proceso o promoción solicitado se encuentra temporalmente en pausa. Puedes consultar nuestras mentorías activas en el sitio principal.
+    </p>
+    <a href="index.html" class="landing-cta-btn" style="max-width: 280px;">
+      Ir al Sitio Principal
+    </a>
+  </div>
+
+  <!-- Bold Checkout Assets -->
+  <script src="assets/js/bold-config.js"></script>
+  <script src="assets/js/bold-checkout.js"></script>
+
+  <script>
+    (function() {
+      const LANDING_ID = 3;
+      const DEFAULT_DATA = {
+        active: true,
+        title: 'Proceso Despertar · Inmersión de 3 Semanas | Cata Arango',
+        headline: '3 semanas para transformar tu vida',
+        desc: 'Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.',
+        price: '$222 USD',
+        cta: 'Iniciar Mi Proceso · $222 USD',
+        ctaUrl: 'mentorias-y-cursos.html'
+      };
+
+      try {
+        const saved = JSON.parse(localStorage.getItem('cata_landing_' + LANDING_ID) || 'null');
+        const data = saved ? Object.assign({}, DEFAULT_DATA, saved) : DEFAULT_DATA;
+
+        // Toggle visibility
+        if (data.active === false) {
+          document.getElementById('activeLandingView').style.display = 'none';
+          document.getElementById('inactiveLandingView').style.display = 'flex';
+          return;
+        }
+
+        // Apply content
+        if (data.title) document.title = data.title;
+        if (data.headline) document.getElementById('landingHeadline').textContent = data.headline;
+        if (data.desc) document.getElementById('landingDesc').textContent = data.desc;
+        if (data.price) document.getElementById('landingPrice').textContent = data.price;
+        if (data.cta) document.getElementById('landingCtaText').textContent = data.cta;
+      } catch (e) {
+        console.warn('Error loading dynamic landing config:', e);
+      }
+    })();
+
+    function handleLandingCheckout() {
+      if (typeof window.openBoldCheckout === 'function') {
+        window.openBoldCheckout('proceso-despertar');
+      } else {
+        window.location.href = 'mentorias-y-cursos.html#proceso-despertar';
+      }
+    }
+  </script>
+</body>
+</html>

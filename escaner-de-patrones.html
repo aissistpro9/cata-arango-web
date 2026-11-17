@@ -731,6 +731,49 @@
           </div>
         </div>
 
+
+        <!-- OFERTA ESPECIAL POST-SCANNER: ESCRITURA TERAPÉUTICA -->
+        <div id="postScannerOffer" style="margin-top: 2.5rem; background: linear-gradient(135deg, #faf7f2 0%, #f0ece4 100%); border: 2px solid #c9a87a; border-radius: 18px; padding: 2.5rem 2rem; text-align: center; display: none;">
+          <div style="margin-bottom: 1rem;">
+            <span style="display: inline-flex; align-items: center; gap: 0.5rem; background: #c9a87a; color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 0.4rem 1rem; border-radius: 999px;">
+              🎁 OFERTA ESPECIAL POST-ESCÁNER
+            </span>
+          </div>
+          
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.75rem; color: #2f342e; margin: 0 0 0.5rem 0;">
+            Escritura Terapéutica &amp; Sanación Consciente
+          </h3>
+          <p style="font-style: italic; color: #8c7355; font-size: 1.1rem; margin: 0 0 1rem 0;">
+            «Trascendiendo la Sombra a través de la Palabra»
+          </p>
+          <p style="color: #5a4f44; max-width: 580px; margin: 0 auto 1.5rem auto; line-height: 1.6; font-size: 0.95rem;">
+            El complemento perfecto para profundizar en tu proceso de sanación. Con guías de escritura terapéutica y audios de reprogramación interior diseñados para liberar lo que tu cuerpo retiene en silencio.
+          </p>
+          
+          <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div style="font-size: 1rem; color: #8c7355; text-decoration: line-through; font-weight: 500;">$55 USD</div>
+              <div style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #2f342e; line-height: 1;">$20 <span style="font-size: 1rem; font-family: sans-serif; font-weight: 600; color: #5a4f44;">USD</span></div>
+              <div style="font-size: 0.75rem; color: #8c7355; text-transform: uppercase; letter-spacing: 1px;">Precio exclusivo para hoy</div>
+            </div>
+            <div style="text-align: left; max-width: 220px;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.88rem; color: #473e35;">
+                <span style="color: #c9a87a; font-weight: 700;">✓</span> Guías de Escritura Terapéutica
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #473e35;">
+                <span style="color: #c9a87a; font-weight: 700;">✓</span> Audios de Reprogramación Interior
+              </div>
+            </div>
+          </div>
+          
+          <button type="button" onclick="window.openBoldCheckout && window.openBoldCheckout('escritura-terapeutica-scanner') || window.location.href='mentorias-y-cursos.html#escritura-terapeutica'" style="background: linear-gradient(135deg, #c9a87a, #a07845); color: white; border: none; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <span>🌿 Quiero Comenzar Mi Sanación — $20 USD</span>
+          </button>
+          <div style="font-size: 0.75rem; color: #8c7355; margin-top: 0.5rem;">
+            Oferta válida solo para hoy. Acceso mensual renovable.
+          </div>
+        </div>
+
         <!-- ==================================================================
              PREGUNTA CLAVE AL CONSULTANTE: ¿QUIERES ASESORÍA DE 10 MIN CON CATA?
              ================================================================== -->
@@ -1395,6 +1438,8 @@
       setTimeout(() => {
         document.getElementById('calculatingSection').style.display = 'none';
         document.getElementById('resultSection').style.display = 'block';
+      // Mostrar oferta especial post-scanner
+      setTimeout(function() { var o = document.getElementById('postScannerOffer'); if(o) o.style.display='block'; }, 2000);
 
         document.getElementById('resultUserGreeting').textContent = `${userName}, tu Patrón Raíz Predominante es:`;
         document.getElementById('patternTitle').textContent = `Patrón: ${pattern.title}`;

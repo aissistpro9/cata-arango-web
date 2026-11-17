@@ -17,6 +17,26 @@
 </head>
 <body>
 
+  <!-- TIRILLA DE PROMOCIÓN (gestionada desde panel de autogestión) -->
+  <div id="promoStripBar" style="display:none;align-items:center;justify-content:center;gap:1rem;padding:0.65rem 1.5rem;font-size:0.88rem;font-weight:600;text-align:center;flex-wrap:wrap;position:relative;z-index:1000;"></div>
+  <script>
+    (function() {
+      try {
+        var p = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
+        if (p && p.active && p.text) {
+          var bar = document.getElementById('promoStripBar');
+          if (bar) {
+            bar.style.background = p.bgColor || '#2f342e';
+            bar.style.color = p.textColor || '#f7d598';
+            var cta = p.ctaText ? '<a href="'+(p.ctaUrl||'#')+'" style="color:'+(p.textColor||'#f7d598')+';text-decoration:underline;margin-left:0.5rem;">'+p.ctaText+'</a>' : '';
+            bar.innerHTML = (p.emoji||'') + ' ' + p.text + cta + '<button onclick="this.parentElement.style.display=\'none\'" style="background:none;border:none;color:'+(p.textColor||'#f7d598')+';cursor:pointer;font-size:1.1rem;margin-left:1rem;line-height:1;">✕</button>';
+            bar.style.display = 'flex';
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+
   <!-- ==========================================================================
        PÁGINA DE BIENVENIDA INMERSIVA (PORTADA SOMBRA Y LUZ · CATA ARANGO)
        Temática: Tonos tierra oscuros, Chiaroscuro, Geometría Sagrada y Muestra de Cata
@@ -461,10 +481,12 @@
               </ul>
             </div>
 
-            <div>
-              <a href="mentorias-y-cursos.html" class="btn btn-primary" style="width: 100%;">
-                Agendar Mentoría
-              </a>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <button type="button" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;" onclick="openBoldCheckout('regreso-a-ti')">
+                <span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+                <span>Pagar en Línea · $88 USD</span>
+              </button>
+              <div style="font-size: 0.72rem; color: #a4917a; text-align: center; text-transform: uppercase; letter-spacing: 0.05em;">Tarjetas crédito/débito · PSE · Enlace Bold</div>
             </div>
           </div>
 
@@ -522,10 +544,12 @@
               </div>
             </div>
 
-            <div>
-              <a href="mentorias-y-cursos.html" class="btn btn-primary" style="width: 100%;">
-                Comenzar Proceso
-              </a>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <button type="button" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;" onclick="openBoldCheckout('proceso-despertar')">
+                <span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+                <span>Pagar en Línea · $222 USD</span>
+              </button>
+              <div style="font-size: 0.72rem; color: #a4917a; text-align: center; text-transform: uppercase; letter-spacing: 0.05em;">Tarjetas crédito/débito · PSE · Enlace Bold</div>
             </div>
           </div>
 
@@ -542,22 +566,25 @@
                 <span style="font-size: 0.8rem; font-weight: 700; color: #e5c392; text-transform: uppercase;">USD</span>
               </div>
               <p class="body-sm" style="margin-bottom: 1.25rem;">
-                Contenedor holístico VIP de 3 meses. 12 sesiones semanales para sanar linajes familiares, reprogramar la mente y vivir en paz profunda.
+                Contenedor holístico VIP de 3 meses. 12 sesiones personalizadas para sanar linajes familiares, heridas y traumas individuales y reprogramación de la mente y sistema nervioso, para que recuerdes que eres la grandeza misma.
               </p>
 
               <ul class="card-features-editorial">
-                <li><span class="feather-check"></span><span>12 sesiones semanales 1 a 1 de 90 min con Catalina</span></li>
-                <li><span class="feather-check"></span><span>3 audios de integración y reconexión personalizados (1 por mes)</span></li>
-                <li><span class="feather-check"></span><span>1 llamada prioritaria mensual para emergencias emocionales</span></li>
-                <li><span class="feather-check"></span><span>Acceso prioritario a agenda y bitácora terapéutica digital</span></li>
-                <li><span class="feather-check"></span><span>Ritual sagrado grabado de cierre y linaje ancestral</span></li>
+                <li><span class="feather-check"></span><span>12 sesiones personalizadas 1 a 1 de 90 min con Catalina</span></li>
+                <li><span class="feather-check"></span><span>Diario digital de tu proceso terapéutico guiado</span></li>
+                <li><span class="feather-check"></span><span>Meditaciones guiadas, rituales y ejercicios de visualización</span></li>
+                <li><span class="feather-check"></span><span>Equilibrar energía femenina y masculina</span></li>
+                <li><span class="feather-check"></span><span>Trabajo de sombra, heridas y traumas ancestrales</span></li>
+                <li><span class="feather-check"></span><span>3 audios de integración personalizados (1 por mes)</span></li>
               </ul>
             </div>
 
-            <div>
-              <a href="mentorias-y-cursos.html" class="btn btn-primary" style="width: 100%;">
-                Postular a Cupo VIP
-              </a>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <button type="button" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;" onclick="openBoldCheckout('renacer-interno')">
+                <span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+                <span>Pagar en Línea · $999 USD</span>
+              </button>
+              <div style="font-size: 0.72rem; color: #a4917a; text-align: center; text-transform: uppercase; letter-spacing: 0.05em;">Tarjetas crédito/débito · PSE · Enlace Bold</div>
             </div>
           </div>
 
@@ -914,9 +941,9 @@
 
       </div>
 
-      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255,249,232,0.6);">
+      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255,249,232,0.6); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
         <p>© 2026 CATA ARANGO • Trascendamos Juntos. Todos los derechos reservados.</p>
-        <p>Espacio seguro y contenedor de desarrollo integral</p>
+        <p><a href="admin.html" style="color: rgba(255,249,232,0.45); text-decoration: none; font-size: 0.75rem;">✦ Panel de Gestión</a></p>
       </div>
     </div>
   </footer>

@@ -239,35 +239,60 @@
 
     container.innerHTML = '';
 
-    TIME_SLOTS.forEach((slot) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'time-slot-btn';
-      btn.title = `${slot.label} (Hora Colombia COT)`;
-      if (selectedSlot && selectedSlot.id === slot.id) {
-        btn.classList.add('active');
-      }
+    const groups = [
+      { hour: 9, label: '09:00 a.m. · Inicio mañana', icon: 'wb_twilight' },
+      { hour: 10, label: '10:00 a.m. · Media mañana', icon: 'light_mode' },
+      { hour: 11, label: '11:00 a.m. · Cierre mañana', icon: 'sunny' }
+    ];
 
-      btn.innerHTML = `
-        <span class="material-symbols-outlined slot-icon" style="font-size: 14px;">${(selectedSlot && selectedSlot.id === slot.id) ? 'check_circle' : 'schedule'}</span>
-        <span>${slot.shortLabel || slot.label}</span>
-      `;
+    groups.forEach((group) => {
+      const groupSlots = TIME_SLOTS.filter(s => s.startH === group.hour);
+      if (groupSlots.length === 0) return;
 
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.time-slot-btn').forEach(b => {
-          b.classList.remove('active');
-          const icon = b.querySelector('.slot-icon');
-          if (icon) icon.textContent = 'schedule';
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'time-slot-hour-group';
+
+      const title = document.createElement('div');
+      title.className = 'time-slot-hour-title';
+      title.innerHTML = `<span class="material-symbols-outlined" style="font-size: 15px; color: var(--primary);">${group.icon}</span> <span>${group.label}</span>`;
+      groupDiv.appendChild(title);
+
+      const grid = document.createElement('div');
+      grid.className = 'time-slot-hour-buttons';
+
+      groupSlots.forEach((slot) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'time-slot-btn';
+        btn.title = `${slot.label} (Hora Colombia COT)`;
+        if (selectedSlot && selectedSlot.id === slot.id) {
+          btn.classList.add('active');
+        }
+
+        btn.innerHTML = `
+          <span class="material-symbols-outlined slot-icon" style="font-size: 13px;">${(selectedSlot && selectedSlot.id === slot.id) ? 'check_circle' : 'schedule'}</span>
+          <span>${slot.shortLabel || slot.label}</span>
+        `;
+
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.time-slot-btn').forEach(b => {
+            b.classList.remove('active');
+            const icon = b.querySelector('.slot-icon');
+            if (icon) icon.textContent = 'schedule';
+          });
+          btn.classList.add('active');
+          const activeIcon = btn.querySelector('.slot-icon');
+          if (activeIcon) activeIcon.textContent = 'check_circle';
+
+          selectedSlot = slot;
+          updateLiveSummary();
         });
-        btn.classList.add('active');
-        const activeIcon = btn.querySelector('.slot-icon');
-        if (activeIcon) activeIcon.textContent = 'check_circle';
 
-        selectedSlot = slot;
-        updateLiveSummary();
+        grid.appendChild(btn);
       });
 
-      container.appendChild(btn);
+      groupDiv.appendChild(grid);
+      container.appendChild(groupDiv);
     });
   }
 
@@ -392,9 +417,9 @@ trascedamosjuntos89@gmail.com`;
       `LOCATION:${meetUrl}`,
       'STATUS:CONFIRMED',
       'BEGIN:VALARM',
-      'TRIGGER:-PT10M',
+      'TRIGGER:-PT30M',
       'ACTION:DISPLAY',
-      'DESCRIPTION:Recordatorio: Sesión de 10 min con Cata Arango en 10 minutos',
+      'DESCRIPTION:Recordatorio: Tu sesión con Cata Arango comienza en 30 minutos',
       'END:VALARM',
       'END:VEVENT',
       'END:VCALENDAR'

@@ -77,20 +77,31 @@ window.BOLD_CONFIG = {
       category: "Acompañamiento VIP Trimestral",
       priceUSD: 999,
       priceCOP: 4100000,
-      duration: "12 sesiones semanales de 90 min",
+      duration: "12 sesiones personalizadas de 90 min",
       badge: "Acompañamiento VIP",
-      description: "Contenedor exclusivo de 3 meses. 12 sesiones semanales, 3 audios personalizados, llamada de emergencia mensual y diario digital guiado."
+      description: "Contenedor holístico VIP de 3 meses. 12 sesiones personalizadas para sanar linajes familiares, heridas y traumas individuales y reprogramación de la mente y sistema nervioso, para que recuerdes que eres la grandeza misma."
     },
     "escritura-terapeutica": {
       id: "escritura-terapeutica",
       name: "Escritura Terapéutica & Sanación Consciente",
       shortName: "Escritura Terapéutica",
-      category: "Programa Clínico Online",
-      priceUSD: 150,
-      priceCOP: 600000,
-      duration: "Acceso Vitalicio",
-      badge: "Programa Completo",
-      description: "Programa estructurado de introspección profunda: 4 módulos clínicos en video, cuadernos y guías descargables en PDF y audios guiados."
+      category: "Programa de Escritura Mensual",
+      priceUSD: 55,
+      priceCOP: 225000,
+      duration: "Mensual",
+      badge: "Programa Mensual",
+      description: "Programa estructurado de escritura terapéutica: guías de escritura e audios de reprogramación interior para sanar desde adentro."
+    },
+    "escritura-terapeutica-scanner": {
+      id: "escritura-terapeutica-scanner",
+      name: "Escritura Terapéutica — Oferta Especial Post-Escáner",
+      shortName: "Escritura Terapéutica ($20 USD)",
+      category: "Oferta Especial Post-Escáner",
+      priceUSD: 20,
+      priceCOP: 82000,
+      duration: "Mensual (Precio Especial)",
+      badge: "Oferta Post-Escáner",
+      description: "Acceso mensual al programa de escritura terapéutica: guías de escritura e audios de reprogramación interior. Tarifa especial exclusiva por completar el Escáner de Patrones."
     },
     "membresia-memoria": {
       id: "membresia-memoria",
