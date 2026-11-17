@@ -3,231 +3,400 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Autogestión · Cata Arango</title>
+  <title>Panel de Autogestión Total · Cata Arango</title>
+  <link rel="icon" type="image/png" href="assets/images/FAVICON_SOL_Y_LUNA.png">
+
+  <!-- Google Fonts & Material Symbols -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --primary: #4e614e;
+      --primary-light: #748873;
       --secondary: #8c7355;
-      --surface: #fbf9f5;
-      --surface-low: #f4f1eb;
       --gold: #c9a87a;
-      --text: #2f342e;
+      --gold-light: #f7d598;
+      --surface: #fbf9f5;
+      --surface-card: #ffffff;
+      --surface-sidebar: #1e231e;
+      --surface-sidebar-hover: #2a312a;
+      --text: #232822;
       --text-muted: #6b6055;
-      --border: rgba(78, 97, 78, 0.18);
+      --border: rgba(78, 97, 78, 0.16);
       --danger: #c0392b;
       --success: #27ae60;
+      --radius: 14px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
     }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--surface);
       color: var(--text);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* HEADER */
     .admin-header {
-      background: var(--text);
+      background: #141714;
       color: #fff9ee;
-      padding: 1rem 2rem;
+      padding: 0.85rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(201, 168, 122, 0.25);
     }
-    .admin-header h1 {
+    .admin-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .admin-header-brand img { height: 32px; }
+    .admin-header-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--gold-light);
     }
-    .admin-header p { font-size: 0.75rem; color: rgba(255,249,238,0.65); margin-top: 0.1rem; }
+    .admin-header-sub {
+      font-size: 0.72rem;
+      color: rgba(255,249,238,0.6);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .admin-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .btn-site-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 213, 152, 0.3);
+      transition: all 0.2s;
+    }
+    .btn-site-link:hover {
+      background: rgba(247, 213, 152, 0.12);
+      border-color: var(--gold-light);
+    }
+
+    /* LAYOUT */
     .admin-layout {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      min-height: calc(100vh - 64px);
+      grid-template-columns: 260px 1fr;
+      flex: 1;
+      min-height: calc(100vh - 58px);
     }
+
+    /* SIDEBAR */
     .sidebar {
-      background: #2a2f29;
+      background: var(--surface-sidebar);
       padding: 1.5rem 0;
+      border-right: 1px solid rgba(255,255,255,0.06);
       position: sticky;
-      top: 64px;
-      height: calc(100vh - 64px);
+      top: 58px;
+      height: calc(100vh - 58px);
       overflow-y: auto;
+    }
+    .sidebar-section-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,249,238,0.4);
+      padding: 1.25rem 1.5rem 0.5rem;
+      font-weight: 700;
     }
     .sidebar-nav { list-style: none; }
     .sidebar-nav li a {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.75rem;
       padding: 0.75rem 1.5rem;
-      color: rgba(255,249,238,0.75);
+      color: rgba(255,249,238,0.78);
       text-decoration: none;
       font-size: 0.88rem;
       font-weight: 500;
-      transition: all 0.2s;
       border-left: 3px solid transparent;
+      transition: all 0.2s;
     }
-    .sidebar-nav li a:hover,
+    .sidebar-nav li a:hover {
+      background: var(--surface-sidebar-hover);
+      color: #ffffff;
+    }
     .sidebar-nav li a.active {
-      background: rgba(201, 168, 122, 0.12);
-      color: var(--gold);
-      border-left-color: var(--gold);
+      background: rgba(201, 168, 122, 0.14);
+      color: var(--gold-light);
+      border-left-color: var(--gold-light);
+      font-weight: 600;
     }
-    .sidebar-nav li a .material-symbols-outlined { font-size: 18px; }
-    .sidebar-section {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(255,249,238,0.3);
-      padding: 1.25rem 1.5rem 0.4rem;
-      font-weight: 700;
+    .sidebar-nav li a .material-symbols-outlined { font-size: 20px; }
+
+    /* MAIN CONTENT */
+    .main-content {
+      padding: 2.5rem 3rem 6rem;
+      overflow-y: auto;
+      max-width: 1100px;
     }
-    .main-content { padding: 2.5rem; overflow-y: auto; }
-    .panel { display: none; }
+    .panel { display: none; animation: fadeIn 0.25s ease; }
     .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
     .panel-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
+      font-size: 1.85rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-    .panel-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 12px rgba(78, 97, 78, 0.06);
-    }
-    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
-    .card h3 .material-symbols-outlined { font-size: 18px; color: var(--primary); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { margin-bottom: 1rem; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-      background: var(--surface);
       color: var(--text);
-      transition: border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
     }
-    .form-control:focus { outline: none; border-color: var(--primary); }
-    textarea.form-control { resize: vertical; min-height: 90px; }
-    .btn {
+    .panel-subtitle {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 0.35rem;
+    }
+    .panel-page-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.88rem;
+      gap: 0.4rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      cursor: pointer;
-      border: none;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background: rgba(78, 97, 78, 0.08);
+      border-radius: 999px;
+      border: 1px solid rgba(78, 97, 78, 0.2);
       transition: all 0.2s;
     }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: #3a4a3a; }
-    .btn-gold { background: var(--gold); color: white; }
-    .btn-gold:hover { background: #a07845; }
-    .btn-danger { background: var(--danger); color: white; }
-    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
-    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
-    .btn-sm { padding: 0.45rem 1rem; font-size: 0.8rem; }
+    .panel-page-link:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.85rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    .card-title .material-symbols-outlined { color: var(--gold); font-size: 22px; }
+
+    /* FORMS */
+    .form-group {
+      margin-bottom: 1.35rem;
+    }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+    }
+    .form-hint {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: #faf8f5;
+      transition: all 0.2s;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(78, 97, 78, 0.12);
+    }
+    textarea.form-control {
+      min-height: 95px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    /* TOGGLE SWITCH */
     .toggle-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem;
-      background: var(--surface-low);
-      border-radius: 12px;
-      margin-bottom: 0.75rem;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(78, 97, 78, 0.05);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 1.25rem;
     }
-    .toggle-label { font-size: 0.9rem; font-weight: 600; }
-    .toggle-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .toggle-info strong { display: block; font-size: 0.92rem; color: var(--text); }
+    .toggle-info span { font-size: 0.8rem; color: var(--text-muted); }
     .switch {
       position: relative;
       display: inline-block;
-      width: 48px;
-      height: 26px;
+      width: 52px;
+      height: 28px;
+      flex-shrink: 0;
     }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider {
       position: absolute;
       cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #ccc;
-      border-radius: 26px;
-      transition: 0.4s;
+      inset: 0;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 34px;
     }
     .slider:before {
       position: absolute;
       content: "";
       height: 20px;
       width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background: white;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
       border-radius: 50%;
-      transition: 0.4s;
     }
-    input:checked + .slider { background: var(--success); }
-    input:checked + .slider:before { transform: translateX(22px); }
-    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
-    .badge-active { background: rgba(39, 174, 96, 0.12); color: var(--success); }
-    .badge-inactive { background: rgba(192, 57, 43, 0.12); color: var(--danger); }
-    .landing-card {
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(24px); }
+
+    /* IMAGE UPLOADER */
+    .img-upload-box {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
       padding: 1.5rem;
-      margin-bottom: 1rem;
-      background: white;
+      text-align: center;
+      background: #faf8f5;
+      cursor: pointer;
+      transition: all 0.2s;
       position: relative;
     }
-    .landing-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; }
-    .landing-url { font-family: monospace; font-size: 0.8rem; background: var(--surface-low); padding: 0.3rem 0.65rem; border-radius: 6px; color: var(--primary); font-weight: 600; }
-    .promo-strip-preview {
-      border: 2px solid var(--gold);
-      border-radius: 10px;
-      padding: 0.85rem 1.25rem;
-      background: linear-gradient(90deg, #2f342e, #444a42);
-      color: #f7d598;
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: 600;
+    .img-upload-box:hover {
+      border-color: var(--primary);
+      background: #f4f8f4;
     }
-    .save-banner {
+    .img-upload-box input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .img-preview {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 0.85rem;
+      display: none;
+      border: 1px solid var(--border);
+    }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-active { background: rgba(39, 174, 96, 0.15); color: #1e7e34; }
+    .badge-inactive { background: rgba(192, 57, 43, 0.15); color: #c0392b; }
+
+    /* FLOATING SAVE BAR */
+    .floating-save-bar {
       position: fixed;
-      bottom: 2rem;
+      bottom: 1.75rem;
       right: 2rem;
-      background: var(--primary);
-      color: white;
-      padding: 1rem 1.75rem;
+      background: #141714;
+      color: #fff;
+      padding: 0.95rem 1.85rem;
       border-radius: 999px;
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 8px 24px rgba(78, 97, 78, 0.35);
-      cursor: pointer;
-      z-index: 999;
-      display: none;
+      gap: 1rem;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      border: 1px solid rgba(201, 168, 122, 0.4);
+      z-index: 9999;
+      transform: translateY(120px);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .save-banner.visible { display: flex; }
-    .success-toast {
+    .floating-save-bar.visible { transform: translateY(0); }
+    .btn-save-now {
+      background: linear-gradient(135deg, var(--gold) 0%, #b38f5f 100%);
+      color: #121512;
+      border: none;
+      padding: 0.65rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: filter 0.2s;
+    }
+    .btn-save-now:hover { filter: brightness(1.1); }
+
+    /* SUCCESS TOAST */
+    .toast-notice {
       position: fixed;
-      top: 80px;
+      top: 75px;
       right: 2rem;
       background: var(--success);
       color: white;
@@ -237,604 +406,952 @@
       font-size: 0.88rem;
       display: none;
       align-items: center;
-      gap: 0.5rem;
-      z-index: 9999;
+      gap: 0.6rem;
+      z-index: 10000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       animation: slideIn 0.3s ease;
     }
     @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    .img-upload-box {
-      border: 2px dashed var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
       cursor: pointer;
-      transition: border-color 0.2s;
-      position: relative;
+      border: none;
+      text-decoration: none;
+      transition: all 0.2s;
     }
-    .img-upload-box:hover { border-color: var(--primary); }
-    .img-upload-box input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-    .img-upload-box .material-symbols-outlined { font-size: 36px; color: var(--text-muted); display: block; margin-bottom: 0.5rem; }
-    .img-preview { width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-top: 0.75rem; display: none; }
-    @media (max-width: 768px) {
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: #3c4c3c; }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: #faf8f5; border-color: var(--primary); }
+    .btn-gold { background: var(--gold); color: #1a1e1a; font-weight: 700; }
+    .btn-gold:hover { background: var(--gold-light); }
+
+    @media (max-width: 860px) {
       .admin-layout { grid-template-columns: 1fr; }
       .sidebar { display: none; }
+      .main-content { padding: 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="admin-header">
-  <div>
-    <h1>✦ Panel de Autogestión</h1>
-    <p>Catalina Arango · Trascendamos Juntos</p>
-  </div>
-  <div style="display: flex; align-items: center; gap: 1rem;">
-    <span style="font-size: 0.8rem; color: rgba(255,249,238,0.65);">Sitio: cataarango.blessiatech.com</span>
-    <a href="index.html" class="btn btn-outline" style="color: #f7d598; border-color: rgba(247,213,152,0.3); font-size: 0.8rem; padding: 0.5rem 1rem;" target="_blank">
-      <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
-      Ver Web
-    </a>
-  </div>
-</header>
-
-<div class="admin-layout">
-
-  <!-- SIDEBAR NAV -->
-  <nav class="sidebar">
-    <ul class="sidebar-nav">
-      <li class="sidebar-section">Principal</li>
-      <li><a href="#" class="active" onclick="showPanel('textos')">
-        <span class="material-symbols-outlined">edit_note</span> Textos e Imágenes
-      </a></li>
-      <li><a href="#" onclick="showPanel('promo')">
-        <span class="material-symbols-outlined">campaign</span> Tirilla de Promoción
-      </a></li>
-      <li class="sidebar-section">Landings</li>
-      <li><a href="#" onclick="showPanel('landing1')">
-        <span class="material-symbols-outlined">web</span> Landing 1
-      </a></li>
-      <li><a href="#" onclick="showPanel('landing2')">
-        <span class="material-symbols-outlined">web</span> Landing 2
-      </a></li>
-      <li><a href="#" onclick="showPanel('landing3')">
-        <span class="material-symbols-outlined">web</span> Landing 3
-      </a></li>
-      <li class="sidebar-section">Configuración</li>
-      <li><a href="#" onclick="showPanel('config')">
-        <span class="material-symbols-outlined">settings</span> Configuración General
-      </a></li>
-    </ul>
-  </nav>
-
-  <!-- MAIN -->
-  <main class="main-content">
-
-    <!-- PANEL: TEXTOS E IMÁGENES -->
-    <div id="panel-textos" class="panel active">
-      <h2 class="panel-title">Textos e Imágenes</h2>
-      <p class="panel-desc">Edita los textos principales de tu web y sube imágenes. Los cambios se guardan localmente.</p>
-
-      <div class="card">
-        <h3><span class="material-symbols-outlined">title</span> Hero Principal (Inicio)</h3>
-        <div class="form-group">
-          <label>Título Principal</label>
-          <input type="text" class="form-control" id="txt-hero-title" value="Integra tu Sombra. Despierta tu Luz." oninput="markDirty()">
-        </div>
-        <div class="form-group">
-          <label>Subtítulo del Hero</label>
-          <textarea class="form-control" id="txt-hero-subtitle" oninput="markDirty()">Un espacio seguro y sin dogmas para liberar el dolor de las heridas de tu infancia y ancestrales, memorias de dolor, traumas y bloqueos emocionales.</textarea>
-        </div>
-        <div class="form-group">
-          <label>Texto secundario del Hero</label>
-          <input type="text" class="form-control" id="txt-hero-secondary" value="Guiado por Catalina Arango Rivera. Sesiones individuales híbridas en Medellín, Colombia y 100% virtuales para el resto del mundo." oninput="markDirty()">
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><span class="material-symbols-outlined">person</span> Sección "Quién Soy Yo"</h3>
-        <div class="form-group">
-          <label>Párrafo 1 sobre Catalina</label>
-          <textarea class="form-control" id="txt-quien-soy-1" oninput="markDirty()">Soy originaria de Medellín, Colombia. Durante 18 años transité la vida corporativa buscando pertenecer, hasta que tomé la valiente decisión de soltar esa armadura.</textarea>
-        </div>
-        <div class="form-group">
-          <label>Cita Destacada (Filosofía)</label>
-          <textarea class="form-control" id="txt-filosofia-quote" oninput="markDirty()">«El dolor no es un castigo ni una falla; es la brújula sagrada de tu alma pidiéndote regresar a casa: a ti mismo.»</textarea>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><span class="material-symbols-outlined">image</span> Imágenes Principales</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Foto de Perfil (Portrait)</label>
-            <div class="img-upload-box" onclick="triggerUpload('upload-portrait')">
-              <input type="file" id="upload-portrait" accept="image/*" onchange="previewImg(this, 'preview-portrait')">
-              <span class="material-symbols-outlined">add_photo_alternate</span>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>JPG, PNG, WebP — recomendado 592×848px</small></span>
-              <img id="preview-portrait" class="img-preview">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Hero "Quién Soy" (Foto lateral)</label>
-            <div class="img-upload-box" onclick="triggerUpload('upload-hero-cata')">
-              <input type="file" id="upload-hero-cata" accept="image/*" onchange="previewImg(this, 'preview-hero-cata')">
-              <span class="material-symbols-outlined">add_photo_alternate</span>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>JPG, PNG, WebP — recomendado 450×806px</small></span>
-              <img id="preview-hero-cata" class="img-preview">
-            </div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Hero Background (Imagen de fondo)</label>
-            <div class="img-upload-box" onclick="triggerUpload('upload-hero-bg')">
-              <input type="file" id="upload-hero-bg" accept="image/*" onchange="previewImg(this, 'preview-hero-bg')">
-              <span class="material-symbols-outlined">add_photo_alternate</span>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>Imagen panorámica oscura de fondo</small></span>
-              <img id="preview-hero-bg" class="img-preview">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Imagen Promocional (Banner)</label>
-            <div class="img-upload-box" onclick="triggerUpload('upload-promo-img')">
-              <input type="file" id="upload-promo-img" accept="image/*" onchange="previewImg(this, 'preview-promo-img')">
-              <span class="material-symbols-outlined">add_photo_alternate</span>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Haz clic para subir imagen<br><small>Para usar en la tirilla o landings</small></span>
-              <img id="preview-promo-img" class="img-preview">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><span class="material-symbols-outlined">price_tag</span> Precios de Mentorías</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Regreso a Ti (USD)</label>
-            <input type="number" class="form-control" id="price-regreso" value="88" oninput="markDirty()">
-          </div>
-          <div class="form-group">
-            <label>Proceso Despertar (USD)</label>
-            <input type="number" class="form-control" id="price-despertar" value="222" oninput="markDirty()">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Renacer Interno (USD)</label>
-            <input type="number" class="form-control" id="price-renacer" value="999" oninput="markDirty()">
-          </div>
-          <div class="form-group">
-            <label>Escritura Terapéutica (USD)</label>
-            <input type="number" class="form-control" id="price-escritura" value="55" oninput="markDirty()">
-          </div>
-        </div>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">
-          <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">info</span>
-          Cambiar precios aquí requiere actualización manual en el código. Contacta a tu equipo técnico para aplicar.
-        </p>
+  <!-- HEADER -->
+  <header class="admin-header">
+    <div class="admin-header-brand">
+      <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+      <div>
+        <div class="admin-header-title">Panel de Autogestión Total</div>
+        <div class="admin-header-sub">Catalina Arango · Trascendamos Juntos</div>
       </div>
     </div>
+    <div class="admin-header-actions">
+      <button class="btn btn-gold" onclick="saveAllCms()" style="padding: 0.5rem 1.25rem; font-size: 0.82rem;">
+        <span class="material-symbols-outlined" style="font-size: 16px;">save</span>
+        Guardar Todo
+      </button>
+      <a href="index.html" class="btn-site-link" target="_blank">
+        <span>Ver Web</span>
+        <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
+      </a>
+    </div>
+  </header>
 
-    <!-- PANEL: TIRILLA DE PROMOCIÓN -->
-    <div id="panel-promo" class="panel">
-      <h2 class="panel-title">Tirilla de Promoción</h2>
-      <p class="panel-desc">Activa una barra de anuncio en la parte superior de tu web. Ideal para descuentos, eventos y lanzamientos.</p>
+  <div class="admin-layout">
 
-      <div class="card">
-        <h3><span class="material-symbols-outlined">toggle_on</span> Estado de la Tirilla</h3>
-        <div class="toggle-row">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-section-title">Páginas Principales</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" onclick="switchTab('inicio')">
+          <span class="material-symbols-outlined">home</span> 1. Inicio (index.html)
+        </a></li>
+        <li><a href="#" onclick="switchTab('sobremi')">
+          <span class="material-symbols-outlined">person</span> 2. Sobre Mí
+        </a></li>
+        <li><a href="#" onclick="switchTab('mentorias')">
+          <span class="material-symbols-outlined">self_improvement</span> 3. Mentorías & Cursos
+        </a></li>
+        <li><a href="#" onclick="switchTab('comunidad')">
+          <span class="material-symbols-outlined">groups</span> 4. Comunidad Sagrada
+        </a></li>
+        <li><a href="#" onclick="switchTab('testimonios')">
+          <span class="material-symbols-outlined">reviews</span> 5. Testimonios en Video
+        </a></li>
+        <li><a href="#" onclick="switchTab('escaner')">
+          <span class="material-symbols-outlined">psychology</span> 6. Escáner de Patrones
+        </a></li>
+        <li><a href="#" onclick="switchTab('contacto')">
+          <span class="material-symbols-outlined">calendar_month</span> 7. Contacto & FAQ
+        </a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Promociones & Landings</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" onclick="switchTab('tirilla')">
+          <span class="material-symbols-outlined">campaign</span> Tirilla de Promoción
+        </a></li>
+        <li><a href="#" onclick="switchTab('landing1')">
+          <span class="material-symbols-outlined">web</span> Landing 1 (Regreso a Ti)
+        </a></li>
+        <li><a href="#" onclick="switchTab('landing2')">
+          <span class="material-symbols-outlined">web</span> Landing 2 (Escritura)
+        </a></li>
+        <li><a href="#" onclick="switchTab('landing3')">
+          <span class="material-symbols-outlined">web</span> Landing 3 (Despertar)
+        </a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Ajustes & Sistema</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" onclick="switchTab('global')">
+          <span class="material-symbols-outlined">settings</span> Configuración Global
+        </a></li>
+        <li><a href="#" onclick="switchTab('backup')">
+          <span class="material-symbols-outlined">backup</span> Respaldo & Restaurar
+        </a></li>
+      </ul>
+    </nav>
+
+    <!-- MAIN PANELS -->
+    <main class="main-content">
+
+      <!-- ===================================================================
+           TAB 1: INICIO (INDEX.HTML)
+           =================================================================== -->
+      <section id="tab-inicio" class="panel active">
+        <div class="panel-header">
           <div>
-            <div class="toggle-label">Mostrar tirilla en la web</div>
-            <div class="toggle-desc">Cuando está activa, aparece sobre el encabezado de todas las páginas</div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">home</span> Página de Inicio (index.html)</h1>
+            <p class="panel-subtitle">Edita los titulares de impacto, subtítulos, biografía corta y tarjetas de mentorías de la portada.</p>
           </div>
-          <label class="switch">
-            <input type="checkbox" id="promo-active" onchange="updatePromoPreview()">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3><span class="material-symbols-outlined">edit</span> Contenido de la Tirilla</h3>
-        <div class="form-group">
-          <label>Emoji / Ícono (opcional)</label>
-          <input type="text" class="form-control" id="promo-emoji" value="🌿" oninput="updatePromoPreview()" style="width: 120px;">
-        </div>
-        <div class="form-group">
-          <label>Texto Principal</label>
-          <input type="text" class="form-control" id="promo-text" value="¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas." oninput="updatePromoPreview()" placeholder="Ej: ¡Oferta especial! 20% de descuento esta semana">
-        </div>
-        <div class="form-group">
-          <label>Texto del Botón / CTA (opcional)</label>
-          <input type="text" class="form-control" id="promo-cta-text" value="Reservar ahora →" oninput="updatePromoPreview()">
-        </div>
-        <div class="form-group">
-          <label>URL del botón</label>
-          <input type="url" class="form-control" id="promo-cta-url" value="mentorias-y-cursos.html" oninput="updatePromoPreview()">
-        </div>
-        <div class="form-group">
-          <label>Color de fondo</label>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <input type="color" class="form-control" id="promo-bg-color" value="#2f342e" oninput="updatePromoPreview()" style="width: 60px; height: 44px; padding: 0.25rem; cursor: pointer;">
-            <input type="color" class="form-control" id="promo-text-color" value="#f7d598" oninput="updatePromoPreview()" style="width: 60px; height: 44px; padding: 0.25rem; cursor: pointer;">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">← Fondo &nbsp;&nbsp; Texto →</span>
-          </div>
+          <a href="index.html" target="_blank" class="panel-page-link">
+            <span>Ver index.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
         </div>
 
-        <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;">Vista Previa:</h4>
-        <div id="promo-preview" class="promo-strip-preview">
-          🌿 &nbsp; ¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas. &nbsp; <span style="text-decoration: underline; cursor: pointer;">Reservar ahora →</span>
-        </div>
-
-        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button class="btn btn-primary" onclick="savePromo()">
-            <span class="material-symbols-outlined">save</span> Guardar y Publicar Tirilla
-          </button>
-          <button class="btn btn-outline" onclick="copyPromoCode()">
-            <span class="material-symbols-outlined">content_copy</span> Copiar Código HTML
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- LANDING TEMPLATE GENERATOR -->
-    <div id="panel-landing1" class="panel">
-      <h2 class="panel-title">Landing Page 1</h2>
-      <p class="panel-desc">Crea y personaliza tu primera página de aterrizaje. Actívala con el toggle para que sea visible al público.</p>
-      <div id="landing-editor-1" class="landing-editor" data-num="1"></div>
-    </div>
-    <div id="panel-landing2" class="panel">
-      <h2 class="panel-title">Landing Page 2</h2>
-      <p class="panel-desc">Segunda landing page — perfecta para un taller, curso o servicio específico.</p>
-      <div id="landing-editor-2" class="landing-editor" data-num="2"></div>
-    </div>
-    <div id="panel-landing3" class="panel">
-      <h2 class="panel-title">Landing Page 3</h2>
-      <p class="panel-desc">Tercera landing page — para campañas, eventos en vivo o lanzamientos especiales.</p>
-      <div id="landing-editor-3" class="landing-editor" data-num="3"></div>
-    </div>
-
-    <!-- CONFIGURACIÓN GENERAL -->
-    <div id="panel-config" class="panel">
-      <h2 class="panel-title">Configuración General</h2>
-      <p class="panel-desc">Datos de contacto y configuración básica del sitio.</p>
-      <div class="card">
-        <h3><span class="material-symbols-outlined">contact_phone</span> Datos de Contacto</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>WhatsApp (con código de país)</label>
-            <input type="text" class="form-control" value="+57 314 338 5095" oninput="markDirty()">
-          </div>
-          <div class="form-group">
-            <label>Correo de contacto</label>
-            <input type="email" class="form-control" value="trascedamosjuntos89@gmail.com" oninput="markDirty()">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Instagram</label>
-            <input type="url" class="form-control" value="https://www.instagram.com/cataarango9" oninput="markDirty()">
-          </div>
-          <div class="form-group">
-            <label>Facebook</label>
-            <input type="url" class="form-control" value="https://www.facebook.com/share/1GGydKN4HL/" oninput="markDirty()">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>YouTube</label>
-            <input type="url" class="form-control" value="https://youtube.com/@cataarango9" oninput="markDirty()">
-          </div>
-          <div class="form-group">
-            <label>TikTok</label>
-            <input type="url" class="form-control" value="https://www.tiktok.com/@trascendamos" oninput="markDirty()">
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<!-- SAVE BANNER -->
-<div class="save-banner" id="save-banner" onclick="saveAll()">
-  <span class="material-symbols-outlined">save</span> Guardar Cambios
-</div>
-
-<!-- SUCCESS TOAST -->
-<div class="success-toast" id="success-toast">
-  <span class="material-symbols-outlined">check_circle</span> ¡Guardado con éxito!
-</div>
-
-<script>
-  // ---- Panel Navigation ----
-  function showPanel(id) {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-    document.getElementById('panel-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
-
-  // ---- Dirty State ----
-  let isDirty = false;
-  function markDirty() {
-    isDirty = true;
-    document.getElementById('save-banner').classList.add('visible');
-  }
-
-  function saveAll() {
-    // Save all fields to localStorage
-    const fields = {
-      'hero-title': document.getElementById('txt-hero-title')?.value,
-      'hero-subtitle': document.getElementById('txt-hero-subtitle')?.value,
-      'hero-secondary': document.getElementById('txt-hero-secondary')?.value,
-      'quien-soy-1': document.getElementById('txt-quien-soy-1')?.value,
-      'filosofia-quote': document.getElementById('txt-filosofia-quote')?.value,
-      'price-regreso': document.getElementById('price-regreso')?.value,
-      'price-despertar': document.getElementById('price-despertar')?.value,
-      'price-renacer': document.getElementById('price-renacer')?.value,
-      'price-escritura': document.getElementById('price-escritura')?.value,
-    };
-    localStorage.setItem('cata_admin_fields', JSON.stringify(fields));
-    saveLandings();
-    savePromo();
-    isDirty = false;
-    document.getElementById('save-banner').classList.remove('visible');
-    showToast();
-  }
-
-  function showToast() {
-    const toast = document.getElementById('success-toast');
-    toast.style.display = 'flex';
-    setTimeout(() => { toast.style.display = 'none'; }, 3000);
-  }
-
-  // ---- Image Upload Preview ----
-  function triggerUpload(id) {
-    document.getElementById(id).click();
-  }
-  function previewImg(input, previewId) {
-    const preview = document.getElementById(previewId);
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        preview.src = e.target.result;
-        preview.style.display = 'block';
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  // ---- Promo Strip ----
-  function updatePromoPreview() {
-    const emoji = document.getElementById('promo-emoji')?.value || '';
-    const text = document.getElementById('promo-text')?.value || '';
-    const ctaText = document.getElementById('promo-cta-text')?.value || '';
-    const bgColor = document.getElementById('promo-bg-color')?.value || '#2f342e';
-    const textColor = document.getElementById('promo-text-color')?.value || '#f7d598';
-    const preview = document.getElementById('promo-preview');
-    if (preview) {
-      preview.style.background = bgColor;
-      preview.style.color = textColor;
-      preview.innerHTML = `${emoji} &nbsp; ${text} &nbsp; <span style="text-decoration:underline;cursor:pointer;">${ctaText}</span>`;
-    }
-  }
-
-  function savePromo() {
-    const promoData = {
-      active: document.getElementById('promo-active')?.checked || false,
-      emoji: document.getElementById('promo-emoji')?.value || '',
-      text: document.getElementById('promo-text')?.value || '',
-      ctaText: document.getElementById('promo-cta-text')?.value || '',
-      ctaUrl: document.getElementById('promo-cta-url')?.value || '',
-      bgColor: document.getElementById('promo-bg-color')?.value || '#2f342e',
-      textColor: document.getElementById('promo-text-color')?.value || '#f7d598',
-    };
-    localStorage.setItem('cata_promo_strip', JSON.stringify(promoData));
-    showToast();
-  }
-
-  function copyPromoCode() {
-    const p = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
-    const code = `<!-- Promo Strip Cata Arango -->
-<div id="promoStripBar" style="display:${p.active?'flex':'none'};align-items:center;justify-content:center;gap:1rem;padding:0.65rem 1.5rem;background:${p.bgColor};color:${p.textColor};font-size:0.88rem;font-weight:600;text-align:center;flex-wrap:wrap;">
-  <span>${p.emoji} ${p.text}</span>
-  ${p.ctaText ? `<a href="${p.ctaUrl}" style="color:${p.textColor};text-decoration:underline;">${p.ctaText}</a>` : ''}
-  <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:${p.textColor};cursor:pointer;font-size:1.1rem;line-height:1;">✕</button>
-</div>`;
-    navigator.clipboard.writeText(code).then(() => showToast());
-  }
-
-  // ---- Landing Pages ----
-  const landingDefaults = [
-    { title: 'Oferta Especial — Regreso a Ti', url: 'landing-regreso-a-ti.html', headline: '¿Lista para reconectar contigo?', desc: 'Una sesión de 90 minutos para identificar el bloqueo emocional raíz y volver a tu centro.', price: '88 USD', cta: 'Quiero mi espacio', ctaUrl: 'mentorias-y-cursos.html' },
-    { title: 'Escritura Terapéutica', url: 'landing-escritura.html', headline: 'Sana a través de la palabra', desc: 'Un programa mensual de escritura terapéutica y audios de reprogramación para liberar lo que tu cuerpo retiene en silencio.', price: '55 USD', cta: 'Comenzar ahora', ctaUrl: 'mentorias-y-cursos.html#escritura-terapeutica' },
-    { title: 'Proceso Despertar', url: 'landing-despertar.html', headline: '3 semanas para transformar tu vida', desc: 'Proceso estructurado de 3 sesiones para desmantelar lealtades inconscientes y renacer en soberanía personal.', price: '222 USD', cta: 'Iniciar mi proceso', ctaUrl: 'mentorias-y-cursos.html' },
-  ];
-
-  function saveLandings() {
-    for (let i = 1; i <= 3; i++) {
-      const d = getLandingData(i);
-      localStorage.setItem('cata_landing_' + i, JSON.stringify(d));
-    }
-  }
-
-  function getLandingData(num) {
-    const f = id => document.getElementById('l' + num + '-' + id)?.value || '';
-    return {
-      active: document.getElementById('l' + num + '-active')?.checked || false,
-      title: f('title'),
-      url: f('url'),
-      headline: f('headline'),
-      desc: f('desc'),
-      price: f('price'),
-      cta: f('cta'),
-      ctaUrl: f('ctaUrl'),
-    };
-  }
-
-  function renderLandingEditors() {
-    for (let i = 1; i <= 3; i++) {
-      const container = document.getElementById('landing-editor-' + i);
-      const def = landingDefaults[i - 1];
-      const saved = JSON.parse(localStorage.getItem('cata_landing_' + i) || 'null') || def;
-      container.innerHTML = `
         <div class="card">
-          <div class="toggle-row">
-            <div>
-              <div class="toggle-label">Landing ${i} visible al público</div>
-              <div class="toggle-desc">URL: <span class="landing-url">${saved.url}</span></div>
+          <h2 class="card-title"><span class="material-symbols-outlined">auto_awesome</span> Bienvenida Inmersiva (Portada Mística)</h2>
+          <div class="form-group">
+            <label class="form-label">Frase de Bienvenida</label>
+            <input type="text" class="form-control" id="home_welcome_title" value="Bienvenida Alma Valiente a este espacio, donde la intención siempre será a que regreses a tí." oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Frase de Cierre / Anclaje</label>
+            <input type="text" class="form-control" id="home_welcome_quote" value="¡Eres polvo de estrellas, no lo olvides!" oninput="markDirty()">
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">title</span> Hero Principal (Inicio)</h2>
+          <div class="form-group">
+            <label class="form-label">Título Principal (H1)</label>
+            <input type="text" class="form-control" id="home_hero_title" value="Integra tu Sombra. Despierta tu Luz." oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subtítulo Hero</label>
+            <textarea class="form-control" id="home_hero_subtitle" oninput="markDirty()">Un espacio seguro y sin dogmas para liberar el dolor de las heridas de tu infancia y ancestrales, memorias de dolor, traumas y bloqueos emocionales. Para que puedas ‘aquietar tu mente y reconciliarte con tu centro personal’.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Texto Secundario (Modalidades y Alcance)</label>
+            <input type="text" class="form-control" id="home_hero_secondary" value="Guiado por Catalina Arango Rivera. Sesiones individuales híbridas en Medellín, Colombia y 100% virtuales para el resto del mundo." oninput="markDirty()">
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">person</span> Sección Quién Soy & Filosofía</h2>
+          <div class="form-group">
+            <label class="form-label">Párrafo Introductorio sobre Cata</label>
+            <textarea class="form-control" id="home_quien_soy_text" oninput="markDirty()">Soy originaria de Medellín, Colombia. Durante 18 años transité la vida corporativa buscando pertenecer, hasta que tomé la valiente decisión de soltar esa armadura para recordar quién era en verdad y acompañar a otros a volver a su centro.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cita Destacada de Filosofía</label>
+            <textarea class="form-control" id="home_filosofia_quote" oninput="markDirty()">«El dolor no es un castigo ni una falla; es la brújula sagrada de tu alma pidiéndote regresar a casa: a ti mismo.»</textarea>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">image</span> Imágenes de la Portada</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Retrato Principal Cata (Hero)</label>
+              <div class="img-upload-box">
+                <input type="file" accept="image/*" onchange="previewCmsImg(this, 'prev-home-cata')">
+                <span class="material-symbols-outlined" style="font-size: 32px; color: var(--gold);">add_photo_alternate</span>
+                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Cambiar Foto Principal (JPG, PNG, WebP)</span>
+                <img id="prev-home-cata" class="img-preview" src="assets/images/cata_hero.jpg" style="display: block;">
+              </div>
             </div>
-            <div style="display:flex;align-items:center;gap:1rem;">
-              <span id="l${i}-status" class="badge badge-${saved.active?'active':'inactive'}">${saved.active?'✓ Activa':'✗ Inactiva'}</span>
-              <label class="switch">
-                <input type="checkbox" id="l${i}-active" ${saved.active?'checked':''} onchange="toggleLandingStatus(${i})">
-                <span class="slider"></span>
-              </label>
+            <div class="form-group">
+              <label class="form-label">Imagen de Fondo Sombra y Luz</label>
+              <div class="img-upload-box">
+                <input type="file" accept="image/*" onchange="previewCmsImg(this, 'prev-home-bg')">
+                <span class="material-symbols-outlined" style="font-size: 32px; color: var(--gold);">wallpaper</span>
+                <span style="font-size: 0.82rem; color: var(--text-muted); display: block;">Cambiar Fondo Místico</span>
+                <img id="prev-home-bg" class="img-preview" src="assets/images/hero_inicio.jpg" style="display: block;">
+              </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 2: SOBRE MÍ (SOBRE-MI.HTML)
+           =================================================================== -->
+      <section id="tab-sobremi" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">person</span> Sobre Mí (sobre-mi.html)</h1>
+            <p class="panel-subtitle">Administra los textos autobiográficos, historia de vocación y momentos clave de Catalina.</p>
+          </div>
+          <a href="sobre-mi.html" target="_blank" class="panel-page-link">
+            <span>Ver sobre-mi.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
         <div class="card">
-          <h3><span class="material-symbols-outlined">link</span> URL de la Landing</h3>
+          <h2 class="card-title"><span class="material-symbols-outlined">history_edu</span> Encabezado Hero</h2>
           <div class="form-group">
-            <label>Nombre del archivo (URL de la página)</label>
-            <input type="text" class="form-control" id="l${i}-url" value="${saved.url}" oninput="markDirty()">
+            <label class="form-label">Título Hero</label>
+            <input type="text" class="form-control" id="sobremi_hero_title" value="La Travesía Hacia Mi Interior" oninput="markDirty()">
           </div>
           <div class="form-group">
-            <label>Título SEO / Pestaña</label>
-            <input type="text" class="form-control" id="l${i}-title" value="${saved.title}" oninput="markDirty()">
+            <label class="form-label">Subtítulo Hero</label>
+            <textarea class="form-control" id="sobremi_hero_subtitle" oninput="markDirty()">De 18 años en el mundo corporativo a sostener procesos de sanación profunda, integración de sombra y renacer del alma.</textarea>
           </div>
         </div>
+
         <div class="card">
-          <h3><span class="material-symbols-outlined">title</span> Contenido Principal</h3>
+          <h2 class="card-title"><span class="material-symbols-outlined">menu_book</span> Capítulos de su Historia</h2>
           <div class="form-group">
-            <label>Título Principal de la Landing</label>
-            <input type="text" class="form-control" id="l${i}-headline" value="${saved.headline}" oninput="markDirty()">
+            <label class="form-label">Capítulo I: El Origen y la Vocación</label>
+            <textarea class="form-control" id="sobremi_capitulo1" oninput="markDirty()">Soy originaria de Medellín, Colombia, y desde muy joven sentí una profunda necesidad de estar al servicio de los demás. A los 27 años estudié Comunicación y Medios Periodísticos y posteriormente me especialicé en Talento Humano.</textarea>
           </div>
           <div class="form-group">
-            <label>Descripción / Propuesta de valor</label>
-            <textarea class="form-control" id="l${i}-desc" oninput="markDirty()">${saved.desc}</textarea>
+            <label class="form-label">Capítulo II: 18 Años Corporativos y el Punto de Quiebre</label>
+            <textarea class="form-control" id="sobremi_capitulo2" oninput="markDirty()">Durante 18 años transité la vida corporativa buscando pertenecer, hasta que el alma comenzó a pesarme más que cualquier seguridad aparente. Renunciar fue el instante sagrado en que se cayeron las máscaras e identidades defensivas.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Párrafo Revelación y Misión de Alma</label>
+            <textarea class="form-control" id="sobremi_proposito_quote" oninput="markDirty()">«Fue allí donde Dios y mis guías me mostraron y corroboraron cuál es mi propósito de vida y misión de alma.»</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 3: MENTORÍAS & CURSOS (MENTORIAS-Y-CURSOS.HTML)
+           =================================================================== -->
+      <section id="tab-mentorias" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">self_improvement</span> Mentorías & Cursos</h1>
+            <p class="panel-subtitle">Edita descripciones, precios oficiales y características de los procesos 1 a 1 y del programa de escritura.</p>
+          </div>
+          <a href="mentorias-y-cursos.html" target="_blank" class="panel-page-link">
+            <span>Ver mentorias-y-cursos.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
+        <!-- REGRESO A TI -->
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_1</span> 1. Regreso a Ti (Nivel Inicial · 1 Sesión)</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Precio en USD</label>
+              <input type="number" class="form-control" id="mentorias_regreso_usd" value="88" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio en COP</label>
+              <input type="number" class="form-control" id="mentorias_regreso_cop" value="360000" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" id="mentorias_regreso_desc" oninput="markDirty()">Mentoría intensiva individual de 90 minutos para identificar con precisión el bloqueo emocional raíz y reconectar con tu presencia consciente y paz interior.</textarea>
+          </div>
+        </div>
+
+        <!-- PROCESO DESPERTAR -->
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_2</span> 2. Proceso Despertar (Inmersión 3 Semanas)</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Precio en USD</label>
+              <input type="number" class="form-control" id="mentorias_despertar_usd" value="222" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio en COP</label>
+              <input type="number" class="form-control" id="mentorias_despertar_cop" value="900000" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" id="mentorias_despertar_desc" oninput="markDirty()">Proceso estructurado de 3 semanas para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.</textarea>
+          </div>
+        </div>
+
+        <!-- RENACER INTERNO -->
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">filter_3</span> 3. Renacer Interno VIP (12 Sesiones · 3 Meses)</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Precio en USD</label>
+              <input type="number" class="form-control" id="mentorias_renacer_usd" value="999" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio en COP</label>
+              <input type="number" class="form-control" id="mentorias_renacer_cop" value="4100000" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descripción Oficial</label>
+            <textarea class="form-control" id="mentorias_renacer_desc" oninput="markDirty()">Contenedor holístico VIP de 3 meses. 12 sesiones personalizadas para sanar linajes familiares, heridas y traumas individuales y reprogramación de la mente y sistema nervioso, para que recuerdes que eres la grandeza misma.</textarea>
+          </div>
+        </div>
+
+        <!-- ESCRITURA TERAPÉUTICA -->
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">edit_note</span> 4. Escritura Terapéutica & Sanación Consciente</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Precio Mensual en USD</label>
+              <input type="number" class="form-control" id="mentorias_escritura_usd" value="55" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio Mensual en COP</label>
+              <input type="number" class="form-control" id="mentorias_escritura_cop" value="225000" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" id="mentorias_escritura_desc" oninput="markDirty()">Acceso mensual al programa estructurado de escritura terapéutica con guías descargables e audios de reprogramación interior para ponerle nombre a lo que el cuerpo retiene en silencio.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 4: COMUNIDAD SAGRADA (COMUNIDAD.HTML)
+           =================================================================== -->
+      <section id="tab-comunidad" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">groups</span> Comunidad Sagrada (comunidad.html)</h1>
+            <p class="panel-subtitle">Administra los niveles de membresías grupales, círculos por Zoom y canales de Telegram.</p>
+          </div>
+          <a href="comunidad.html" target="_blank" class="panel-page-link">
+            <span>Ver comunidad.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">diversity_3</span> Membresías Mensuales</h2>
+          <div class="form-group">
+            <label class="form-label">Nivel I: El Despertar (Gratis · $0 USD)</label>
+            <input type="text" class="form-control" id="comunidad_nivel1_desc" value="Acceso inicial a la comunidad abierta y reflexiones de Catalina." oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nivel II: Memoria Sagrada ($17 USD / mes)</label>
+            <input type="text" class="form-control" id="comunidad_nivel2_desc" value="Circuito de hábitos conscientes, meditaciones exclusivas descargables y bitácora de autorregulación." oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nivel III: El Refugio ($45 USD / mes · Círculos en Vivo)</label>
+            <input type="text" class="form-control" id="comunidad_nivel3_desc" value="2 círculos en vivo al mes por Zoom con Catalina Arango, canal privado de Telegram y sesiones de preguntas en vivo." oninput="markDirty()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nivel IV: El Santuario ($99 USD / mes · VIP Integral)</label>
+            <input type="text" class="form-control" id="comunidad_nivel4_desc" value="Todo el acceso a El Refugio más 1 sesión individual privada mensual de 60 minutos con Catalina Arango." oninput="markDirty()">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 5: TESTIMONIOS EN VIDEO (TESTIMONIOS.HTML)
+           =================================================================== -->
+      <section id="tab-testimonios" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">reviews</span> Testimonios en Video (testimonios.html)</h1>
+            <p class="panel-subtitle">Administra los títulos, citas y testimonios en video de los consultantes.</p>
+          </div>
+          <a href="testimonios.html" target="_blank" class="panel-page-link">
+            <span>Ver testimonios.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">play_circle</span> Testimonios Activos (5 Consultantes)</h2>
+          <div class="form-group">
+            <label class="form-label">01. April · El Desarme de la Autoexigencia</label>
+            <input type="text" class="form-control" value="Capítulo I · Transformación Personal · El Desarme de la Autoexigencia y el Retorno a la Calma" readonly style="opacity: 0.85;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">02. Iván · Sanar la Herida Paterna</label>
+            <input type="text" class="form-control" value="Capítulo II · Soberanía & Propósito · Sanar la Herida Paterna y Habitar el Liderazgo Consciente" readonly style="opacity: 0.85;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">03. Viviana · Liberar Lealtades Inconscientes</label>
+            <input type="text" class="form-control" value="Capítulo III · Sanación de Linaje · Liberar Lealtades Inconscientes y Reconciliarse con el Cuerpo" readonly style="opacity: 0.85;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">04. Yorlady · De la Culpa al Abrazo de la Sombra</label>
+            <input type="text" class="form-control" value="Capítulo IV · Paz y Claridad Interior · De la Culpa Inconsciente al Abrazo Compasivo de la Sombra" readonly style="opacity: 0.85;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">05. Bárbara · Retorno al Centro y Paz con la Historia Familiar</label>
+            <input type="text" class="form-control" value="Capítulo V · Renacer y Sanación Emocional · El Retorno al Centro y la Paz con la Historia Familiar" readonly style="opacity: 0.85;">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 6: ESCÁNER DE PATRONES (ESCANER-DE-PATRONES.HTML)
+           =================================================================== -->
+      <section id="tab-escaner" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">psychology</span> Escáner de Patrones</h1>
+            <p class="panel-subtitle">Configura el test interactivo, el diagnóstico raíz y la oferta post-escáner.</p>
+          </div>
+          <a href="escaner-de-patrones.html" target="_blank" class="panel-page-link">
+            <span>Ver escaner-de-patrones.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">redeem</span> Oferta Especial Post-Escáner</h2>
+          <div class="form-group">
+            <label class="form-label">Título de la Oferta</label>
+            <input type="text" class="form-control" id="escaner_oferta_title" value="Escritura Terapéutica & Sanación Consciente" oninput="markDirty()">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Precio / Inversión</label>
-              <input type="text" class="form-control" id="l${i}-price" value="${saved.price}" oninput="markDirty()">
+              <label class="form-label">Precio Especial (USD)</label>
+              <input type="number" class="form-control" id="escaner_oferta_precio" value="20" oninput="markDirty()">
             </div>
             <div class="form-group">
-              <label>Texto del Botón CTA</label>
-              <input type="text" class="form-control" id="l${i}-cta" value="${saved.cta}" oninput="markDirty()">
+              <label class="form-label">Precio Habitual Tachado (USD)</label>
+              <input type="number" class="form-control" id="escaner_oferta_tachado" value="55" oninput="markDirty()">
             </div>
           </div>
           <div class="form-group">
-            <label>URL destino del botón CTA</label>
-            <input type="url" class="form-control" id="l${i}-ctaUrl" value="${saved.ctaUrl}" oninput="markDirty()">
+            <label class="form-label">Descripción de la Oferta</label>
+            <textarea class="form-control" id="escaner_oferta_desc" oninput="markDirty()">El complemento perfecto para profundizar en tu proceso de sanación. Con guías de escritura terapéutica y audios de reprogramación interior diseñados para liberar lo que tu cuerpo retiene en silencio.</textarea>
           </div>
         </div>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="saveLandingAndGenerate(${i})">
-            <span class="material-symbols-outlined">save</span> Guardar Landing ${i} (En Tiempo Real)
-          </button>
-          <a href="${saved.url}" target="_blank" class="btn btn-outline">
-            <span class="material-symbols-outlined">open_in_new</span> Ver Landing Online
+      </section>
+
+      <!-- ===================================================================
+           TAB 7: CONTACTO & FAQ (CONTACTO-Y-FAQ.HTML)
+           =================================================================== -->
+      <section id="tab-contacto" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">calendar_month</span> Contacto & FAQ</h1>
+            <p class="panel-subtitle">Edita las respuestas a preguntas frecuentes (FAQ) y los datos de agenda.</p>
+          </div>
+          <a href="contacto-y-faq.html" target="_blank" class="panel-page-link">
+            <span>Ver contacto-y-faq.html</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
           </a>
-          <button class="btn btn-outline" onclick="generateLandingPage(${i})">
-            <span class="material-symbols-outlined">download</span> Descargar Copia HTML
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">quiz</span> Preguntas Frecuentes Principales</h2>
+          <div class="form-group">
+            <label class="form-label">FAQ 1: ¿Cómo puedo pagar y qué valor tiene cada Mentoría?</label>
+            <textarea class="form-control" id="faq_precios_text" oninput="markDirty()">Regreso a Ti ($88 USD / $360.000 COP), Proceso Despertar ($222 USD / $900.000 COP), Renacer Interno VIP ($999 USD / $4.100.000 COP). Aceptamos tarjetas internacionales y PSE con enlace seguro de Bold.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">FAQ 2: ¿En cuánto tiempo podré sanar?</label>
+            <textarea class="form-control" id="faq_tiempo_text" oninput="markDirty()">La sanación no es lineal. Desde la primera sesión de 90 minutos notarás un alivio tangible y claridad para poner límites sanos.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">FAQ 3: ¿Es virtual la Mentoría?</label>
+            <textarea class="form-control" id="faq_modalidad_text" oninput="markDirty()">Para consultantes en Medellín, Colombia, modalidad híbrida presencial o virtual. Para el resto de Colombia y el exterior, 100% virtual vía videollamada privada.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 8: TIRILLA DE PROMOCIÓN SUPERIOR
+           =================================================================== -->
+      <section id="tab-tirilla" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">campaign</span> Tirilla de Promoción Sitewide</h1>
+            <p class="panel-subtitle">Barra de anuncio ubicada sobre el menú en todas las páginas. Actívala o desactívala cuando quieras.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <strong>Mostrar tirilla en toda la web</strong>
+              <span>Cuando está activa, aparece fija en el tope de todas las páginas</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="promo-active" onchange="updatePromoPreview(); markDirty();">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Emoji / Ícono</label>
+            <input type="text" class="form-control" id="promo-emoji" value="🌿" oninput="updatePromoPreview(); markDirty();" style="width: 100px;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Texto del Anuncio</label>
+            <input type="text" class="form-control" id="promo-text" value="¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas para este mes." oninput="updatePromoPreview(); markDirty();">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Texto del Enlace / Botón</label>
+              <input type="text" class="form-control" id="promo-cta-text" value="Reservar ahora →" oninput="updatePromoPreview(); markDirty();">
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL Destino</label>
+              <input type="text" class="form-control" id="promo-cta-url" value="mentorias-y-cursos.html" oninput="updatePromoPreview(); markDirty();">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Color de Fondo</label>
+              <input type="color" class="form-control" id="promo-bg-color" value="#2f342e" oninput="updatePromoPreview(); markDirty();" style="height: 45px; padding: 0.25rem;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Color del Texto</label>
+              <input type="color" class="form-control" id="promo-text-color" value="#f7d598" oninput="updatePromoPreview(); markDirty();" style="height: 45px; padding: 0.25rem;">
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <label class="form-label">Vista Previa:</label>
+            <div id="promo-preview-box" style="padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; text-align: center; font-size: 0.88rem; background: #2f342e; color: #f7d598;">
+              🌿 &nbsp; ¡Oferta especial! Regreso a Ti — $88 USD. Plazas limitadas para este mes. &nbsp; <span style="text-decoration: underline;">Reservar ahora →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 9, 10, 11: LANDINGS 1, 2, 3
+           =================================================================== -->
+      <section id="tab-landing1" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">web</span> Landing 1: Regreso a Ti</h1>
+            <p class="panel-subtitle">URL pública: <code>landing-regreso-a-ti.html</code></p>
+          </div>
+          <a href="landing-regreso-a-ti.html" target="_blank" class="panel-page-link">
+            <span>Ver landing online</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+        <div id="landing-editor-1" class="landing-editor-box"></div>
+      </section>
+
+      <section id="tab-landing2" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">web</span> Landing 2: Escritura Terapéutica</h1>
+            <p class="panel-subtitle">URL pública: <code>landing-escritura.html</code></p>
+          </div>
+          <a href="landing-escritura.html" target="_blank" class="panel-page-link">
+            <span>Ver landing online</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+        <div id="landing-editor-2" class="landing-editor-box"></div>
+      </section>
+
+      <section id="tab-landing3" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">web</span> Landing 3: Proceso Despertar</h1>
+            <p class="panel-subtitle">URL pública: <code>landing-despertar.html</code></p>
+          </div>
+          <a href="landing-despertar.html" target="_blank" class="panel-page-link">
+            <span>Ver landing online</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+          </a>
+        </div>
+        <div id="landing-editor-3" class="landing-editor-box"></div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 12: CONFIGURACIÓN GLOBAL
+           =================================================================== -->
+      <section id="tab-global" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">settings</span> Configuración Global del Sitio</h1>
+            <p class="panel-subtitle">Canales de contacto oficiales y redes sociales sincronizadas en toda la plataforma.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">contact_phone</span> Canales Oficiales</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">WhatsApp Oficial (con código de país)</label>
+              <input type="text" class="form-control" id="global_whatsapp" value="+57 314 338 5095" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Correo Oficial de Soporte</label>
+              <input type="email" class="form-control" id="global_email" value="trascedamosjuntos89@gmail.com" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Instagram</label>
+              <input type="url" class="form-control" id="global_instagram" value="https://www.instagram.com/cataarango9" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Facebook</label>
+              <input type="url" class="form-control" id="global_facebook" value="https://www.facebook.com/share/1GGydKN4HL/" oninput="markDirty()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">YouTube</label>
+              <input type="url" class="form-control" id="global_youtube" value="https://youtube.com/@cataarango9" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">TikTok</label>
+              <input type="url" class="form-control" id="global_tiktok" value="https://www.tiktok.com/@trascendamos" oninput="markDirty()">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 13: RESPALDO & RESTAURAR
+           =================================================================== -->
+      <section id="tab-backup" class="panel">
+        <div class="panel-header">
+          <div>
+            <h1 class="panel-title"><span class="material-symbols-outlined">backup</span> Respaldo y Restauración de Datos</h1>
+            <p class="panel-subtitle">Descarga una copia completa de tus textos o cárgala en cualquier momento.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">download</span> Exportar Respaldo</h2>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Descarga un archivo con todos los textos, precios y configuraciones de tus páginas en un solo clic.
+          </p>
+          <button type="button" class="btn btn-primary" onclick="exportBackupJson()">
+            <span class="material-symbols-outlined">download</span>
+            Descargar Copia de Seguridad JSON
           </button>
         </div>
-      `;
+
+        <div class="card">
+          <h2 class="card-title"><span class="material-symbols-outlined">upload</span> Restaurar Respaldo</h2>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Selecciona un archivo JSON previamente exportado para restaurar todos los textos y configuraciones.
+          </p>
+          <input type="file" id="backupFileInput" accept=".json" onchange="importBackupJson(event)" style="display: none;">
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('backupFileInput').click()">
+            <span class="material-symbols-outlined">upload_file</span>
+            Seleccionar Archivo JSON para Restaurar
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FLOATING SAVE BAR -->
+  <div class="floating-save-bar" id="floatingSaveBar">
+    <span class="material-symbols-outlined" style="color: var(--gold);">edit_notifications</span>
+    <span style="font-size: 0.88rem; font-weight: 500;">Tienes cambios sin guardar</span>
+    <button type="button" class="btn-save-now" onclick="saveAllCms()">
+      <span class="material-symbols-outlined" style="font-size: 16px;">save</span>
+      Guardar Cambios
+    </button>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast-notice" id="toastNotice">
+    <span class="material-symbols-outlined">check_circle</span>
+    <span id="toastText">¡Cambios guardados con éxito en la web!</span>
+  </div>
+
+  <!-- LOGIC SCRIPT -->
+  <script>
+    let isDirty = false;
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+      
+      const targetPanel = document.getElementById('tab-' + tabId);
+      if (targetPanel) targetPanel.classList.add('active');
+      
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
     }
-  }
 
-  function toggleLandingStatus(num) {
-    const isActive = document.getElementById('l' + num + '-active').checked;
-    const badge = document.getElementById('l' + num + '-status');
-    badge.textContent = isActive ? '✓ Activa' : '✗ Inactiva';
-    badge.className = 'badge badge-' + (isActive ? 'active' : 'inactive');
-    saveLandings();
-    showToast();
-  }
+    function markDirty() {
+      isDirty = true;
+      document.getElementById('floatingSaveBar').classList.add('visible');
+    }
 
-  function saveLandingAndGenerate(num) {
-    saveLandings();
-    showToast();
-  }
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotice');
+      if (msg) document.getElementById('toastText').textContent = msg;
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3200);
+    }
 
-  function generateLandingPage(num) {
-    const d = getLandingData(num);
-    if (!d.active) return;
-    const html = `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${d.title} · Catalina Arango</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    body { background: #fbf9f5; }
-    .landing-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2f342e 0%, #444a42 100%); padding: 4rem 1.5rem; text-align: center; }
-    .landing-container { max-width: 680px; margin: 0 auto; }
-    .landing-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,5vw,3.5rem); color: #fff; margin-bottom: 1rem; line-height: 1.1; }
-    .landing-desc { color: rgba(255,249,238,0.85); font-size: 1.15rem; line-height: 1.65; margin-bottom: 2rem; }
-    .landing-price { font-family: 'Playfair Display', serif; font-size: 3rem; color: #f7d598; font-weight: 700; margin-bottom: 1.5rem; }
-    .landing-cta { display: inline-flex; align-items: center; gap: 0.65rem; background: #c9a87a; color: #2f342e; font-weight: 700; padding: 1.1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: background 0.2s; }
-    .landing-cta:hover { background: #e5c392; }
-    .landing-back { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,249,238,0.5); }
-    .landing-back a { color: rgba(255,249,238,0.65); }
-  </style>
-</head>
-<body>
-  <section class="landing-hero">
-    <div class="landing-container">
-      <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="width:64px;margin-bottom:1.5rem;opacity:0.9;">
-      <h1 class="landing-title">${d.headline}</h1>
-      <p class="landing-desc">${d.desc}</p>
-      <div class="landing-price">${d.price}</div>
-      <a href="${d.ctaUrl}" class="landing-cta">✦ ${d.cta}</a>
-      <p class="landing-back"><a href="index.html">← Volver al sitio principal</a></p>
-    </div>
-  </section>
-</body>
-</html>`;
-    
-    // Download as file
-    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = d.url;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
+    // GESTIÓN DE TIRILLA
+    function updatePromoPreview() {
+      const active = document.getElementById('promo-active').checked;
+      const emoji = document.getElementById('promo-emoji').value;
+      const text = document.getElementById('promo-text').value;
+      const ctaText = document.getElementById('promo-cta-text').value;
+      const bgColor = document.getElementById('promo-bg-color').value;
+      const textColor = document.getElementById('promo-text-color').value;
 
-  // ---- Init ----
-  document.addEventListener('DOMContentLoaded', function() {
-    renderLandingEditors();
-    updatePromoPreview();
-    
-    // Restore saved fields
-    const saved = JSON.parse(localStorage.getItem('cata_admin_fields') || '{}');
-    Object.entries(saved).forEach(([k, v]) => {
-      const el = document.getElementById('txt-' + k) || document.getElementById('price-' + k.replace('price-',''));
-      if (el) el.value = v;
+      const box = document.getElementById('promo-preview-box');
+      box.style.background = bgColor;
+      box.style.color = textColor;
+      box.innerHTML = `${emoji} &nbsp; ${text} &nbsp; <span style="text-decoration: underline;">${ctaText}</span>`;
+      box.style.opacity = active ? '1' : '0.4';
+    }
+
+    // GESTIÓN DE LANDINGS 1, 2, 3
+    const landingDefaults = [
+      { id: 1, title: 'Regreso a Ti · Mentoría Individual | Cata Arango', url: 'landing-regreso-a-ti.html', headline: '¿Lista para reconectar contigo?', desc: 'Una sesión de 90 minutos para identificar el bloqueo emocional raíz, transformar las lealtades invisibles y volver a tu centro con compasión y soberanía personal.', price: '$88 USD', cta: 'Quiero Mi Espacio · Reservar Ahora', ctaUrl: 'mentorias-y-cursos.html' },
+      { id: 2, title: 'Escritura Terapéutica & Sanación Consciente | Cata Arango', url: 'landing-escritura.html', headline: 'Sana a través de la palabra consciente', desc: 'Un programa mensual estructurado con guías de escritura terapéutica y audios de reprogramación interior para liberar lo que tu cuerpo retiene en silencio y transformar el dolor en soberanía.', price: '$55 USD', cta: 'Inscribirme al Programa · $55 USD', ctaUrl: 'mentorias-y-cursos.html#escritura-terapeutica' },
+      { id: 3, title: 'Proceso Despertar · Inmersión de 3 Semanas | Cata Arango', url: 'landing-despertar.html', headline: '3 semanas para transformar tu vida', desc: 'Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.', price: '$222 USD', cta: 'Iniciar Mi Proceso · $222 USD', ctaUrl: 'mentorias-y-cursos.html' }
+    ];
+
+    function renderLandingEditors() {
+      landingDefaults.forEach((def, idx) => {
+        const num = idx + 1;
+        const container = document.getElementById('landing-editor-' + num);
+        if (!container) return;
+
+        const saved = JSON.parse(localStorage.getItem('cata_landing_' + num) || 'null') || def;
+        const isActive = saved.active !== false;
+
+        container.innerHTML = `
+          <div class="card">
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <strong>Visibilidad Pública de la Landing ${num}</strong>
+                <span>URL: <code>${saved.url}</code></span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <span id="l${num}-badge" class="badge ${isActive ? 'badge-active' : 'badge-inactive'}">
+                  ${isActive ? '✓ Visible al Público' : '✗ Pausada / Oculta'}
+                </span>
+                <label class="switch">
+                  <input type="checkbox" id="l${num}-active" ${isActive ? 'checked' : ''} onchange="toggleLandingLive(${num})">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Título de la Pestaña (SEO / Browser Title)</label>
+              <input type="text" class="form-control" id="l${num}-title" value="${saved.title}" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Titular Principal de la Página (H1)</label>
+              <input type="text" class="form-control" id="l${num}-headline" value="${saved.headline}" oninput="markDirty()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Propuesta de Valor / Descripción de la Oferta</label>
+              <textarea class="form-control" id="l${num}-desc" oninput="markDirty()">${saved.desc}</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Inversión / Precio Visible</label>
+                <input type="text" class="form-control" id="l${num}-price" value="${saved.price}" oninput="markDirty()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Texto del Botón Principal (CTA)</label>
+                <input type="text" class="form-control" id="l${num}-cta" value="${saved.cta}" oninput="markDirty()">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL Destino del Botón (o acción de pasarela)</label>
+              <input type="text" class="form-control" id="l${num}-ctaUrl" value="${saved.ctaUrl}" oninput="markDirty()">
+            </div>
+            
+            <div style="margin-top: 1.25rem; display: flex; gap: 0.85rem;">
+              <button type="button" class="btn btn-primary" onclick="saveSingleLanding(${num})">
+                <span class="material-symbols-outlined">save</span>
+                Guardar Landing ${num}
+              </button>
+              <a href="${saved.url}" target="_blank" class="btn btn-outline">
+                <span class="material-symbols-outlined">open_in_new</span>
+                Abrir Landing
+              </a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function toggleLandingLive(num) {
+      const active = document.getElementById('l' + num + '-active').checked;
+      const badge = document.getElementById('l' + num + '-badge');
+      badge.textContent = active ? '✓ Visible al Público' : '✗ Pausada / Oculta';
+      badge.className = 'badge ' + (active ? 'badge-active' : 'badge-inactive');
+      saveSingleLanding(num);
+    }
+
+    function saveSingleLanding(num) {
+      const current = {
+        active: document.getElementById('l' + num + '-active').checked,
+        url: landingDefaults[num - 1].url,
+        title: document.getElementById('l' + num + '-title').value,
+        headline: document.getElementById('l' + num + '-headline').value,
+        desc: document.getElementById('l' + num + '-desc').value,
+        price: document.getElementById('l' + num + '-price').value,
+        cta: document.getElementById('l' + num + '-cta').value,
+        ctaUrl: document.getElementById('l' + num + '-ctaUrl').value
+      };
+      localStorage.setItem('cata_landing_' + num, JSON.stringify(current));
+      showToast('¡Landing ' + num + ' actualizada en tiempo real!');
+      markDirty();
+    }
+
+    // PREVIEW DE IMÁGENES
+    function previewCmsImg(input, prevId) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const p = document.getElementById(prevId);
+          p.src = e.target.result;
+          p.style.display = 'block';
+          markDirty();
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // GUARDAR TODO
+    function saveAllCms() {
+      // 1. Recoger datos de todas las páginas
+      const cmsData = {};
+      document.querySelectorAll('input[id], textarea[id]').forEach(input => {
+        if (!input.id.startsWith('l1-') && !input.id.startsWith('l2-') && !input.id.startsWith('l3-') && !input.id.startsWith('promo-')) {
+          cmsData[input.id] = input.value;
+        }
+      });
+      localStorage.setItem('cata_cms_content', JSON.stringify(cmsData));
+
+      // 2. Guardar Tirilla de Promoción
+      const promoData = {
+        active: document.getElementById('promo-active').checked,
+        emoji: document.getElementById('promo-emoji').value,
+        text: document.getElementById('promo-text').value,
+        ctaText: document.getElementById('promo-cta-text').value,
+        ctaUrl: document.getElementById('promo-cta-url').value,
+        bgColor: document.getElementById('promo-bg-color').value,
+        textColor: document.getElementById('promo-text-color').value
+      };
+      localStorage.setItem('cata_promo_strip', JSON.stringify(promoData));
+
+      // 3. Guardar las 3 landings
+      for (let i = 1; i <= 3; i++) {
+        saveSingleLanding(i);
+      }
+
+      isDirty = false;
+      document.getElementById('floatingSaveBar').classList.remove('visible');
+      showToast('✦ ¡Todos los cambios han sido guardados con éxito!');
+    }
+
+    // EXPORTAR E IMPORTAR JSON
+    function exportBackupJson() {
+      const fullBackup = {
+        version: "2.0",
+        date: new Date().toISOString(),
+        cms: JSON.parse(localStorage.getItem('cata_cms_content') || '{}'),
+        promo: JSON.parse(localStorage.getItem('cata_promo_strip') || '{}'),
+        landing1: JSON.parse(localStorage.getItem('cata_landing_1') || '{}'),
+        landing2: JSON.parse(localStorage.getItem('cata_landing_2') || '{}'),
+        landing3: JSON.parse(localStorage.getItem('cata_landing_3') || '{}')
+      };
+
+      const blob = new Blob([JSON.stringify(fullBackup, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Respaldo_Cata_Arango_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      showToast('Copia de seguridad descargada.');
+    }
+
+    function importBackupJson(evt) {
+      const file = evt.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.cms) localStorage.setItem('cata_cms_content', JSON.stringify(data.cms));
+          if (data.promo) localStorage.setItem('cata_promo_strip', JSON.stringify(data.promo));
+          if (data.landing1) localStorage.setItem('cata_landing_1', JSON.stringify(data.landing1));
+          if (data.landing2) localStorage.setItem('cata_landing_2', JSON.stringify(data.landing2));
+          if (data.landing3) localStorage.setItem('cata_landing_3', JSON.stringify(data.landing3));
+          
+          showToast('¡Respaldo importado! Recargando panel...');
+          setTimeout(() => { window.location.reload(); }, 1200);
+        } catch(err) {
+          alert('Error al leer el archivo JSON de respaldo.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // RESTAURAR AL INICIAR
+    document.addEventListener('DOMContentLoaded', function() {
+      renderLandingEditors();
+
+      // Restaurar valores de CMS
+      const cms = JSON.parse(localStorage.getItem('cata_cms_content') || '{}');
+      Object.keys(cms).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.value = cms[k];
+      });
+
+      // Restaurar tirilla
+      const promo = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
+      if (promo.text) {
+        if (promo.active !== undefined) document.getElementById('promo-active').checked = promo.active;
+        if (promo.emoji) document.getElementById('promo-emoji').value = promo.emoji;
+        if (promo.text) document.getElementById('promo-text').value = promo.text;
+        if (promo.ctaText) document.getElementById('promo-cta-text').value = promo.ctaText;
+        if (promo.ctaUrl) document.getElementById('promo-cta-url').value = promo.ctaUrl;
+        if (promo.bgColor) document.getElementById('promo-bg-color').value = promo.bgColor;
+        if (promo.textColor) document.getElementById('promo-text-color').value = promo.textColor;
+        updatePromoPreview();
+      }
     });
-    
-    // Restore promo
-    const promo = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
-    if (promo.text) {
-      if (promo.active) document.getElementById('promo-active').checked = true;
-      if (promo.emoji) document.getElementById('promo-emoji').value = promo.emoji;
-      if (promo.text) document.getElementById('promo-text').value = promo.text;
-      if (promo.ctaText) document.getElementById('promo-cta-text').value = promo.ctaText;
-      if (promo.ctaUrl) document.getElementById('promo-cta-url').value = promo.ctaUrl;
-      if (promo.bgColor) document.getElementById('promo-bg-color').value = promo.bgColor;
-      if (promo.textColor) document.getElementById('promo-text-color').value = promo.textColor;
-      updatePromoPreview();
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
