@@ -281,6 +281,26 @@ h1, h2, h3, h4, .font-serif {
   .col-span-8 { grid-column: span 8; width: auto; }
 }
 
+/* ==========================================================================
+   PROMO STRIP & DYNAMIC HEADER OFFSET
+   ========================================================================== */
+#promoStripBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10005;
+  box-sizing: border-box;
+}
+
+body.has-promo-strip .site-header {
+  top: var(--promo-height, 40px) !important;
+}
+
+body.has-promo-strip main {
+  padding-top: calc(80px + var(--promo-height, 40px)) !important;
+}
+
 /* Header & Navigation Bar */
 .site-header {
   position: fixed;
@@ -301,11 +321,11 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .site-header .container {
-  max-width: 1600px;
+  max-width: 100% !important;
   width: 100%;
   box-sizing: border-box;
-  padding-left: clamp(0.75rem, 1.5vw, 1.5rem);
-  padding-right: clamp(0.75rem, 1.5vw, 1.5rem);
+  padding-left: clamp(1rem, 2vw, 2.5rem) !important;
+  padding-right: clamp(1rem, 2vw, 2.5rem) !important;
 }
 
 .header-inner {

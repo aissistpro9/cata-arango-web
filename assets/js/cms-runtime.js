@@ -59,9 +59,12 @@
           <button type="button" aria-label="Cerrar aviso" id="promoCloseBtn" style="background:none;border:none;color:${textColor};cursor:pointer;font-size:1.2rem;position:absolute;right:0.85rem;top:50%;transform:translateY(-50%);line-height:1;padding:0.25rem 0.5rem;opacity:0.85;display:inline-flex;align-items:center;justify-content:center;" title="Cerrar aviso">✕</button>
         `;
 
+        document.body.classList.add('has-promo-strip');
+
         function updateLayoutOffset() {
           if (!bar || bar.style.display === 'none') return;
           const barHeight = bar.offsetHeight || 38;
+          document.documentElement.style.setProperty('--promo-height', barHeight + 'px');
           if (header) {
             header.style.top = barHeight + 'px';
           }
@@ -79,12 +82,16 @@
           closeBtn.onclick = function() {
             sessionStorage.setItem('cata_promo_closed', 'true');
             bar.style.display = 'none';
+            document.body.classList.remove('has-promo-strip');
+            document.documentElement.style.removeProperty('--promo-height');
             if (header) header.style.top = '0';
             if (main) main.style.paddingTop = '80px';
             window.removeEventListener('resize', updateLayoutOffset);
           };
         }
       } else {
+        document.body.classList.remove('has-promo-strip');
+        document.documentElement.style.removeProperty('--promo-height');
         if (bar) {
           bar.style.display = 'none';
           bar.style.height = '0';

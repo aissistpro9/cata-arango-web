@@ -316,7 +316,7 @@ app.use(express.static(path.join(__dirname, '.'), {
     } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|ico|mp4|ogg|mp3|woff2|woff|ttf)$/i)) {
       res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
     } else if (filePath.match(/\.(css|js)$/i)) {
-      res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     }
   }
 }));

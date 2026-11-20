@@ -481,10 +481,15 @@
     .btn-gold { background: var(--gold); color: #1a1e1a; font-weight: 700; }
     .btn-gold:hover { background: var(--gold-light); }
 
+    .mobile-tabs-bar {
+      display: none;
+    }
+
     @media (max-width: 860px) {
       .admin-layout { grid-template-columns: 1fr; }
       .sidebar { display: none; }
-      .main-content { padding: 1.5rem; }
+      .mobile-tabs-bar { display: flex !important; }
+      .main-content { padding: 1.25rem 1rem 3rem; }
       .form-row { grid-template-columns: 1fr; }
       .search-bar-wrap { display: none; }
     }
@@ -846,6 +851,35 @@
 
     <!-- MAIN PANELS -->
     <main class="main-content">
+
+      <!-- SELECTOR MÓVIL/TABLET DE SECCIONES (visible solo en pantallas <= 860px) -->
+      <div class="mobile-tabs-bar" style="background: #182018; padding: 0.75rem 1rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid var(--border); align-items: center; gap: 0.75rem;">
+        <label for="mobileSectionSelector" style="font-size: 0.85rem; font-weight: 700; color: var(--gold-light); display: flex; align-items: center; gap: 0.35rem; white-space: nowrap;">
+          <span class="material-symbols-outlined" style="font-size: 20px;">menu_book</span> Sección:
+        </label>
+        <select id="mobileSectionSelector" class="form-control" onchange="switchTab(this.value)" style="flex: 1; padding: 0.55rem 0.85rem; font-size: 0.88rem; font-weight: 600; background: #121812; color: #fff; border-color: rgba(229,195,146,0.3);">
+          <optgroup label="Páginas de la Web">
+            <option value="inicio" selected>1. Inicio (/)</option>
+            <option value="sobremi">2. Sobre Mí (/sobre-mi)</option>
+            <option value="mentorias">3. Mentorías & Cursos</option>
+            <option value="comunidad">4. Comunidad Sagrada</option>
+            <option value="testimonios">5. Testimonios en Video</option>
+            <option value="escaner">6. Escáner de Patrones</option>
+            <option value="contacto">7. Contacto & FAQ</option>
+            <option value="pagoconfirmado">8. Pago Confirmado</option>
+          </optgroup>
+          <optgroup label="Promociones & Landings">
+            <option value="tirilla">📢 Tirilla de Promoción</option>
+            <option value="landing1">🌐 Landing 1 (Regreso a Ti)</option>
+            <option value="landing2">🌐 Landing 2 (Escritura)</option>
+            <option value="landing3">🌐 Landing 3 (Despertar)</option>
+          </optgroup>
+          <optgroup label="Sistema & Respaldos">
+            <option value="global">⚙️ Configuración Global</option>
+            <option value="backup">💾 Respaldo & Restaurar</option>
+          </optgroup>
+        </select>
+      </div>
 
       <!-- ===================================================================
            TAB 1: INICIO (INDEX.HTML)
@@ -2030,9 +2064,12 @@
       const targetPanel = document.getElementById('tab-' + tabId);
       if (targetPanel) targetPanel.classList.add('active');
       
-      if (window.event && window.event.currentTarget) {
-        window.event.currentTarget.classList.add('active');
-      }
+      const sidebarLink = document.querySelector(`.sidebar-nav a[onclick*="'${tabId}'"]`);
+      if (sidebarLink) sidebarLink.classList.add('active');
+
+      const mob = document.getElementById('mobileSectionSelector');
+      if (mob) mob.value = tabId;
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
