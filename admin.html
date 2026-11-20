@@ -1842,6 +1842,14 @@
             </div>
           </div>
 
+          <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+            <span style="font-size: 0.76rem; color: var(--gold-light); font-weight: 600;">Paletas Rápidas:</span>
+            <button type="button" class="btn btn-outline" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" onclick="applyPromoPalette('#2f342e', '#f7d598')">🌿 Verde Sabio & Dorado</button>
+            <button type="button" class="btn btn-outline" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" onclick="applyPromoPalette('#161311', '#e5c392')">🖤 Negro Místico & Oro</button>
+            <button type="button" class="btn btn-outline" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" onclick="applyPromoPalette('#784d3c', '#fff9e8')">🍂 Terracota & Crema</button>
+            <button type="button" class="btn btn-outline" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" onclick="applyPromoPalette('#8c7355', '#ffffff')">✨ Bronce Sagrado & Blanco</button>
+          </div>
+
           <div style="margin-top: 1.5rem;">
             <label class="form-label"><span>Vista Previa en Vivo:</span></label>
             <div id="promo-preview-box" style="padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; text-align: center; font-size: 0.88rem; background: #2f342e; color: #f7d598;">
@@ -2103,21 +2111,52 @@
       }
     }
 
+    function applyPromoPalette(bg, text) {
+      const bgEl = document.getElementById('promo-bg-color');
+      const textEl = document.getElementById('promo-text-color');
+      if (bgEl) bgEl.value = bg;
+      if (textEl) textEl.value = text;
+      updatePromoPreview();
+      markDirty();
+    }
+
     function savePromoStripOnly() {
+      const activeEl = document.getElementById('promo-active');
+      const emojiEl = document.getElementById('promo-emoji');
+      const textEl = document.getElementById('promo-text');
+      const ctaTextEl = document.getElementById('promo-cta-text');
+      const ctaUrlEl = document.getElementById('promo-cta-url');
+      const bgColorEl = document.getElementById('promo-bg-color');
+      const textColorEl = document.getElementById('promo-text-color');
+
       const promoData = {
-        active: document.getElementById('promo-active').checked,
-        emoji: document.getElementById('promo-emoji').value,
-        text: document.getElementById('promo-text').value,
-        ctaText: document.getElementById('promo-cta-text').value,
-        ctaUrl: document.getElementById('promo-cta-url').value,
-        bgColor: document.getElementById('promo-bg-color').value,
-        textColor: document.getElementById('promo-text-color').value
+        active: activeEl ? activeEl.checked : false,
+        emoji: emojiEl ? emojiEl.value : '🌿',
+        text: textEl ? textEl.value : '',
+        ctaText: ctaTextEl ? ctaTextEl.value : '',
+        ctaUrl: ctaUrlEl ? ctaUrlEl.value : '',
+        bgColor: bgColorEl ? bgColorEl.value : '#2f342e',
+        textColor: textColorEl ? textColorEl.value : '#f7d598'
       };
+
       localStorage.setItem('cata_promo_strip', JSON.stringify(promoData));
+      sessionStorage.removeItem('cata_promo_closed');
       
-      // Sincronizar de inmediato con el servidor
-      syncCmsWithServer();
-      showToast('✦ ¡Tirilla de Promoción guardada y sincronizada!');
+      fetch('/api/cms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ promo: promoData })
+      })
+      .then(res => res.json())
+      .then(result => {
+        showToast('✦ ¡Tirilla de Promoción guardada y sincronizada en el servidor!');
+        isDirty = false;
+        const bar = document.getElementById('floatingSaveBar');
+        if (bar) bar.classList.remove('visible');
+      })
+      .catch(err => {
+        showToast('✦ Tirilla guardada en caché local');
+      });
     }
 
     // FOTOS OFICIALES PREDEFINIDAS
@@ -2144,8 +2183,8 @@
         desc: 'Una sesión intensiva de 90 minutos para identificar el bloqueo emocional raíz, transformar las lealtades invisibles y volver a tu centro con compasión y soberanía personal.',
         heroImage: 'assets/images/cata_portrait.webp',
         showHeroImage: true,
-        price: '$85 USD',
-        priceSecondary: '$350.000 COP',
+        price: '$88 USD',
+        priceSecondary: '$360.000 COP',
         priceNote: 'Sesión 1 a 1 de 90 min · Modalidad Virtual o Presencial Medellín',
         cta: 'Quiero Mi Espacio · Reservar Ahora',
         ctaUrl: '/mentorias#regreso-a-ti',
@@ -2206,8 +2245,8 @@
         desc: 'Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.',
         heroImage: 'assets/images/cata_sobremi_1.jpg',
         showHeroImage: true,
-        price: '$219 USD',
-        priceSecondary: '$890.000 COP',
+        price: '$222 USD',
+        priceSecondary: '$900.000 COP',
         priceNote: '3 sesiones de 90 min + Bitácora Semanal + Acompañamiento',
         cta: 'Iniciar Mi Despertar · Inscribirme',
         ctaUrl: '/mentorias#despertar',
@@ -2551,10 +2590,21 @@
       const data = getLandingFormData(num);
       localStorage.setItem('cata_landing_' + num, JSON.stringify(data));
       
-      // Sincronizar con el servidor
-      syncCmsWithServer();
-      showToast('¡Landing ' + num + ' guardada y sincronizada!');
-      markDirty();
+      fetch('/api/cms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          landingKey: 'landing' + num,
+          landing: data
+        })
+      })
+      .then(res => res.json())
+      .then(() => {
+        showToast('✦ ¡Landing ' + num + ' guardada y publicada en el servidor!');
+      })
+      .catch(() => {
+        showToast('✦ Landing ' + num + ' guardada en caché local');
+      });
     }
 
     // PREVIEW DE IMÁGENES GENÉRICAS
