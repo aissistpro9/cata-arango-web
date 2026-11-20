@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="landingTitle">Proceso Despertar · Inmersión de 3 Semanas | Cata Arango</title>
-  <meta name="description" content="Proceso estructurado de 3 sesiones de 90 min para desmantelar lealtades inconscientes, sanar la herida del niño interior y renacer en soberanía.">
+  <meta name="description" content="Inmersión profunda de 3 semanas con Catalina Arango para transformar lealtades inconscientes y sanar la herida del niño interior.">
   <link rel="icon" type="image/png" href="assets/images/FAVICON_SOL_Y_LUNA.png">
 
   <!-- Google Fonts & Material Symbols -->
@@ -16,7 +16,7 @@
 
   <style>
     :root {
-      --gold-primary: #e5c392;
+      --gold-primary: #f7d598;
       --gold-dark: #c99f67;
       --bg-dark: #12100d;
       --card-bg: #1a1612;
@@ -36,7 +36,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(229, 195, 146, 0.15);
+      border-bottom: 1px solid rgba(247, 213, 152, 0.15);
       background: rgba(18, 16, 13, 0.85);
       backdrop-filter: blur(12px);
       position: sticky;
@@ -62,7 +62,7 @@
     .landing-hero-backdrop {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 25%, rgba(247, 213, 152, 0.14) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 25%, rgba(201, 159, 103, 0.18) 0%, transparent 60%);
       pointer-events: none;
     }
     .landing-hero-container {
@@ -75,7 +75,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(247, 213, 152, 0.15);
+      background: rgba(247, 213, 152, 0.12);
       border: 1px solid rgba(247, 213, 152, 0.4);
       color: #f7d598;
       padding: 0.45rem 1.15rem;
@@ -100,18 +100,37 @@
       color: var(--text-muted);
       line-height: 1.65;
       margin-bottom: 2rem;
-      max-width: 680px;
+      max-width: 720px;
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Hero Portrait Preview */
+    .landing-portrait-wrap {
+      margin: 0 auto 2.5rem;
+      max-width: 280px;
+      position: relative;
+    }
+    .landing-portrait-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 22px;
+      border: 2px solid rgba(247, 213, 152, 0.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      display: block;
+    }
+
     .landing-price-box {
       background: var(--card-bg);
       border: 1.5px solid rgba(247, 213, 152, 0.35);
       border-radius: 24px;
       padding: 2.25rem 2rem;
-      max-width: 520px;
+      max-width: 540px;
       margin: 0 auto 3rem;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative;
     }
     .landing-price-val {
       font-family: 'Playfair Display', serif;
@@ -119,6 +138,12 @@
       font-weight: 800;
       color: #f7d598;
       line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .landing-price-secondary {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f7d598;
       margin-bottom: 0.5rem;
     }
     .landing-price-sub {
@@ -128,6 +153,29 @@
       letter-spacing: 0.08em;
       margin-bottom: 1.5rem;
     }
+
+    /* Oferta Especial / Bonos */
+    .landing-offer-bonus-box {
+      background: rgba(247, 213, 152, 0.08);
+      border: 1px dashed rgba(247, 213, 152, 0.4);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .landing-offer-badge-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #f7d598 0%, #c99f67 100%);
+      color: #12100d;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
     .landing-cta-btn {
       display: inline-flex;
       align-items: center;
@@ -159,7 +207,7 @@
       padding: 0 1.5rem;
     }
     .landing-feature-card {
-      background: rgba(26, 22, 18, 0.6);
+      background: rgba(26, 22, 18, 0.65);
       border: 1px solid rgba(247, 213, 152, 0.2);
       border-radius: 18px;
       padding: 1.75rem;
@@ -183,6 +231,18 @@
       line-height: 1.55;
       margin: 0;
     }
+
+    /* Testimonio Card */
+    .landing-testimonial-wrap {
+      max-width: 720px;
+      margin: 0 auto 4rem;
+      padding: 2rem;
+      background: rgba(26, 22, 18, 0.8);
+      border: 1px solid rgba(247, 213, 152, 0.25);
+      border-radius: 20px;
+      text-align: center;
+    }
+
     .landing-inactive-view {
       display: none;
       min-height: 80vh;
@@ -200,11 +260,11 @@
   <!-- VIEW: ACTIVE LANDING -->
   <div id="activeLandingView">
     <header class="landing-header">
-      <a href="index.html" class="landing-brand">
+      <a href="/" class="landing-brand">
         <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
         <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango" style="height: 28px;">
       </a>
-      <a href="index.html" class="btn btn-outline" style="color: var(--gold-primary); border-color: rgba(229,195,146,0.3); font-size: 0.8rem; padding: 0.5rem 1.2rem;">
+      <a href="/" class="btn btn-outline" style="color: var(--gold-primary); border-color: rgba(247,213,152,0.3); font-size: 0.8rem; padding: 0.5rem 1.2rem;">
         Ir a la web principal →
       </a>
     </header>
@@ -213,6 +273,7 @@
       <section class="landing-hero">
         <div class="landing-hero-backdrop"></div>
         <div class="landing-hero-container">
+          
           <div class="landing-badge">
             <span class="material-symbols-outlined" style="font-size: 16px;">stars</span>
             <span id="landingCategory">Inmersión Recomendada · 3 Semanas</span>
@@ -223,22 +284,39 @@
             Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.
           </p>
 
-          <div class="landing-price-box">
-            <div class="landing-price-val" id="landingPrice">$222 USD</div>
-            <div class="landing-price-sub">3 Sesiones de 90 min + Bitácora Semanal + Acompañamiento</div>
+          <!-- Foto del Proceso / Hero Image (editable desde panel) -->
+          <div id="landingHeroImgWrap" class="landing-portrait-wrap">
+            <img id="landingHeroImg" src="assets/images/cata_sobremi_1.jpg" alt="Catalina Arango Rivera" class="landing-portrait-img">
+          </div>
+
+          <!-- Caja de Oferta y Precios -->
+          <div class="landing-price-box" id="landingOfferBox">
+            
+            <!-- Bloque de Oferta Especial & Bonos -->
+            <div id="landingOfferBonusWrap" class="landing-offer-bonus-box">
+              <span class="landing-offer-badge-tag" id="landingOfferBadge">INMERSIÓN COMPLETA</span>
+              <h4 id="landingOfferTitle" style="color: #ffffff; font-size: 1.05rem; margin-bottom: 0.35rem; font-weight: 700;">Inmersión de 3 Semanas</h4>
+              <p id="landingOfferBonus" style="color: #f7d598; font-size: 0.9rem; margin: 0; line-height: 1.45;">
+                Incluye 3 audios personalizados + bitácora de autoobservación + ritual sagrado.
+              </p>
+            </div>
+
+            <div class="landing-price-val" id="landingPrice">$219 USD</div>
+            <div class="landing-price-secondary" id="landingPriceSecondary">$890.000 COP</div>
+            <div class="landing-price-sub" id="landingPriceNote">3 sesiones de 90 min + Bitácora Semanal + Acompañamiento</div>
             
             <button type="button" class="landing-cta-btn" id="landingBtnAction" onclick="handleLandingCheckout()">
               <span class="material-symbols-outlined">lock</span>
-              <span id="landingCtaText">Iniciar Mi Proceso · $222 USD</span>
+              <span id="landingCtaText">Iniciar Mi Despertar · Inscribirme</span>
             </button>
 
-            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">
+            <div id="landingGuaranteeBadge" style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">
               <span class="material-symbols-outlined" style="font-size: 16px; color: var(--gold-primary);">shield</span>
               <span>Pago 100% Seguro vía Bold · Tarjetas &amp; PSE</span>
             </div>
 
-            <div style="margin-top: 1.25rem;">
-              <a id="landingWaLink" href="https://wa.me/573143385095?text=Hola%20Cata,%20quiero%20informaci%C3%B3n%20sobre%20el%20Proceso%20Despertar" class="btn btn-outline" style="width: 100%; border-color: rgba(229,195,146,0.35); color: var(--gold-primary); font-size: 0.88rem; padding: 0.75rem;" target="_blank">
+            <div id="landingWaWrap" style="margin-top: 1.25rem;">
+              <a id="landingWaLink" href="https://wa.me/573143385095?text=Hola%20Cata,%20quiero%20informaci%C3%B3n%20sobre%20el%20Proceso%20Despertar" class="btn btn-outline" style="width: 100%; border-color: rgba(247,213,152,0.35); color: #f7d598; font-size: 0.88rem; padding: 0.75rem;" target="_blank">
                 <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
                 <span>Hablar por WhatsApp antes de reservar</span>
               </a>
@@ -247,26 +325,44 @@
         </div>
       </section>
 
-      <section class="landing-grid-features">
-        <div class="landing-feature-card">
-          <span class="material-symbols-outlined">hub</span>
-          <h3>01 · El Origen (90 min)</h3>
-          <p>Mapeo emocional exhaustivo y desprogramación del bloqueo raíz y mandato inconsciente primario.</p>
+      <!-- SECCIÓN: BENEFICIOS / QUÉ VIVIRÁS (HABILITABLE/DESHABILITABLE) -->
+      <section id="landingFeaturesSection">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff;">Los 3 Encuentros de Transformación</h2>
         </div>
-        <div class="landing-feature-card">
-          <span class="material-symbols-outlined">child_care</span>
-          <h3>02 · El Niño Interior (90 min)</h3>
-          <p>Sanación de la herida de abandono, rechazo, culpa inconsciente y heridas o traumas que emerjan en sesión.</p>
+        <div class="landing-grid-features" id="landingFeaturesGrid">
+          <div class="landing-feature-card">
+            <span class="material-symbols-outlined">hub</span>
+            <h3>01 · El Origen (90 min)</h3>
+            <p>Mapeo emocional exhaustivo y desprogramación del bloqueo raíz y mandato inconsciente primario.</p>
+          </div>
+          <div class="landing-feature-card">
+            <span class="material-symbols-outlined">child_care</span>
+            <h3>02 · El Niño Interior (90 min)</h3>
+            <p>Sanación de la herida de abandono, rechazo, culpa inconsciente y heridas o traumas que emerjan en sesión.</p>
+          </div>
+          <div class="landing-feature-card">
+            <span class="material-symbols-outlined">shield_moon</span>
+            <h3>03 · Soberanía &amp; Cierre (90 min)</h3>
+            <p>Ritual sagrado de integración, anclaje interior y recuperación del poder personal.</p>
+          </div>
         </div>
-        <div class="landing-feature-card">
-          <span class="material-symbols-outlined">shield_moon</span>
-          <h3>03 · Soberanía &amp; Cierre (90 min)</h3>
-          <p>Ritual sagrado de integración, anclaje interior y recuperación del poder personal.</p>
+      </section>
+
+      <!-- SECCIÓN: TESTIMONIO DESTACADO (HABILITABLE/DESHABILITABLE) -->
+      <section id="landingTestimonialSection" style="padding: 0 1.5rem;">
+        <div class="landing-testimonial-wrap">
+          <span class="material-symbols-outlined" style="font-size: 36px; color: var(--gold-primary); margin-bottom: 0.75rem;">format_quote</span>
+          <p id="landingTestimonialQuote" style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; line-height: 1.6; color: #ffffff; margin-bottom: 1rem;">
+            «El proceso Despertar fue un antes y un después en mi relación conmigo y con mi familia. Pude perdonar a mis padres desde un lugar de adulta y recuperar una paz mental que no conocía.»
+          </p>
+          <div style="font-weight: 700; color: #f7d598; font-size: 0.95rem;">Carolina M.</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Consultante Medellín · Proceso 3 Semanas</div>
         </div>
       </section>
     </main>
 
-    <footer style="text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(229,195,146,0.15); color: var(--text-muted); font-size: 0.82rem;">
+    <footer style="text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(247,213,152,0.15); color: var(--text-muted); font-size: 0.82rem;">
       <p>© 2026 Catalina Arango · Trascendamos Juntos. Todos los derechos reservados.</p>
     </footer>
   </div>
@@ -274,11 +370,11 @@
   <!-- VIEW: INACTIVE / PAUSED LANDING -->
   <div id="inactiveLandingView" class="landing-inactive-view">
     <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" style="width: 72px; opacity: 0.7; margin-bottom: 1.5rem;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 0.75rem;">Esta página no está disponible en este momento</h2>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 0.75rem;">Esta oferta se encuentra temporalmente en pausa</h2>
     <p style="color: var(--text-muted); max-width: 480px; margin-bottom: 2rem;">
-      El proceso o promoción solicitado se encuentra temporalmente en pausa. Puedes consultar nuestras mentorías activas en el sitio principal.
+      El proceso solicitado se encuentra temporalmente en pausa. Puedes consultar nuestras mentorías activas en el sitio principal.
     </p>
-    <a href="index.html" class="landing-cta-btn" style="max-width: 280px;">
+    <a href="/" class="landing-cta-btn" style="max-width: 280px;">
       Ir al Sitio Principal
     </a>
   </div>
@@ -288,45 +384,113 @@
   <script src="assets/js/bold-checkout.js"></script>
 
   <script>
-    (function() {
-      const LANDING_ID = 3;
-      const DEFAULT_DATA = {
-        active: true,
-        title: 'Proceso Despertar · Inmersión de 3 Semanas | Cata Arango',
-        headline: '3 semanas para transformar tu vida',
-        desc: 'Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.',
-        price: '$222 USD',
-        cta: 'Iniciar Mi Proceso · $222 USD',
-        ctaUrl: 'mentorias-y-cursos.html'
-      };
+    const LANDING_KEY = 'landing3';
+    const CHECKOUT_PRODUCT_ID = 'proceso-despertar';
 
-      try {
-        const saved = JSON.parse(localStorage.getItem('cata_landing_' + LANDING_ID) || 'null');
-        const data = saved ? Object.assign({}, DEFAULT_DATA, saved) : DEFAULT_DATA;
+    function applyLandingData(data) {
+      if (!data) return;
 
-        // Toggle visibility
-        if (data.active === false) {
-          document.getElementById('activeLandingView').style.display = 'none';
-          document.getElementById('inactiveLandingView').style.display = 'flex';
-          return;
-        }
-
-        // Apply content
-        if (data.title) document.title = data.title;
-        if (data.headline) document.getElementById('landingHeadline').textContent = data.headline;
-        if (data.desc) document.getElementById('landingDesc').textContent = data.desc;
-        if (data.price) document.getElementById('landingPrice').textContent = data.price;
-        if (data.cta) document.getElementById('landingCtaText').textContent = data.cta;
-      } catch (e) {
-        console.warn('Error loading dynamic landing config:', e);
+      // Visibilidad General
+      if (data.active === false) {
+        document.getElementById('activeLandingView').style.display = 'none';
+        document.getElementById('inactiveLandingView').style.display = 'flex';
+        return;
+      } else {
+        document.getElementById('activeLandingView').style.display = 'block';
+        document.getElementById('inactiveLandingView').style.display = 'none';
       }
-    })();
+
+      // Título SEO y Textos
+      if (data.title) document.title = data.title;
+      if (data.badge) document.getElementById('landingCategory').textContent = data.badge;
+      if (data.headline) document.getElementById('landingHeadline').textContent = data.headline;
+      if (data.desc) document.getElementById('landingDesc').textContent = data.desc;
+
+      // Foto Hero
+      const imgWrap = document.getElementById('landingHeroImgWrap');
+      const heroImg = document.getElementById('landingHeroImg');
+      if (data.heroImage && data.heroImage.trim()) {
+        heroImg.src = data.heroImage;
+        imgWrap.style.display = 'block';
+      } else if (data.showHeroImage === false) {
+        imgWrap.style.display = 'none';
+      }
+
+      // Precios
+      if (data.price) document.getElementById('landingPrice').textContent = data.price;
+      if (data.priceSecondary) document.getElementById('landingPriceSecondary').textContent = data.priceSecondary;
+      if (data.priceNote) document.getElementById('landingPriceNote').textContent = data.priceNote;
+      if (data.cta) document.getElementById('landingCtaText').textContent = data.cta;
+
+      // Caja de Oferta
+      const offerBox = document.getElementById('landingOfferBox');
+      if (data.showOfferBox === false) {
+        offerBox.style.display = 'none';
+      } else {
+        offerBox.style.display = 'block';
+      }
+
+      // Bonos de Oferta
+      const bonusWrap = document.getElementById('landingOfferBonusWrap');
+      if (data.offerBonus && data.offerBonus.trim()) {
+        document.getElementById('landingOfferBonus').textContent = data.offerBonus;
+        if (data.offerTitle) document.getElementById('landingOfferTitle').textContent = data.offerTitle;
+        bonusWrap.style.display = 'block';
+      } else {
+        bonusWrap.style.display = 'none';
+      }
+
+      // Toggles de Secciones
+      if (document.getElementById('landingFeaturesSection')) {
+        document.getElementById('landingFeaturesSection').style.display = data.showFeatures === false ? 'none' : 'block';
+      }
+      if (document.getElementById('landingTestimonialSection')) {
+        document.getElementById('landingTestimonialSection').style.display = data.showTestimonial === false ? 'none' : 'block';
+      }
+      if (document.getElementById('landingWaWrap')) {
+        document.getElementById('landingWaWrap').style.display = data.showWhatsApp === false ? 'none' : 'block';
+      }
+      if (document.getElementById('landingGuaranteeBadge')) {
+        document.getElementById('landingGuaranteeBadge').style.display = data.showGuarantee === false ? 'none' : 'flex';
+      }
+
+      // Características / Features Dinámicas
+      if (Array.isArray(data.features) && data.features.length > 0) {
+        const grid = document.getElementById('landingFeaturesGrid');
+        if (grid) {
+          grid.innerHTML = data.features.map(f => `
+            <div class="landing-feature-card">
+              <span class="material-symbols-outlined">${f.icon || 'star'}</span>
+              <h3>${f.title || ''}</h3>
+              <p>${f.desc || ''}</p>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    // 1. Carga inicial desde caché local (0ms)
+    try {
+      const cached = JSON.parse(localStorage.getItem('cata_landing_3') || 'null');
+      if (cached) applyLandingData(cached);
+    } catch(e) {}
+
+    // 2. Sincronización en vivo con el servidor
+    fetch('/api/cms')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.landings && data.landings.landing3) {
+          localStorage.setItem('cata_landing_3', JSON.stringify(data.landings.landing3));
+          applyLandingData(data.landings.landing3);
+        }
+      })
+      .catch(() => {});
 
     function handleLandingCheckout() {
       if (typeof window.openBoldCheckout === 'function') {
-        window.openBoldCheckout('proceso-despertar');
+        window.openBoldCheckout(CHECKOUT_PRODUCT_ID);
       } else {
-        window.location.href = 'mentorias-y-cursos.html#proceso-despertar';
+        window.location.href = 'mentorias-y-cursos.html#' + CHECKOUT_PRODUCT_ID;
       }
     }
   </script>

@@ -1,0 +1,152 @@
+{
+  "promo": {
+    "active": false,
+    "text": "¡Nuevos cupos abiertos para procesos individuales y grupales con Catalina Arango!",
+    "emoji": "✨",
+    "bgColor": "#2f342e",
+    "textColor": "#f7d598",
+    "ctaText": "Ver Mentorías →",
+    "ctaUrl": "mentorias-y-cursos.html"
+  },
+  "cms": {
+    "global_whatsapp": "+57 314 338 5095",
+    "global_email": "trascedamosjuntos89@gmail.com",
+    "global_instagram": "https://www.instagram.com/cataarango9",
+    "global_facebook": "https://www.facebook.com/share/1GGydKN4HL/",
+    "global_youtube": "https://youtube.com/@cataarango9",
+    "global_tiktok": "https://www.tiktok.com/@trascendamos",
+    "footer_lema": "«Integración de Sombra y Luz con soberanía personal, respeto a tus tiempos y amor incondicional.»",
+    "mentorias_regreso_usd": "85",
+    "mentorias_regreso_cop": "350.000",
+    "mentorias_despertar_usd": "219",
+    "mentorias_despertar_cop": "890.000",
+    "mentorias_renacer_usd": "999",
+    "mentorias_renacer_cop": "4.100.000",
+    "escritura_terapeutica_usd": "55"
+  },
+  "landings": {
+    "landing1": {
+      "id": 1,
+      "slug": "landing-regreso-a-ti",
+      "url": "/landing-regreso-a-ti",
+      "active": true,
+      "title": "Regreso a Ti · Mentoría Individual | Cata Arango",
+      "badge": "Mentoría 1 a 1 · Sesión Individual",
+      "headline": "¿Lista para reconectar contigo?",
+      "desc": "Una sesión intensiva de 90 minutos para identificar el bloqueo emocional raíz, transformar las lealtades invisibles y volver a tu centro con compasión y soberanía personal.",
+      "heroImage": "assets/images/cata_portrait.webp",
+      "price": "$85 USD",
+      "priceSecondary": "$350.000 COP",
+      "priceNote": "Sesión 1 a 1 de 90 min · Modalidad Virtual o Presencial Medellín",
+      "cta": "Quiero Mi Espacio · Reservar Ahora",
+      "ctaAction": "checkout:regreso-a-ti",
+      "ctaUrl": "mentorias-y-cursos.html#regreso-a-ti",
+      "showOfferBox": true,
+      "offerTitle": "Oferta Especial de Apertura",
+      "offerBonus": "Incluye audio guiado de integración somática + cuaderno de ejercicios clínicos de integración.",
+      "showFeatures": true,
+      "showTestimonial": true,
+      "showWhatsApp": true,
+      "showGuarantee": true,
+      "features": [
+        {
+          "icon": "psychology",
+          "title": "Mapeo del Patrón Raíz",
+          "desc": "Identificamos la herida o mandato inconsciente que hoy frena tu avance, sin rodeos ni juicios."
+        },
+        {
+          "icon": "edit_note",
+          "title": "Escritura Terapéutica",
+          "desc": "Consignamos en palabra consciente lo que tu cuerpo retuvo en silencio, liberando la carga atrapada."
+        },
+        {
+          "icon": "spatial_audio",
+          "title": "Audio Guiado de Integración",
+          "desc": "Te llevas una meditación/audio personalizado para anclar la nueva respuesta en tu sistema nervioso."
+        }
+      ]
+    },
+    "landing2": {
+      "id": 2,
+      "slug": "landing-escritura",
+      "url": "/landing-escritura",
+      "active": true,
+      "title": "Escritura Terapéutica & Sanación Consciente | Cata Arango",
+      "badge": "Programa Mensual · Acceso Inmediato",
+      "headline": "Sana a través de la palabra consciente",
+      "desc": "Un programa mensual estructurado con guías de escritura terapéutica y audios de reprogramación interior para liberar lo que tu cuerpo retiene en silencio y transformar el dolor en soberanía.",
+      "heroImage": "assets/images/cata_sobremi_5.webp",
+      "price": "$55 USD",
+      "priceSecondary": "$225.000 COP / mes",
+      "priceNote": "Acceso mensual continuo · Guías descargables · Audios de reprogramación",
+      "cta": "Inscribirme al Programa · $55 USD",
+      "ctaAction": "checkout:escritura-terapeutica",
+      "ctaUrl": "mentorias-y-cursos.html#escritura-terapeutica",
+      "showOfferBox": true,
+      "offerTitle": "Programa Exclusivo de Apertura",
+      "offerBonus": "Incluye guías mensuales descargables + audios somáticos de reprogramación para calma interior.",
+      "showFeatures": true,
+      "showTestimonial": true,
+      "showWhatsApp": true,
+      "showGuarantee": true,
+      "features": [
+        {
+          "icon": "edit_note",
+          "title": "Guías de Escritura Terapéutica",
+          "desc": "Cuadernos paso a paso para desarmar la autoexigencia, la culpa y nombrar la herida en privado."
+        },
+        {
+          "icon": "spatial_audio",
+          "title": "Audios de Reprogramación",
+          "desc": "Frecuencias e inducciones guiadas con la voz de Cata para calmar el sistema nervioso antes y después de escribir."
+        },
+        {
+          "icon": "spa",
+          "title": "Soberanía Emocional a tu Ritmo",
+          "desc": "Avanza a tus propios tiempos, desde cualquier lugar del mundo, con materiales prácticos de aplicación real."
+        }
+      ]
+    },
+    "landing3": {
+      "id": 3,
+      "slug": "landing-despertar",
+      "url": "/landing-despertar",
+      "active": true,
+      "title": "Proceso Despertar · Inmersión de 3 Semanas | Cata Arango",
+      "badge": "Inmersión Recomendada · 3 Semanas",
+      "headline": "3 semanas para transformar tu vida",
+      "desc": "Un proceso estructurado de 3 sesiones de 90 minutos para desmantelar lealtades inconscientes, sanar la herida del niño interior, heridas o traumas identificados en sesión y renacer en soberanía personal.",
+      "heroImage": "assets/images/cata_sobremi_1.jpg",
+      "price": "$219 USD",
+      "priceSecondary": "$890.000 COP",
+      "priceNote": "3 sesiones de 90 min + Bitácora Semanal + Acompañamiento",
+      "cta": "Iniciar Mi Despertar · Inscribirme",
+      "ctaAction": "checkout:proceso-despertar",
+      "ctaUrl": "mentorias-y-cursos.html#despertar",
+      "showOfferBox": true,
+      "offerTitle": "Inmersión Completa de Transformación",
+      "offerBonus": "Incluye 3 audios personalizados + bitácora de autoobservación + ritual sagrado.",
+      "showFeatures": true,
+      "showTestimonial": true,
+      "showWhatsApp": true,
+      "showGuarantee": true,
+      "features": [
+        {
+          "icon": "hub",
+          "title": "01 · El Origen (90 min)",
+          "desc": "Mapeo emocional exhaustivo y desprogramación del bloqueo raíz y mandato inconsciente primario."
+        },
+        {
+          "icon": "child_care",
+          "title": "02 · El Niño Interior (90 min)",
+          "desc": "Sanación de la herida de abandono, rechazo, culpa inconsciente y heridas o traumas que emerjan en sesión."
+        },
+        {
+          "icon": "shield_moon",
+          "title": "03 · Soberanía & Cierre (90 min)",
+          "desc": "Ritual sagrado de integración, anclaje interior y recuperación del poder personal."
+        }
+      ]
+    }
+  }
+}

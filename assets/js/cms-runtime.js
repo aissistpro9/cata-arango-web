@@ -1,24 +1,20 @@
 /**
  * CMS RUNTIME — Catalina Arango · Trascendamos Juntos
  * Sincroniza dinámicamente todo el contenido guardado desde el Panel de Autogestión (admin.html)
- * en tiempo real en todas las páginas de la web.
- * Soporta elementos por atributo [data-cms="key"] o por su id="key".
+ * persistido en el servidor (/api/cms) y respaldado en localStorage.
  */
 (function() {
   'use strict';
 
-  function initCms() {
-    renderPromoStrip();
-    applyCmsOverrides();
-  }
-
   // 1. RENDER DE TIRILLA DE PROMOCIÓN SUPERIOR
-  function renderPromoStrip() {
+  function renderPromoStrip(promoData) {
     try {
-      const p = JSON.parse(localStorage.getItem('cata_promo_strip') || '{}');
+      const p = promoData || JSON.parse(localStorage.getItem('cata_promo_strip') || 'null') || {};
       let bar = document.getElementById('promoStripBar');
 
-      if (p && p.active && p.text) {
+      const isClosedSession = sessionStorage.getItem('cata_promo_closed') === 'true';
+
+      if (p && p.active === true && typeof p.text === 'string' && p.text.trim().length > 0 && !isClosedSession) {
         if (!bar) {
           bar = document.createElement('div');
           bar.id = 'promoStripBar';
@@ -27,38 +23,53 @@
         bar.style.display = 'flex';
         bar.style.alignItems = 'center';
         bar.style.justifyContent = 'center';
-        bar.style.gap = '1rem';
-        bar.style.padding = '0.65rem 1.5rem';
+        bar.style.gap = '0.75rem';
+        bar.style.padding = '0.65rem 1.25rem';
         bar.style.fontSize = '0.88rem';
         bar.style.fontWeight = '600';
         bar.style.textAlign = 'center';
         bar.style.flexWrap = 'wrap';
         bar.style.position = 'relative';
         bar.style.zIndex = '1000';
+        bar.style.width = '100%';
+        bar.style.boxSizing = 'border-box';
         bar.style.background = p.bgColor || '#2f342e';
         bar.style.color = p.textColor || '#f7d598';
+        bar.style.lineHeight = '1.4';
+        bar.style.transition = 'all 0.3s ease';
 
         const cta = p.ctaText
-          ? `<a href="${p.ctaUrl || '#'}" style="color:${p.textColor || '#f7d598'};text-decoration:underline;margin-left:0.5rem;">${p.ctaText}</a>`
+          ? `<a href="${p.ctaUrl || '#'}" style="color:${p.textColor || '#f7d598'};text-decoration:underline;font-weight:700;margin-left:0.5rem;display:inline-block;">${p.ctaText}</a>`
           : '';
 
+        const emoji = p.emoji ? `<span style="font-size:1.1rem;margin-right:0.35rem;">${p.emoji}</span>` : '';
+
         bar.innerHTML = `
-          <span>${p.emoji || ''} ${p.text} ${cta}</span>
-          <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:${p.textColor || '#f7d598'};cursor:pointer;font-size:1.1rem;margin-left:1rem;line-height:1;" title="Cerrar aviso">✕</button>
+          <div style="display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:0.35rem;">
+            ${emoji}<span>${p.text}</span>${cta}
+          </div>
+          <button type="button" aria-label="Cerrar aviso" onclick="sessionStorage.setItem('cata_promo_closed','true');this.parentElement.style.display='none';" style="background:none;border:none;color:${p.textColor || '#f7d598'};cursor:pointer;font-size:1.15rem;margin-left:0.85rem;line-height:1;padding:0.2rem 0.4rem;opacity:0.85;display:inline-flex;align-items:center;justify-content:center;" title="Cerrar aviso">✕</button>
         `;
-      } else if (bar) {
-        bar.style.display = 'none';
+      } else {
+        if (bar) {
+          bar.style.display = 'none';
+          bar.style.height = '0';
+          bar.style.padding = '0';
+          bar.style.margin = '0';
+          bar.innerHTML = '';
+        }
       }
-    } catch(e) {}
+    } catch(e) {
+      console.warn('Error rendering promo strip:', e);
+    }
   }
 
-  // 2. OVERRIDES DE CONTENIDO CMS EN TIEMPO REAL
-  function applyCmsOverrides() {
+  // 2. APLICAR OVERRIDES DE CMS
+  function applyCmsOverrides(cmsData) {
     try {
-      const data = JSON.parse(localStorage.getItem('cata_cms_content') || '{}');
+      const data = cmsData || JSON.parse(localStorage.getItem('cata_cms_content') || 'null') || {};
       if (!data || Object.keys(data).length === 0) return;
 
-      // Aplicar por atributo data-cms
       document.querySelectorAll('[data-cms]').forEach(function(el) {
         const key = el.getAttribute('data-cms');
         if (data[key] !== undefined && data[key] !== null && String(data[key]).trim() !== '') {
@@ -70,7 +81,6 @@
         }
       });
 
-      // Aplicar por id directo
       Object.keys(data).forEach(function(key) {
         const val = data[key];
         if (val === undefined || val === null || String(val).trim() === '') return;
@@ -83,80 +93,49 @@
           }
         }
       });
+    } catch(e) {}
+  }
 
-      // Mapeo inteligente de precios USD visibles
-      if (data['mentorias_regreso_usd']) {
-        document.querySelectorAll('[data-cms="mentorias_regreso_usd_display"]').forEach(function(el) {
-          el.textContent = '$' + data['mentorias_regreso_usd'];
-        });
-      }
-      if (data['mentorias_despertar_usd']) {
-        document.querySelectorAll('[data-cms="mentorias_despertar_usd_display"]').forEach(function(el) {
-          el.textContent = '$' + data['mentorias_despertar_usd'];
-        });
-      }
-      if (data['mentorias_renacer_usd']) {
-        document.querySelectorAll('[data-cms="mentorias_renacer_usd_display"]').forEach(function(el) {
-          el.textContent = '$' + data['mentorias_renacer_usd'];
-        });
-      }
-      if (data['mentorias_escritura_usd']) {
-        document.querySelectorAll('[data-cms="mentorias_escritura_usd_display"]').forEach(function(el) {
-          el.textContent = '$' + data['mentorias_escritura_usd'];
-        });
-      }
-      if (data['escaner_oferta_precio']) {
-        document.querySelectorAll('[data-cms="escaner_oferta_precio_display"]').forEach(function(el) {
-          el.textContent = '$' + data['escaner_oferta_precio'];
-        });
-      }
-      if (data['footer_lema']) {
-        document.querySelectorAll('[data-cms="footer_lema"]').forEach(function(el) {
-          el.textContent = data['footer_lema'];
-        });
-      }
+  // 3. SINCRONIZACIÓN CON EL SERVIDOR (/api/cms)
+  async function syncWithServer() {
+    try {
+      const res = await fetch('/api/cms', { cache: 'no-cache' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data) return;
 
-      // WhatsApp oficial en todos los enlaces
-      if (data['global_whatsapp']) {
-        const cleanPhone = data['global_whatsapp'].replace(/[^0-9]/g, '');
-        document.querySelectorAll('a[href*="wa.me"]').forEach(function(a) {
-          try {
-            const urlObj = new URL(a.href);
-            const textParam = urlObj.searchParams.get('text') || '';
-            a.href = 'https://wa.me/' + cleanPhone + (textParam ? '?text=' + encodeURIComponent(textParam) : '');
-          } catch(e) {}
-        });
+      if (data.promo) {
+        localStorage.setItem('cata_promo_strip', JSON.stringify(data.promo));
+        renderPromoStrip(data.promo);
       }
-
-      // Correo oficial
-      if (data['global_email']) {
-        document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
-          a.href = 'mailto:' + data['global_email'];
-          if (a.textContent.includes('@')) a.textContent = data['global_email'];
-        });
+      if (data.cms) {
+        localStorage.setItem('cata_cms_content', JSON.stringify(data.cms));
+        applyCmsOverrides(data.cms);
       }
-
-      // Redes sociales globales
-      if (data['global_instagram']) {
-        document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a) { a.href = data['global_instagram']; });
+      if (data.landings) {
+        if (data.landings.landing1) localStorage.setItem('cata_landing_1', JSON.stringify(data.landings.landing1));
+        if (data.landings.landing2) localStorage.setItem('cata_landing_2', JSON.stringify(data.landings.landing2));
+        if (data.landings.landing3) localStorage.setItem('cata_landing_3', JSON.stringify(data.landings.landing3));
       }
-      if (data['global_facebook']) {
-        document.querySelectorAll('a[href*="facebook.com"]').forEach(function(a) { a.href = data['global_facebook']; });
-      }
-      if (data['global_youtube']) {
-        document.querySelectorAll('a[href*="youtube.com"]').forEach(function(a) { a.href = data['global_youtube']; });
-      }
-      if (data['global_tiktok']) {
-        document.querySelectorAll('a[href*="tiktok.com"]').forEach(function(a) { a.href = data['global_tiktok']; });
-      }
-    } catch(e) {
-      console.warn('CMS Runtime warning:', e);
+    } catch (err) {
+      // Offline fallback
     }
   }
 
+  // Ejecución inicial rápida (0ms con datos locales)
+  renderPromoStrip();
+  applyCmsOverrides();
+
+  // Sincronización con el servidor
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCms);
+    document.addEventListener('DOMContentLoaded', syncWithServer);
   } else {
-    initCms();
+    syncWithServer();
   }
+
+  // Exportar para llamadas manuales si es necesario
+  window.refreshCmsRuntime = function(data) {
+    if (data && data.promo) renderPromoStrip(data.promo);
+    if (data && data.cms) applyCmsOverrides(data.cms);
+  };
 })();

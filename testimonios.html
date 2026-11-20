@@ -19,7 +19,7 @@
        ========================================================================== -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-wrapper" title="Cata Arango · Trascendamos Juntos">
+      <a href="/" class="brand-wrapper" title="Cata Arango · Trascendamos Juntos">
         <img src="assets/images/LOGO_COMPLETO-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="brand-logo-img">
         <div class="brand-title-group sr-only">
           <span class="brand-name">CATA ARANGO</span>
@@ -33,17 +33,23 @@
           <span class="material-symbols-outlined" style="font-size: 16px;">wb_twilight</span>
           <span>Bienvenida</span>
         </a>
-        <a href="index.html" class="nav-link">Inicio</a>
-        <a href="sobre-mi.html" class="nav-link">Sobre Mí</a>
-        <a href="testimonios.html" class="nav-link active">Testimonios</a>
-        <a href="mentorias-y-cursos.html" class="nav-link">Mentorías y Cursos</a>
-        <a href="comunidad.html" class="nav-link">Comunidad</a>
-        <a href="contacto-y-faq.html" class="nav-link">Contacto & FAQ</a>
+        <a href="/" class="nav-link">Inicio</a>
+        <a href="/sobre-mi" class="nav-link">Sobre Mí</a>
+        <a href="/testimonios" class="nav-link active">Testimonios</a>
+        <a href="/mentorias" class="nav-link">Mentorías y Cursos</a>
+        <a href="/comunidad" class="nav-link">Comunidad</a>
+        <a href="/contacto" class="nav-link">Contacto & FAQ</a>
       </nav>
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <a href="mentorias-y-cursos.html" class="btn btn-primary header-cta">Inicia tu Sanación</a>
+        <!-- Botón Acceso Panel de Autogestión -->
+        <a href="/panel" class="nav-admin-btn" title="Acceso al Panel de Autogestión">
+          <span class="material-symbols-outlined">lock</span>
+          <span>Autogestión</span>
+        </a>
+
+        <a href="/mentorias" class="btn btn-primary header-cta">Inicia tu Sanación</a>
         
         <!-- Mobile Hamburger Button -->
         <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú" onclick="toggleMobileMenu()">
@@ -56,14 +62,18 @@
   <!-- Mobile Navigation Drawer -->
   <div class="mobile-nav-drawer" id="mobileNavDrawer">
     <a href="index.html?bienvenida=true" class="nav-link" style="color: var(--secondary); font-weight: 600;">Portada de Bienvenida</a>
-    <a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Inicio</a>
-    <a href="sobre-mi.html" class="nav-link" onclick="toggleMobileMenu()">Sobre Mí</a>
-    <a href="testimonios.html" class="nav-link active" onclick="toggleMobileMenu()">Testimonios</a>
-    <a href="mentorias-y-cursos.html" class="nav-link" onclick="toggleMobileMenu()">Mentorías y Cursos</a>
-    <a href="comunidad.html" class="nav-link" onclick="toggleMobileMenu()">Comunidad</a>
-    <a href="contacto-y-faq.html" class="nav-link" onclick="toggleMobileMenu()">Contacto & FAQ</a>
+    <a href="/" class="nav-link" onclick="toggleMobileMenu()">Inicio</a>
+    <a href="/sobre-mi" class="nav-link" onclick="toggleMobileMenu()">Sobre Mí</a>
+    <a href="/testimonios" class="nav-link active" onclick="toggleMobileMenu()">Testimonios</a>
+    <a href="/mentorias" class="nav-link" onclick="toggleMobileMenu()">Mentorías y Cursos</a>
+    <a href="/comunidad" class="nav-link" onclick="toggleMobileMenu()">Comunidad</a>
+    <a href="/contacto" class="nav-link" onclick="toggleMobileMenu()">Contacto & FAQ</a>
+        <a href="/panel" class="nav-link" onclick="toggleMobileMenu()" style="color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 0.4rem; border-top: 1px dashed rgba(116, 136, 115, 0.2); margin-top: 0.5rem; padding-top: 0.85rem;">
+      <span class="material-symbols-outlined" style="font-size: 18px;">admin_panel_settings</span>
+      <span>Panel de Autogestión</span>
+    </a>
     <div style="margin-top: 0.5rem;">
-      <a href="mentorias-y-cursos.html" class="btn btn-primary" style="width: 100%;">Inicia tu Sanación</a>
+      <a href="/mentorias" class="btn btn-primary" style="width: 100%;">Inicia tu Sanación</a>
     </div>
   </div>
 
@@ -103,7 +113,7 @@
             <span>Ver Testimonios en Video</span>
             <span class="material-symbols-outlined" style="font-size: 20px;">play_circle</span>
           </a>
-          <a href="contacto-y-faq.html#formulario" class="btn btn-outline" style="border: 1.5px solid rgba(229, 195, 146, 0.7); color: #ffffff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px); padding: 0.95rem 1.75rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+          <a href="/contacto#formulario" class="btn btn-outline" style="border: 1.5px solid rgba(229, 195, 146, 0.7); color: #ffffff; background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px); padding: 0.95rem 1.75rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
             <span>Agendar Cita</span>
             <span class="material-symbols-outlined" style="font-size: 18px;">calendar_month</span>
           </a>
@@ -515,11 +525,11 @@
               Cada historia comenzó con una sola decisión: dejar de huir de uno mismo y abrirse a recibir acompañamiento real, seguro y compasivo.
             </p>
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-              <a href="contacto-y-faq.html#formulario" class="btn btn-primary" style="padding: 0.95rem 1.85rem; background: linear-gradient(135deg, #e5c392 0%, #c99f67 100%); color: #1a140e; font-weight: 700; border: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <a href="/contacto#formulario" class="btn btn-primary" style="padding: 0.95rem 1.85rem; background: linear-gradient(135deg, #e5c392 0%, #c99f67 100%); color: #1a140e; font-weight: 700; border: none; display: inline-flex; align-items: center; gap: 0.5rem;">
                 <span class="material-symbols-outlined" style="font-size: 20px;">calendar_month</span>
                 <span>Agendar Cita</span>
               </a>
-              <a href="mentorias-y-cursos.html" class="btn btn-outline" style="padding: 0.95rem 1.75rem; color: #f4ede0; border-color: rgba(229, 195, 146, 0.4);">
+              <a href="/mentorias" class="btn btn-outline" style="padding: 0.95rem 1.75rem; color: #f4ede0; border-color: rgba(229, 195, 146, 0.4);">
                 <span>Ver Mentorías & Cursos</span>
                 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
               </a>
@@ -537,7 +547,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="index.html" class="footer-brand-link" title="Cata Arango · Trascendamos Juntos" style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;">
+          <a href="/" class="footer-brand-link" title="Cata Arango · Trascendamos Juntos" style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;">
             <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna" class="sol-luna-icon sol-luna-md" style="filter: drop-shadow(0 2px 8px rgba(229, 195, 146, 0.4));">
             <img src="assets/images/LOGO_COMPLETO_LIGHT-removebg.png" alt="Cata Arango · Trascendamos Juntos" class="footer-brand-logo">
           </a>
@@ -552,12 +562,13 @@
         <div>
           <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #e5c392; margin-bottom: 1rem;">Navegación</h4>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.875rem;">
-            <li><a href="index.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Inicio</a></li>
-            <li><a href="sobre-mi.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Sobre Mí</a></li>
-            <li><a href="testimonios.html" style="color: #e5c392; font-weight: 600; text-decoration: none;">Testimonios</a></li>
-            <li><a href="mentorias-y-cursos.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Mentorías y Cursos</a></li>
-            <li><a href="comunidad.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Comunidad</a></li>
-            <li><a href="contacto-y-faq.html" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Contacto & FAQ</a></li>
+            <li><a href="/" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Inicio</a></li>
+            <li><a href="/sobre-mi" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Sobre Mí</a></li>
+            <li><a href="/testimonios" style="color: #e5c392; font-weight: 600; text-decoration: none;">Testimonios</a></li>
+            <li><a href="/mentorias" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Mentorías y Cursos</a></li>
+            <li><a href="/comunidad" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Comunidad</a></li>
+            <li><a href="/contacto" style="color: rgba(255, 249, 232, 0.88); text-decoration: none;">Contacto & FAQ</a></li>
+                      <li><a href="/panel" class="body-sm" style="color: #f7d598; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;"><span class="material-symbols-outlined" style="font-size: 14px;">vpn_key</span> Acceso Autogestión</a></li>
           </ul>
         </div>
         <div>
@@ -570,9 +581,15 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255, 249, 232, 0.7);">
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255, 249, 232, 0.7); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
         <p>© 2026 CATA ARANGO • Trascendamos Juntos. Todos los derechos reservados.</p>
-        <p style="color: #e5c392;">Espacio seguro y contenedor de desarrollo integral</p>
+        <div style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+          <span style="color: rgba(255, 249, 232, 0.6); font-size: 0.78rem;">Espacio seguro y contenedor de desarrollo integral</span>
+          <a href="/panel" class="footer-admin-link" title="Ingresar al Panel de Autogestión">
+            <span class="material-symbols-outlined">key</span>
+            <span>Acceso Autogestión</span>
+          </a>
+        </div>
       </div>
     </div>
   </footer>

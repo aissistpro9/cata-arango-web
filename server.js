@@ -1,6 +1,7 @@
 const express = require('express');
 const compression = require('compression');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,8 +15,8 @@ app.use(compression({
 }));
 
 // Middleware to parse JSON and urlencoded bodies
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Security, Strict Transport & Permissions Headers
 app.use((req, res, next) => {
@@ -55,7 +56,105 @@ function runNetlifyFunction(fnPath) {
   };
 }
 
-// API Routes
+// ============================================================================
+// PERSISTENT CMS API (server-side database in data/cms.json)
+// ============================================================================
+const CMS_FILE = path.join(__dirname, 'data', 'cms.json');
+let cmsMemoryCache = null;
+
+function getCmsData() {
+  if (cmsMemoryCache) return cmsMemoryCache;
+  try {
+    if (fs.existsSync(CMS_FILE)) {
+      const raw = fs.readFileSync(CMS_FILE, 'utf8');
+      cmsMemoryCache = JSON.parse(raw);
+      return cmsMemoryCache;
+    }
+  } catch (err) {
+    console.error('Error reading data/cms.json:', err);
+  }
+  return { promo: { active: false }, cms: {}, landings: {} };
+}
+
+// GET /api/cms — Read persisted CMS data
+app.get('/api/cms', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  const data = getCmsData();
+  res.json(data);
+});
+
+// POST /api/cms — Persist CMS updates from Admin Panel
+app.post('/api/cms', (req, res) => {
+  try {
+    const payload = req.body || {};
+    const current = getCmsData();
+
+    if (payload.promo !== undefined) {
+      current.promo = Object.assign({}, current.promo || {}, payload.promo);
+    }
+    if (payload.cms !== undefined) {
+      current.cms = Object.assign({}, current.cms || {}, payload.cms);
+    }
+    if (payload.landings !== undefined) {
+      current.landings = current.landings || {};
+      for (const [k, v] of Object.entries(payload.landings)) {
+        current.landings[k] = Object.assign({}, current.landings[k] || {}, v);
+      }
+    }
+    if (payload.landing && payload.landingKey) {
+      current.landings = current.landings || {};
+      current.landings[payload.landingKey] = Object.assign({}, current.landings[payload.landingKey] || {}, payload.landing);
+    }
+
+    // Ensure data directory exists
+    const dir = path.dirname(CMS_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    fs.writeFileSync(CMS_FILE, JSON.stringify(current, null, 2), 'utf8');
+    cmsMemoryCache = current;
+
+    res.json({
+      success: true,
+      message: 'Configuración guardada exitosamente en el servidor',
+      updated_at: new Date().toISOString(),
+      data: current
+    });
+  } catch (err) {
+    console.error('Error saving data to cms.json:', err);
+    res.status(500).json({ error: 'Error guardando en el servidor', details: err.message });
+  }
+});
+
+// ============================================================================
+// CLEAN ROUTING & SLUGS
+// ============================================================================
+// Landings
+app.get(['/landing-regreso-a-ti', '/regreso-a-ti'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'landing-regreso-a-ti.html'));
+});
+app.get(['/landing-despertar', '/despertar'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'landing-despertar.html'));
+});
+app.get(['/landing-escritura', '/escritura'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'landing-escritura.html'));
+});
+
+// Admin Panel & Agency Portal
+app.get(['/admin', '/autogestion', '/panel'], (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+app.get(['/portal-agencia', '/agencia'], (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'portal-agencia.html'));
+});
+
+// Standard API Routes
 app.all('/api/bold-checkout', runNetlifyFunction('./netlify/functions/bold-checkout.js'));
 app.all('/api/bold-webhook', runNetlifyFunction('./netlify/functions/bold-webhook.js'));
 app.all('/api/contact', runNetlifyFunction('./netlify/functions/contact.js'));
@@ -72,13 +171,10 @@ app.use(express.static(path.join(__dirname, '.'), {
   maxAge: '7d',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
-      // HTML is fast-validated to ensure fresh updates
       res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
     } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|ico|mp4|ogg|mp3|woff2|woff|ttf)$/i)) {
-      // Media, images and fonts cached for 30 days immutable
       res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
     } else if (filePath.match(/\.(css|js)$/i)) {
-      // CSS & JS cached for 7 days with stale-while-revalidate
       res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
     }
   }
