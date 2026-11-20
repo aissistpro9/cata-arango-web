@@ -47,7 +47,7 @@ exports.handler = async (event) => {
     const host = event.headers.host || 'cataarango.blessiatech.com';
     const protocol = host.includes('localhost') ? 'http' : 'https';
     const baseUrl = `${protocol}://${host}`;
-    const magicUrl = `${baseUrl}/escaner-de-patrones.html?magic_token=${token}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(name)}`;
+    const magicUrl = `${baseUrl}/escaner?magic_token=${token}&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(name)}`;
 
     let emailSent = false;
     let emailError = null;

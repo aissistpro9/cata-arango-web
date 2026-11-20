@@ -2,39 +2,69 @@
 # NETLIFY REDIRECTS & CLEAN SLUGS · TRASCENDAMOS JUNTOS (CATA ARANGO)
 # ==============================================================================
 
-# 1. API SERVERLESS BACKEND
-/api/send-scanner-link    /.netlify/functions/send-scanner-link   200
-/api/contact              /.netlify/functions/contact             200
-/api/calendar             /.netlify/functions/google-calendar     200
-/api/google-calendar      /.netlify/functions/google-calendar     200
-/api/bold-checkout        /.netlify/functions/bold-checkout       200
-/api/bold-webhook         /.netlify/functions/bold-webhook        200
+# 1. FORZAR REDIRECCIÓN 301 PERMANENTE DE CUALQUIER .HTML A SLUGS LIMPIOS CANÓNICOS
+/index.html                     /                       301!
+/admin.html                     /panel                  301!
+/autogestion.html               /panel                  301!
+/sobre-mi.html                  /sobre-mi               301!
+/mentorias-y-cursos.html        /mentorias              301!
+/mentorias.html                 /mentorias              301!
+/cursos.html                    /mentorias              301!
+/comunidad.html                 /comunidad              301!
+/testimonios.html               /testimonios            301!
+/contacto-y-faq.html            /contacto               301!
+/contacto.html                  /contacto               301!
+/faq.html                       /contacto               301!
+/escaner-de-patrones.html       /escaner                301!
+/escaner.html                   /escaner                301!
+/bienvenida.html                /bienvenida             301!
+/presentacion_profesional_cata_arango.html /presentacion 301!
+/pago-confirmado.html           /pago-confirmado        301!
+/portal-agencia.html            /portal                 301!
+/portal.html                    /portal                 301!
+/landing-despertar.html         /despertar              301!
+/despertar.html                 /despertar              301!
+/landing-escritura.html         /escritura              301!
+/escritura.html                 /escritura              301!
+/landing-regreso-a-ti.html      /regreso-a-ti           301!
+/regreso-a-ti.html              /regreso-a-ti           301!
 
-# 2. SLUGS DE AUTOGESTIÓN Y ADMINISTRACIÓN (ACCESO WEB)
-/panel                    /admin.html                             200
-/autogestion              /admin.html                             200
-/admin                    /admin.html                             200
-/acceso                   /admin.html                             200
+# 2. SLUGS ALTERNATIVOS -> SLUG CANÓNICO (301)
+/admin                          /panel                  301!
+/autogestion                    /panel                  301!
+/acceso                         /panel                  301!
+/mentorias-y-cursos             /mentorias              301!
+/cursos                         /mentorias              301!
+/contacto-y-faq                 /contacto               301!
+/faq                            /contacto               301!
+/escaner-de-patrones            /escaner                301!
+/escaner-patrones               /escaner                301!
+/landing-despertar              /despertar              301!
+/landing-escritura              /escritura              301!
+/landing-regreso-a-ti           /regreso-a-ti           301!
+/portal-agencia                 /portal                 301!
+/agencia                        /portal                 301!
 
-# 3. SLUGS CANÓNICOS Y AMIGABLES DE PÁGINAS PRINCIPALES
-/sobre-mi                 /sobre-mi.html                          200
-/mentorias                /mentorias-y-cursos.html                200
-/mentorias-y-cursos       /mentorias-y-cursos.html                200
-/cursos                   /mentorias-y-cursos.html                200
-/comunidad                /comunidad.html                         200
-/testimonios              /testimonios.html                       200
-/contacto                 /contacto-y-faq.html                    200
-/contacto-y-faq           /contacto-y-faq.html                    200
-/faq                      /contacto-y-faq.html                    200
-/escaner                  /escaner-de-patrones.html               200
-/escaner-de-patrones      /escaner-de-patrones.html               200
-/escaner-patrones         /escaner-de-patrones.html               200
-/bienvenida               /bienvenida.html                        200
-/pago-confirmado          /pago-confirmado.html                   200
-/portal                   /portal-agencia.html                    200
-/portal-agencia           /portal-agencia.html                    200
+# 3. API SERVERLESS BACKEND
+/api/send-scanner-link          /.netlify/functions/send-scanner-link   200
+/api/contact                    /.netlify/functions/contact             200
+/api/calendar                   /.netlify/functions/google-calendar     200
+/api/google-calendar            /.netlify/functions/google-calendar     200
+/api/bold-checkout              /.netlify/functions/bold-checkout       200
+/api/bold-webhook               /.netlify/functions/bold-webhook        200
 
-# 4. LANDINGS DE CAPTURA Y PROMOCIÓN
-/despertar                /landing-despertar.html                 200
-/escritura                /landing-escritura.html                 200
-/regreso-a-ti             /landing-regreso-a-ti.html              200
+# 4. SLUGS CANÓNICOS REWRITE A SUS ARCHIVOS BASE
+/panel                          /admin.html                             200
+/sobre-mi                       /sobre-mi.html                          200
+/mentorias                      /mentorias-y-cursos.html                200
+/comunidad                      /comunidad.html                         200
+/testimonios                    /testimonios.html                       200
+/contacto                       /contacto-y-faq.html                    200
+/escaner                        /escaner-de-patrones.html               200
+/bienvenida                     /bienvenida.html                        200
+/presentacion                   /presentacion_profesional_cata_arango.html 200
+/pago-confirmado                /pago-confirmado.html                   200
+/portal                         /portal-agencia.html                    200
+/despertar                      /landing-despertar.html                 200
+/escritura                      /landing-escritura.html                 200
+/regreso-a-ti                   /landing-regreso-a-ti.html              200

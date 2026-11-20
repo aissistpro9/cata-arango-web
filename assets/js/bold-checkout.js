@@ -138,7 +138,7 @@
 
     if (!product) {
       console.warn('Producto no encontrado en BOLD_CONFIG:', productId);
-      window.location.href = 'contacto-y-faq.html';
+      window.location.href = '/contacto';
       return;
     }
 
@@ -373,7 +373,7 @@
     }));
 
     // Redirigir a página de confirmación
-    window.location.href = `pago-confirmado.html?servicio=${encodeURIComponent(payload.serviceName)}&monto=${payload.amount}&moneda=${payload.currency}&nombre=${encodeURIComponent(payload.customerName)}`;
+    window.location.href = `/pago-confirmado?servicio=${encodeURIComponent(payload.serviceName)}&monto=${payload.amount}&moneda=${payload.currency}&nombre=${encodeURIComponent(payload.customerName)}`;
   }
 
   // Contacto directo por WhatsApp con mensaje formal organizado (+57 314 338 5095)

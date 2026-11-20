@@ -11,7 +11,7 @@ window.BOLD_CONFIG = {
   apiKey: "",
   
   // URL de redirección cuando el usuario completa la transacción
-  redirectionUrl: window.location.origin + "/pago-confirmado.html",
+  redirectionUrl: window.location.origin + "/pago-confirmado",
 
   // Moneda por defecto: COP (Pesos Colombianos) o USD
   defaultCurrency: "COP",

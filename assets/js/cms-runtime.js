@@ -1,6 +1,6 @@
 /**
  * CMS RUNTIME — Catalina Arango · Trascendamos Juntos
- * Sincroniza dinámicamente todo el contenido guardado desde el Panel de Autogestión (admin.html)
+ * Sincroniza dinámicamente todo el contenido guardado desde el Panel de Autogestión (/panel)
  * persistido en el servidor (/api/cms) y respaldado en localStorage.
  */
 (function() {

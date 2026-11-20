@@ -30,6 +30,82 @@ app.use((req, res, next) => {
   next();
 });
 
+// ============================================================================
+// CLEAN SLUGS & CANONICAL 301 REDIRECTS (ELIMINACIÓN ESTRICTA DE .HTML)
+// ============================================================================
+const SLUG_MAP_FROM_HTML = {
+  '/index.html': '/',
+  '/admin.html': '/panel',
+  '/autogestion.html': '/panel',
+  '/sobre-mi.html': '/sobre-mi',
+  '/mentorias-y-cursos.html': '/mentorias',
+  '/mentorias.html': '/mentorias',
+  '/cursos.html': '/mentorias',
+  '/comunidad.html': '/comunidad',
+  '/testimonios.html': '/testimonios',
+  '/contacto-y-faq.html': '/contacto',
+  '/contacto.html': '/contacto',
+  '/faq.html': '/contacto',
+  '/escaner-de-patrones.html': '/escaner',
+  '/escaner.html': '/escaner',
+  '/pago-confirmado.html': '/pago-confirmado',
+  '/portal-agencia.html': '/portal',
+  '/portal.html': '/portal',
+  '/landing-despertar.html': '/despertar',
+  '/despertar.html': '/despertar',
+  '/landing-escritura.html': '/escritura',
+  '/escritura.html': '/escritura',
+  '/landing-regreso-a-ti.html': '/regreso-a-ti',
+  '/regreso-a-ti.html': '/regreso-a-ti',
+  '/bienvenida.html': '/bienvenida',
+  '/presentacion_profesional_cata_arango.html': '/presentacion',
+  '/presentacion.html': '/presentacion'
+};
+
+const LEGACY_SLUG_REDIRECTS = {
+  '/admin': '/panel',
+  '/autogestion': '/panel',
+  '/acceso': '/panel',
+  '/mentorias-y-cursos': '/mentorias',
+  '/cursos': '/mentorias',
+  '/contacto-y-faq': '/contacto',
+  '/faq': '/contacto',
+  '/escaner-de-patrones': '/escaner',
+  '/escaner-patrones': '/escaner',
+  '/landing-despertar': '/despertar',
+  '/landing-escritura': '/escritura',
+  '/landing-regreso-a-ti': '/regreso-a-ti',
+  '/portal-agencia': '/portal',
+  '/agencia': '/portal'
+};
+
+// Middleware para forzar 301 permanente a slugs limpios sin .html
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return next();
+  }
+
+  const cleanReqPath = req.path.toLowerCase();
+  const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+
+  // 1. Redireccionar cualquier petición con extensión .html
+  if (cleanReqPath.endsWith('.html')) {
+    if (SLUG_MAP_FROM_HTML[cleanReqPath]) {
+      return res.redirect(301, SLUG_MAP_FROM_HTML[cleanReqPath] + query);
+    }
+    const withoutExt = cleanReqPath.slice(0, -5);
+    const target = withoutExt === '/index' ? '/' : withoutExt;
+    return res.redirect(301, target + query);
+  }
+
+  // 2. Redireccionar slugs alternativos hacia su canónico
+  if (LEGACY_SLUG_REDIRECTS[cleanReqPath]) {
+    return res.redirect(301, LEGACY_SLUG_REDIRECTS[cleanReqPath] + query);
+  }
+
+  next();
+});
+
 // Adapter to run Netlify Functions inside Express
 function runNetlifyFunction(fnPath) {
   return async (req, res) => {
@@ -106,7 +182,6 @@ app.post('/api/cms', (req, res) => {
       current.landings[payload.landingKey] = Object.assign({}, current.landings[payload.landingKey] || {}, payload.landing);
     }
 
-    // Ensure data directory exists
     const dir = path.dirname(CMS_FILE);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -128,30 +203,95 @@ app.post('/api/cms', (req, res) => {
 });
 
 // ============================================================================
-// CLEAN ROUTING & SLUGS
+// CANONICAL CLEAN ROUTES (SERVE HTML PAGES SECURELY WITHOUT EXTENSION)
 // ============================================================================
-// Landings
-app.get(['/landing-regreso-a-ti', '/regreso-a-ti'], (req, res) => {
+
+// 1. Inicio
+app.get('/', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
-  res.sendFile(path.join(__dirname, 'landing-regreso-a-ti.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
-app.get(['/landing-despertar', '/despertar'], (req, res) => {
+
+// 2. Panel de Autogestión (Acceso oficial y seguro)
+app.get('/panel', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+// 3. Sobre Mí
+app.get('/sobre-mi', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'sobre-mi.html'));
+});
+
+// 4. Mentorías y Cursos
+app.get('/mentorias', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'mentorias-y-cursos.html'));
+});
+
+// 5. Comunidad
+app.get('/comunidad', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'comunidad.html'));
+});
+
+// 6. Testimonios
+app.get('/testimonios', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'testimonios.html'));
+});
+
+// 7. Contacto & FAQ
+app.get('/contacto', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'contacto-y-faq.html'));
+});
+
+// 8. Escáner de Patrones Inconscientes
+app.get('/escaner', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'escaner-de-patrones.html'));
+});
+
+// 9. Confirmación de Pago Bold
+app.get('/pago-confirmado', (req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.sendFile(path.join(__dirname, 'pago-confirmado.html'));
+});
+
+// 10. Portal Agencia Blessia
+app.get('/portal', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'portal-agencia.html'));
+});
+
+// 11. Portada de Bienvenida
+app.get('/bienvenida', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'bienvenida.html'));
+});
+
+// 12. Presentación Profesional Blessia
+app.get('/presentacion', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+  res.sendFile(path.join(__dirname, 'presentacion_profesional_cata_arango.html'));
+});
+
+// 12. Landings de Promoción & Captura
+app.get('/despertar', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
   res.sendFile(path.join(__dirname, 'landing-despertar.html'));
 });
-app.get(['/landing-escritura', '/escritura'], (req, res) => {
+
+app.get('/escritura', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
   res.sendFile(path.join(__dirname, 'landing-escritura.html'));
 });
 
-// Admin Panel & Agency Portal
-app.get(['/admin', '/autogestion', '/panel'], (req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, must-revalidate');
-  res.sendFile(path.join(__dirname, 'admin.html'));
-});
-app.get(['/portal-agencia', '/agencia'], (req, res) => {
+app.get('/regreso-a-ti', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
-  res.sendFile(path.join(__dirname, 'portal-agencia.html'));
+  res.sendFile(path.join(__dirname, 'landing-regreso-a-ti.html'));
 });
 
 // Standard API Routes
@@ -165,13 +305,14 @@ app.all('/api/send-scanner-link', runNetlifyFunction('./netlify/functions/send-s
 // Health check endpoint
 app.get('/health', (req, res) => res.status(200).send('OK'));
 
-// Optimized Static Assets Delivery with Granular Cache Control
+// Optimized Static Assets Delivery (index and extensions disabled to enforce clean routes)
 app.use(express.static(path.join(__dirname, '.'), {
-  extensions: ['html'],
+  index: false,
+  extensions: false,
   maxAge: '7d',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     } else if (filePath.match(/\.(jpg|jpeg|png|webp|svg|ico|mp4|ogg|mp3|woff2|woff|ttf)$/i)) {
       res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
     } else if (filePath.match(/\.(css|js)$/i)) {
@@ -180,9 +321,12 @@ app.use(express.static(path.join(__dirname, '.'), {
   }
 }));
 
-// Fallback to index.html for root or unknown GET requests
+// Fallback to index.html for unknown clean routes (excluding static file assets)
 app.use((req, res) => {
   if (req.method === 'GET') {
+    if (path.extname(req.path)) {
+      return res.status(404).send('Not Found');
+    }
     res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
     res.sendFile(path.join(__dirname, 'index.html'));
   } else {
