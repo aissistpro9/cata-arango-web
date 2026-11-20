@@ -446,6 +446,66 @@ h1, h2, h3, h4, .font-serif {
   flex-shrink: 0;
 }
 
+/* Botón de Acceso al Panel de Autogestión en Header */
+.nav-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--secondary-accent, #8c7355);
+  background: rgba(140, 115, 85, 0.08);
+  border: 1px solid rgba(140, 115, 85, 0.22);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-full, 999px);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-admin-btn:hover {
+  background: var(--secondary-accent, #8c7355);
+  color: #ffffff;
+  border-color: var(--secondary-accent, #8c7355);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(140, 115, 85, 0.25);
+}
+
+.nav-admin-btn .material-symbols-outlined {
+  font-size: 15px;
+}
+
+/* Enlace a Panel de Autogestión en Footer */
+.footer-admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 249, 232, 0.75);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(229, 195, 146, 0.25);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+}
+
+.footer-admin-link:hover {
+  background: rgba(229, 195, 146, 0.18);
+  border-color: #f7d598;
+  color: #fff9ee;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.footer-admin-link .material-symbols-outlined {
+  font-size: 15px;
+  color: #f7d598;
+}
+
 .header-cta {
   display: none !important;
   padding: 0.65rem 1.25rem;

@@ -766,7 +766,7 @@
             </div>
           </div>
           
-          <button type="button" onclick="window.openBoldCheckout && window.openBoldCheckout('escritura-terapeutica-scanner') || window.location.href='mentorias-y-cursos.html#escritura-terapeutica'" style="background: linear-gradient(135deg, #c9a87a, #a07845); color: white; border: none; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <button type="button" class="btn-sacred-gold" onclick="openBoldCheckout('escritura-terapeutica-scanner', 'USD')" data-bold-product="escritura-terapeutica-scanner" data-bold-currency="USD" style="background: linear-gradient(135deg, #c9a87a, #a07845); color: white; border: none; padding: 1.1rem 2.8rem; border-radius: 50px; font-size: 1.05rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.75rem; box-shadow: 0 4px 20px rgba(201, 168, 122, 0.45); transition: transform 0.2s, box-shadow 0.2s;">
             <span data-cms="escaner_oferta_btn">🌿 Quiero Comenzar Mi Sanación — $20 USD</span>
           </button>
           <div style="font-size: 0.75rem; color: #8c7355; margin-top: 0.5rem;">
@@ -1150,8 +1150,8 @@
 
       // Acceso estrictamente condicionado a ingresar desde el enlace del correo
       if (token && email) {
-        if (name) userName = name;
-        if (email) userEmail = email;
+        if (name) { userName = name; window.userName = name; }
+        if (email) { userEmail = email; window.userEmail = email; }
 
         document.getElementById('gateBlock').style.display = 'none';
         document.getElementById('welcomeSection').style.display = 'block';
@@ -1187,6 +1187,8 @@
         
         userName = name;
         userEmail = email;
+        window.userName = name;
+        window.userEmail = email;
         
         document.getElementById('gateForm').style.display = 'none';
         document.getElementById('gateSuccess').style.display = 'block';
@@ -1753,6 +1755,10 @@
       }
     }
   </script>
+
+  <!-- Pasarela Oficial de Pagos BOLD -->
+  <script src="assets/js/bold-config.js"></script>
+  <script src="assets/js/bold-checkout.js"></script>
 
   <!-- CMS Runtime · Sincronización en Tiempo Real -->
   <script src="assets/js/cms-runtime.js" defer></script>

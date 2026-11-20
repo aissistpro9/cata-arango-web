@@ -51,3 +51,119 @@
   from = "/api/bold-webhook"
   to = "/.netlify/functions/bold-webhook"
   status = 200
+
+# ==============================================================================
+# SLUGS DE ACCESO AL PANEL DE AUTOGESTIÓN
+# ==============================================================================
+[[redirects]]
+  from = "/panel"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/autogestion"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/acceso"
+  to = "/admin.html"
+  status = 200
+
+# ==============================================================================
+# SLUGS LIMPIOS Y AMIGABLES (URLS PRINCIPALES)
+# ==============================================================================
+[[redirects]]
+  from = "/sobre-mi"
+  to = "/sobre-mi.html"
+  status = 200
+
+[[redirects]]
+  from = "/mentorias"
+  to = "/mentorias-y-cursos.html"
+  status = 200
+
+[[redirects]]
+  from = "/mentorias-y-cursos"
+  to = "/mentorias-y-cursos.html"
+  status = 200
+
+[[redirects]]
+  from = "/cursos"
+  to = "/mentorias-y-cursos.html"
+  status = 200
+
+[[redirects]]
+  from = "/comunidad"
+  to = "/comunidad.html"
+  status = 200
+
+[[redirects]]
+  from = "/testimonios"
+  to = "/testimonios.html"
+  status = 200
+
+[[redirects]]
+  from = "/contacto"
+  to = "/contacto-y-faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/contacto-y-faq"
+  to = "/contacto-y-faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/contacto-y-faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/escaner"
+  to = "/escaner-de-patrones.html"
+  status = 200
+
+[[redirects]]
+  from = "/escaner-de-patrones"
+  to = "/escaner-de-patrones.html"
+  status = 200
+
+[[redirects]]
+  from = "/bienvenida"
+  to = "/bienvenida.html"
+  status = 200
+
+[[redirects]]
+  from = "/pago-confirmado"
+  to = "/pago-confirmado.html"
+  status = 200
+
+[[redirects]]
+  from = "/portal"
+  to = "/portal-agencia.html"
+  status = 200
+
+[[redirects]]
+  from = "/portal-agencia"
+  to = "/portal-agencia.html"
+  status = 200
+
+[[redirects]]
+  from = "/despertar"
+  to = "/landing-despertar.html"
+  status = 200
+
+[[redirects]]
+  from = "/escritura"
+  to = "/landing-escritura.html"
+  status = 200
+
+[[redirects]]
+  from = "/regreso-a-ti"
+  to = "/landing-regreso-a-ti.html"
+  status = 200

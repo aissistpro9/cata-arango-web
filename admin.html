@@ -488,12 +488,272 @@
       .form-row { grid-template-columns: 1fr; }
       .search-bar-wrap { display: none; }
     }
+
+    /* AUTH SCREEN */
+    #adminAuthScreen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 25%, #243024 0%, #121812 60%, #0a0e0a 100%);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .auth-card {
+      background: rgba(18, 24, 18, 0.94);
+      border: 1.5px solid rgba(201, 168, 122, 0.35);
+      border-radius: 20px;
+      padding: clamp(2rem, 5vw, 2.75rem) clamp(1.5rem, 4vw, 2.25rem);
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65), 0 0 40px rgba(201, 168, 122, 0.12);
+      animation: authCardIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes authCardIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .auth-emblem {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(201, 168, 122, 0.12);
+      border: 1px solid rgba(201, 168, 122, 0.3);
+      filter: drop-shadow(0 4px 16px rgba(201, 168, 122, 0.35));
+    }
+    .auth-emblem img { height: 48px; }
+    .auth-pretitle {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .auth-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #fff9ee;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .auth-desc {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(255, 249, 238, 0.7);
+      margin-bottom: 1.75rem;
+    }
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+    .auth-field label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+    }
+    .auth-input-wrap {
+      position: relative;
+    }
+    .auth-input-wrap .material-symbols-outlined {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: rgba(201, 168, 122, 0.65);
+    }
+    .auth-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.6rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px solid rgba(201, 168, 122, 0.25);
+      border-radius: 10px;
+      color: #fff9ee;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+    .auth-input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 15px rgba(247, 213, 152, 0.2);
+    }
+    .auth-pass-toggle {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.2rem;
+    }
+    .auth-pass-toggle:hover { color: var(--gold-light); }
+    .auth-remember {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: rgba(255, 249, 238, 0.75);
+      cursor: pointer;
+      user-select: none;
+    }
+    .auth-error {
+      background: rgba(192, 57, 43, 0.2);
+      border: 1px solid rgba(192, 57, 43, 0.4);
+      color: #ff9d94;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      display: none;
+      align-items: center;
+      gap: 0.45rem;
+      animation: shake 0.3s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .btn-auth-submit {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: #121812;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 18px rgba(201, 168, 122, 0.35);
+    }
+    .btn-auth-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(201, 168, 122, 0.5);
+    }
+    .auth-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: rgba(255, 249, 238, 0.55);
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      transition: color 0.2s;
+    }
+    .auth-back-link:hover { color: var(--gold-light); }
+    .btn-admin-logout {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,249,238,0.85);
+      font-size: 0.8rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-admin-logout:hover {
+      background: rgba(192, 57, 43, 0.25);
+      border-color: rgba(192, 57, 43, 0.5);
+      color: #ff9d94;
+    }
+    .admin-user-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      background: rgba(201, 168, 122, 0.12);
+      border: 1px solid rgba(201, 168, 122, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- ACCESO AL PANEL DE AUTOGESTIÓN (PANTALLA DE LOGIN / SEGURIDAD) -->
+  <div id="adminAuthScreen">
+    <div class="auth-card">
+      <div class="auth-emblem">
+        <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
+      </div>
+      <div class="auth-pretitle">Santuario Digital · Cata Arango</div>
+      <h1 class="auth-title">Panel de Autogestión</h1>
+      <p class="auth-desc">Ingresa tu clave maestra de acceso para administrar contenidos, tarifas, testimonios, promociones y páginas de tu sitio web.</p>
+      
+      <form class="auth-form" onsubmit="event.preventDefault(); attemptAdminLogin();">
+        <div class="auth-field">
+          <label for="adminAuthUser">Usuario / Correo</label>
+          <div class="auth-input-wrap">
+            <span class="material-symbols-outlined">person</span>
+            <input type="text" id="adminAuthUser" class="auth-input" value="carango398@gmail.com" placeholder="correo@ejemplo.com">
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label for="adminAuthPass">Clave Maestra de Acceso</label>
+          <div class="auth-input-wrap">
+            <span class="material-symbols-outlined">key</span>
+            <input type="password" id="adminAuthPass" class="auth-input" placeholder="Ingresa tu clave de acceso..." autocomplete="current-password" autofocus required>
+            <button type="button" class="auth-pass-toggle" onclick="toggleAuthPassVisibility()" title="Mostrar u ocultar clave">
+              <span class="material-symbols-outlined" id="authPassIcon" style="font-size: 18px;">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <label class="auth-remember">
+          <input type="checkbox" id="adminAuthRemember" checked>
+          <span>Recordar sesión en este equipo</span>
+        </label>
+
+        <div id="adminAuthError" class="auth-error">
+          <span class="material-symbols-outlined" style="font-size: 16px;">error</span>
+          <span id="adminAuthErrorText">Clave incorrecta. Inténtalo de nuevo.</span>
+        </div>
+
+        <button type="submit" class="btn-auth-submit">
+          <span class="material-symbols-outlined">lock_open</span>
+          <span>Ingresar al Panel</span>
+        </button>
+      </form>
+
+      <a href="/" class="auth-back-link">
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+        <span>Volver al Sitio Web Principal</span>
+      </a>
+    </div>
+  </div>
+
   <!-- HEADER -->
-  <header class="admin-header">
+  <header class="admin-header" id="adminMainHeader" style="display: none;">
     <div class="admin-header-brand">
       <img src="assets/images/LOGO_SOL_Y_LUNA-removebg.png" alt="Sol y Luna">
       <div>
@@ -510,14 +770,22 @@
         <span class="material-symbols-outlined" style="font-size: 16px;">save</span>
         Guardar Todo
       </button>
-      <a href="index.html" class="btn-site-link" target="_blank">
+      <div class="admin-user-pill" title="Sesión activa">
+        <span class="material-symbols-outlined" style="font-size: 15px; color: var(--gold-light);">verified_user</span>
+        <span>Cata Arango</span>
+      </div>
+      <a href="/" class="btn-site-link" target="_blank" title="Ver web pública">
         <span>Ver Web</span>
         <span class="material-symbols-outlined" style="font-size: 15px;">open_in_new</span>
       </a>
+      <button type="button" class="btn-admin-logout" onclick="logoutAdmin()" title="Cerrar sesión">
+        <span class="material-symbols-outlined" style="font-size: 15px;">logout</span>
+        <span>Salir</span>
+      </button>
     </div>
   </header>
 
-  <div class="admin-layout">
+  <div class="admin-layout" id="adminMainLayout" style="display: none;">
 
     <!-- SIDEBAR -->
     <nav class="sidebar">
@@ -2005,6 +2273,9 @@
 
     // RESTAURAR AL INICIAR
     document.addEventListener('DOMContentLoaded', function() {
+      // Verificar autenticación
+      checkAdminAuth();
+
       renderLandingEditors();
 
       // Restaurar valores de CMS
@@ -2027,6 +2298,96 @@
         updatePromoPreview();
       }
     });
+
+    // =========================================================================
+    // SISTEMA DE SEGURIDAD Y ACCESO AL PANEL DE AUTOGESTIÓN
+    // =========================================================================
+    const MASTER_PINS = ['cata2026', 'trascendamos2026', 'cataarango2026'];
+
+    function checkAdminAuth() {
+      const isAuth = sessionStorage.getItem('cata_admin_authenticated') === 'true' ||
+                     localStorage.getItem('cata_admin_authenticated') === 'true';
+
+      const authScreen = document.getElementById('adminAuthScreen');
+      const mainHeader = document.getElementById('adminMainHeader');
+      const mainLayout = document.getElementById('adminMainLayout');
+
+      if (isAuth) {
+        if (authScreen) authScreen.style.display = 'none';
+        if (mainHeader) mainHeader.style.display = 'flex';
+        if (mainLayout) mainLayout.style.display = 'grid';
+      } else {
+        if (authScreen) authScreen.style.display = 'flex';
+        if (mainHeader) mainHeader.style.display = 'none';
+        if (mainLayout) mainLayout.style.display = 'none';
+        const passInput = document.getElementById('adminAuthPass');
+        if (passInput) setTimeout(() => passInput.focus(), 150);
+      }
+    }
+
+    function toggleAuthPassVisibility() {
+      const passInput = document.getElementById('adminAuthPass');
+      const icon = document.getElementById('authPassIcon');
+      if (!passInput) return;
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        if (icon) icon.textContent = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        if (icon) icon.textContent = 'visibility';
+      }
+    }
+
+    function attemptAdminLogin() {
+      const passInput = document.getElementById('adminAuthPass');
+      const rememberCheck = document.getElementById('adminAuthRemember');
+      const errorBox = document.getElementById('adminAuthError');
+      const errorText = document.getElementById('adminAuthErrorText');
+      if (!passInput) return;
+
+      const entered = (passInput.value || '').trim();
+      const customPin = localStorage.getItem('cata_admin_custom_pin');
+      const isValid = MASTER_PINS.includes(entered) || (customPin && entered === customPin);
+
+      if (isValid) {
+        if (errorBox) errorBox.style.display = 'none';
+        
+        // Guardar sesión
+        if (rememberCheck && rememberCheck.checked) {
+          localStorage.setItem('cata_admin_authenticated', 'true');
+        } else {
+          sessionStorage.setItem('cata_admin_authenticated', 'true');
+        }
+
+        const authScreen = document.getElementById('adminAuthScreen');
+        if (authScreen) {
+          authScreen.style.opacity = '0';
+          authScreen.style.transition = 'opacity 0.3s ease';
+          setTimeout(() => {
+            authScreen.style.display = 'none';
+            document.getElementById('adminMainHeader').style.display = 'flex';
+            document.getElementById('adminMainLayout').style.display = 'grid';
+            showToast('✦ ¡Bienvenida al Panel de Autogestión, Catalina!');
+          }, 300);
+        }
+      } else {
+        if (errorBox) {
+          errorBox.style.display = 'flex';
+          if (errorText) errorText.textContent = 'Clave incorrecta. Por favor verifica tus credenciales.';
+        }
+        passInput.classList.add('error');
+        passInput.focus();
+        passInput.select();
+      }
+    }
+
+    function logoutAdmin() {
+      if (confirm('¿Deseas cerrar la sesión del Panel de Autogestión?')) {
+        sessionStorage.removeItem('cata_admin_authenticated');
+        localStorage.removeItem('cata_admin_authenticated');
+        window.location.reload();
+      }
+    }
   </script>
 </body>
 </html>

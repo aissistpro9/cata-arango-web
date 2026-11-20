@@ -130,7 +130,7 @@
   }
 
   // Abrir Modal con Producto
-  window.openBoldCheckout = function (productId) {
+  window.openBoldCheckout = function (productId, preferredCurrency) {
     createCheckoutModal();
 
     const config = window.BOLD_CONFIG || {};
@@ -143,13 +143,34 @@
     }
 
     currentProduct = product;
-    currentCurrency = config.defaultCurrency || 'COP';
+    currentCurrency = preferredCurrency || config.defaultCurrency || 'COP';
 
     // Rellenar datos en la interfaz
     document.getElementById('boldProductName').textContent = product.name;
     document.getElementById('boldProductBadge').textContent = product.badge || product.category;
     document.getElementById('boldProductDuration').textContent = product.duration || '';
     document.getElementById('boldProductDesc').textContent = product.description || '';
+
+    // Prellenar nombre y correo si ya se ingresaron en el escáner o formulario
+    const nameField = document.getElementById('boldCustomerName');
+    const emailField = document.getElementById('boldCustomerEmail');
+    if (nameField && !nameField.value) {
+      const detectedName = (typeof window.userName !== 'undefined' && window.userName && window.userName !== 'Buscadora') 
+        ? window.userName 
+        : (document.getElementById('contactName')?.value || '');
+      if (detectedName) nameField.value = detectedName;
+    }
+    if (emailField && !emailField.value) {
+      const detectedEmail = (typeof window.userEmail !== 'undefined' && window.userEmail) 
+        ? window.userEmail 
+        : (document.getElementById('contactEmail')?.value || '');
+      if (detectedEmail) emailField.value = detectedEmail;
+    }
+
+    // Sincronizar botones de selector de moneda
+    document.querySelectorAll('.bold-cur-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cur') === currentCurrency);
+    });
 
     updatePriceDisplay();
 
@@ -396,7 +417,8 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         const prodId = this.getAttribute('data-bold-product');
-        window.openBoldCheckout(prodId);
+        const cur = this.getAttribute('data-bold-currency') || undefined;
+        window.openBoldCheckout(prodId, cur);
       });
     });
 
